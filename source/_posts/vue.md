@@ -1,7 +1,10 @@
 ---
-title: vue.js
+title: Vue.js
 date: 2021-06-28 13:40:59
 tags: [Web, Vue]
+toc: true
+cover: /assets/vue/cover.png
+thumbnail: /assets/vue/cover.png
 ---
 
 ## Vue.js 的安装
@@ -10,10 +13,10 @@ tags: [Web, Vue]
 
 ```html
 <!-- 开发环境版本，包含了有帮助的命令行警告 -->
-<script src=“http://cdn.jsdelivr.net/nvm/vue/dist/vue.js”></script>
+<script src="http://cdn.jsdelivr.net/nvm/vue/dist/vue.js"></script>
 
 <!-- 生产环境版本，优化了尺寸和速度 -->
-<script src=“http://cdn.jsdelivr.net/nvm/vue”></script>
+<script src="http://cdn.jsdelivr.net/nvm/vue"></script>
 ```
 
 - 下载和引入
@@ -23,11 +26,11 @@ tags: [Web, Vue]
 
 ## MVVM
 
-## ![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%884%E6%97%A5%20095336.jpg)
+![](/assets/vue/01.jpg)
 
 ## Vue 生命周期
 
-![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%8820%E6%97%A5%20191805.jpg)
+![](/assets/vue/02.jpg)
 **vue 生命周期共分为四个阶段**
 
 1. 实例创建
@@ -67,21 +70,23 @@ tags: [Web, Vue]
 ## Vue 的基本使用
 
 ```html
-<div id="“app”">{{message}}</div>
+<div id="app">{{message}}</div>
 
 <script>
 	//创建实例
 	const app = new vue({
-	  el: ‘#app’,	//用于挂载要管理的元素
-	  data: {		//定义数据
-	    message: ‘Hello Vue!’
-	  },
-	  method: {		//定义方法
-	    m1: function() {
-	        //函数体
-	    }
-	  }
-	})
+		el: '#app', //用于挂载要管理的元素
+		data: {
+			//定义数据
+			message: 'Hello Vue!'
+		},
+		method: {
+			//定义方法
+			m1: function () {
+				//函数体
+			}
+		}
+	});
 </script>
 ```
 
@@ -102,7 +107,7 @@ tags: [Web, Vue]
 表示元素和组建只渲染一次，不会随着数据的改变而改变；
 
 ```html
-<div id="“app”">
+<div id="app">
 	<h1>{{message}}</h1>
 	<h1 v-once>{{message}}</h1>
 </div>
@@ -110,10 +115,10 @@ tags: [Web, Vue]
 <script>
 	//创建实例
 	const = app new vue({
-	  el: ‘#app’,
-	  data: {
-	    message: ‘Hello Vue!’
-	  }
+		el: '#app',
+		data: {
+			message: 'Hello Vue!'
+		}
 	})
 </script>
 ```
@@ -124,17 +129,17 @@ tags: [Web, Vue]
 会将 string 的 html 解析出来并进行渲染；
 
 ```html
-<div id="“app”">
-	<div v-html="“message”"></div>
+<div id="app">
+	<div v-html="message"></div>
 </div>
 
 <script>
 	//创建实例
 	const = app new vue({
-	  el: ‘#app’,
-	  data: {
-	    message: ‘<h1>Hello Vue!</h1>’
-	  }
+		el: '#app',
+		data: {
+			message: '<h1>Hello Vue!</h1>'
+		}
 	})
 </script>
 ```
@@ -145,16 +150,16 @@ tags: [Web, Vue]
 通常情况下，接受一个 string 类型；
 
 ```html
-<div id="“app”">
-	<h1 v-text="“message”"></h1>
+<div id="app">
+	<h1 v-text="message"></h1>
 </div>
 
 <script>
 	//创建实例
 	const = app new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {
-	    message: ‘Hello Vue!’
+	    message: 'Hello Vue!'
 	  }
 	})
 </script>
@@ -165,7 +170,7 @@ tags: [Web, Vue]
 不对 `{{ }}` 进行解析，直接显示；
 
 ```html
-<div id="“app”">
+<div id="app">
 	<h1>{{message}}</h1>
 	<h1 v-pre>{{message}}</h1>
 </div>
@@ -173,9 +178,9 @@ tags: [Web, Vue]
 <script>
 	//创建实例
 	const = app new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {
-	    message: ‘Hello Vue!’
+	    message: 'Hello Vue!'
 	  }
 	})
 </script>
@@ -199,16 +204,16 @@ tags: [Web, Vue]
 #### v-bind 绑定基本属性
 
 ```html
-<div id=“app”>
-  <img v-bind:src=“imgUrl”></img>
+<div id="app">
+  <img v-bind:src="imgUrl"></img>
 </div>
 
 <script>
   //创建实例
   const = app new vue({
-    el: ‘#app’,
+    el: '#app',
     data: {
-      imgUrl: ‘https://...’
+      imgUrl: 'https://...'
     }
   })
 </script>
@@ -223,14 +228,14 @@ tags: [Web, Vue]
 	}
 </style>
 
-<div id="“app”">
-	<div :class="“{active:" isActive}”>Hello Vue!</div>
+<div id="app">
+	<div :class="{active:" isActive}">Hello Vue!</div>
 </div>
 
 <script>
 	//创建实例
 	const = app new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {
 	    isActive: true
 	  }
@@ -238,14 +243,14 @@ tags: [Web, Vue]
 </script>
 
 <!-- 通过methods绑定 -->
-<div id="“app”">
-	<div :class="“getClass()”">Hello Vue!</div>
+<div id="app">
+	<div :class="getClass()">Hello Vue!</div>
 </div>
 
 <script>
 	//创建实例
 	const = app new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {
 	    isActive: true
 	  },
@@ -261,17 +266,17 @@ tags: [Web, Vue]
 #### v-bind 绑定 style
 
 ```html
-<div id="“app”">
-	<h1 :style="“{font-size:’20px’}”">{{message}}</h1>
-	<h1 :style="“{font-size:fontSize}”">{{message}}</h1>
+<div id="app">
+	<h1 :style="{font-size:'20px'}">{{message}}</h1>
+	<h1 :style="{font-size:fontSize}">{{message}}</h1>
 </div>
 
 <script>
 	//创建实例
 	const = app new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {
-	    message: ‘Hello Vue!’,
+	    message: 'Hello Vue!',
 	    fontSize: 50px
 	  }
 	})
@@ -284,7 +289,7 @@ tags: [Web, Vue]
 
 ```html
 <!-- 完整语法 -->
-<button v-on:click="“method”"></button>
+<button v-on:click="method"></button>
 <!-- 语法糖 -->
 <button @click="method"></button>
 ```
@@ -303,24 +308,24 @@ tags: [Web, Vue]
 
 ```html
 <!-- 阻止冒泡 -->
-<button @click.stop=“method”></button>
+<button @click.stop="method"></button>
 
 <!-- 阻止默认行为 -->
-<button @click.prevent=“method”></button>
+<button @click.prevent="method"></button>
 <!-- 阻止默认行为，没有表达式 -->
 <form @click.prevent></form>
 
 <!-- 串联修饰符 -->
-<button @click.stop.prevent=“method”></button>
+<button @click.stop.prevent="method"></button>
 
 <!-- 键修饰符，键别名 -->
-<input @keyup.enter=“onEnter”></input>
+<input @keyup.enter="onEnter"></input>
 <!-- 键修饰符，键代码 -->
 <!-- enter键代码为13 -->
-<input  @keyup.13=“onEnter”></input>
+<input  @keyup.13="onEnter"></input>
 
 <!-- 点击回调只会触发一次 -->
-<button @click.once=“method”></button>
+<button @click.once="method"></button>
 ```
 
 ### 条件判断 (v-if, v-else-if, v-else)
@@ -329,7 +334,7 @@ tags: [Web, Vue]
 
 ```html
 <div>
-	<h1 v-if="“isShow”">isShow为true时显示</h1>
+	<h1 v-if="isShow">isShow为true时显示</h1>
 	<h1 v-else>isShow为false时显示</h1>
 </div>
 ```
@@ -339,9 +344,9 @@ tags: [Web, Vue]
 ```html
 <!-- 不推荐使用v-else-if，一般用computed代替 -->
 <div>
-  <h1 v-if=“score>=90”>优秀</h1>
-  <h1 v-else-if=“score>=80”>良好</h1>
-  <h1v-else-if=“score>=60”>及格</h1>
+  <h1 v-if="score>=90">优秀</h1>
+  <h1 v-else-if="score>=80">良好</h1>
+  <h1v-else-if="score>=60">及格</h1>
   <h1 v-else>不及格</h1>
 </div>
 ```
@@ -354,7 +359,7 @@ tags: [Web, Vue]
 
 ```html
 <div>
-  <h1 v-show=“isShow”>isShow为true时显示</h1>
+  <h1 v-show="isShow">isShow为true时显示</h1>
 </div
 ```
 
@@ -368,22 +373,22 @@ tags: [Web, Vue]
 #### v-for 遍历数组
 
 ```html
-<div id="“app”">
+<div id="app">
 	<ul>
-		<li v-for="“item" in arr”>{{item}}</li>
+		<li v-for="item" in arr">{{item}}</li>
 	</ul>
 
 	<!-- 同时获取下标 -->
 	<ul>
-		<li v-for="“(item,index)" in arr”>{{index}}. {{item}}</li>
+		<li v-for="(item,index)" in arr">{{index}}. {{item}}</li>
 	</ul>
 </div>
 
 <script>
 	const app = new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {
-	    arr: [‘a1’,’a2’,’a3’]
+	    arr: ['a1','a2','a3']
 	  }
 	})
 </script>
@@ -395,26 +400,26 @@ tags: [Web, Vue]
 <div>
 	<!-- 获取的是value -->
 	<ul>
-		<li v-for="“item" in info”>{{item}}</li>
+		<li v-for="item" in info">{{item}}</li>
 	</ul>
 
 	<!-- 获取的是key和value -->
 	<ul>
-		<li v-for="“(value,key)" in info”>{{key}}: {{value}}</li>
+		<li v-for="(value,key)" in info">{{key}}: {{value}}</li>
 	</ul>
 
 	<!-- 获取的是key、value、index -->
 	<ul>
-		<li v-for="“(value,key,index)" in info”>{{index}}. {{key}}: {{value}}</li>
+		<li v-for="(value,key,index)" in info">{{index}}. {{key}}: {{value}}</li>
 	</ul>
 </div>
 
 <script>
 	const app = new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {
 	    info: {
-	      name: ‘Shihao’,
+	      name: 'Shihao',
 	      age: 21,
 	      height: 1.70
 	    }
@@ -428,7 +433,7 @@ tags: [Web, Vue]
 ```html
 <!-- 绑定的key需要和item对应且唯一 -->
 <ul>
-	<li v-for="“item" in arr” :key="“item”">{{item}}</li>
+	<li v-for="item" in arr" :key="item">{{item}}</li>
 </ul>
 ```
 
@@ -458,41 +463,41 @@ v-model 实现表单元素和数据的双向绑定；
 #### v-model 的基本使用
 
 ```html
-<div id="“app”">
-	<input type="“text”" v-model="“message”" />
+<div id="app">
+	<input type="text" v-model="message" />
 </div>
 
 <script>
 	const app = new vue({
-	  el: ‘#app’,
-	  data: {
-	      message: “Hello Vue!”
-	  }
-	})
+		el: '#app',
+		data: {
+			message: 'Hello Vue!'
+		}
+	});
 </script>
 ```
 
 #### v-model 原理
 
 v-model 实质上包含两个操作： 1. v-bind 绑定一个 value 属性； 2. v-on 指令给当前元素绑定 input 事件；
-`<input type=“text” v-model=“message” >`
+`<input type="text" v-model="message" >`
 等同于
-`<input type=“text” :value=“message” @input=“message=$event.target.value”>`
+`<input type="text" :value="message" @input="message=$event.target.value">`
 
 #### v-model 结合 radio (单选框)
 
 ```html
-<div id="“app”">
-	<label for="“male”"> <input type="“radio”" v-model="“sex”" id="“male”" name="“sex”" value="“男”" />男 </label>
-	<label for="“female”"> <input type="“radio”" v-model="“sex”" id="“female”" name="“sex”" value="“女”" />女 </label>
+<div id="app">
+	<label for="male"> <input type="radio" v-model="sex" id="male" name="sex" value="男" />男 </label>
+	<label for="female"> <input type="radio" v-model="sex" id="female" name="sex" value="女" />女 </label>
 	<h2>选择的性别：{{sex}}</h2>
 </div>
 
 <script>
 	const app = new vue({
-	  el: ‘#app’,
-	  data: { sex: ‘’ }
-	})
+		el: '#app',
+		data: { sex: '' }
+	});
 </script>
 ```
 
@@ -502,14 +507,14 @@ v-model 实质上包含两个操作： 1. v-bind 绑定一个 value 属性； 2.
 
 ```html
 html
-<div id="“app”">
-	<label for="“agree”"> <input type="“checkbox”" id="“agree”" v-model="“isAgree”" />同意 </label>
-	<button :disable="“!isAgree”">下一步</button>
+<div id="app">
+	<label for="agree"> <input type="checkbox" id="agree" v-model="isAgree" />同意 </label>
+	<button :disable="!isAgree">下一步</button>
 </div>
 
 <script>
 	const app = new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: { isAgree: false //布尔类型 }
 	})
 </script>
@@ -519,15 +524,15 @@ html
 
 ```html
 html
-<div id="“app”">
-	<input type="“checkbox”" value="“篮球”" v-model="“hobbies”" />篮球
-	<input type="“checkbox”" value="“足球”" v-model="“hobbies”" />足球
-	<input type="“checkbox”" value="“羽毛球”" v-model="“hobbies”" />羽毛球
+<div id="app">
+	<input type="checkbox" value="篮球" v-model="hobbies" />篮球
+	<input type="checkbox" value="足球" v-model="hobbies" />足球
+	<input type="checkbox" value="羽毛球" v-model="hobbies" />羽毛球
 </div>
 
 <script>
 	const app = new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: { hobbies: [] //数组类型 }
 	})
 </script>
@@ -539,18 +544,18 @@ html
 
 ```html
 html
-<div id="“app”">
-	<select name="“sel”" v-model="“fruits”">
-		<option value="“苹果”">苹果</option>
-		<option value="“香蕉”">香蕉</option>
-		<option value="“”">草莓</option>
+<div id="app">
+	<select name="sel" v-model="fruits">
+		<option value="苹果">苹果</option>
+		<option value="香蕉">香蕉</option>
+		<option value="">草莓</option>
 	</select>
 </div>
 
 <script>
 	const app = new vue({
-	  el: ‘#app’,
-	  data: { fruits: ‘苹果’ //字符串类型 }
+	  el: '#app',
+	  data: { fruits: '苹果' //字符串类型 }
 	})
 </script>
 ```
@@ -559,17 +564,17 @@ html
 
 ```html
 html
-<div id="“app”">
-	<select name="“sel”" v-model="“fruits”" multiple>
-		<option value="“苹果”">苹果</option>
-		<option value="“香蕉”">香蕉</option>
-		<option value="“草莓”">草莓</option>
+<div id="app">
+	<select name="sel" v-model="fruits" multiple>
+		<option value="苹果">苹果</option>
+		<option value="香蕉">香蕉</option>
+		<option value="草莓">草莓</option>
 	</select>
 </div>
 
 <script>
 	const app = new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: { fruits: [] //数组类型 }
 	})
 </script>
@@ -579,17 +584,17 @@ html
 
 ```html
 <div>
-  <label v-for=“item in originHobbies” :for=“item”>
-    <input type=“checkbox” :value=“item” :id=“item” v-model=“hobbies”>{{item}}</input>
+  <label v-for="item in originHobbies" :for="item">
+    <input type="checkbox" :value="item" :id="item" v-model="hobbies">{{item}}</input>
   </label>
 </div>
 
 <script>
   const app = new vue({
-    el: ‘#app’,
+    el: '#app',
     data: {
       hobbies: [],
-      originHobbies: [‘篮球’, ‘足球’, ‘羽毛球’]
+      originHobbies: ['篮球', '足球', '羽毛球']
     }
   })
 </script>
@@ -603,14 +608,14 @@ html
 
 ```html
 <!-- 用户敲下回车或失去焦点时再绑定 -->
-<input type="“text”" v-model.lazy="“message”" />
+<input type="text" v-model.lazy="message" />
 
 <!-- v-model默认绑定string类型 -->
 <!-- 转换为number类型 -->
-<input type="“number”" v-model.number="“age”" />
+<input type="number" v-model.number="age" />
 
 <!-- 	去掉字符串左右两边的空格 -->
-<input type="“text”" v-model.trim="“message”" />
+<input type="text" v-model.trim="message" />
 ```
 
 ---
@@ -618,7 +623,7 @@ html
 ## 计算属性 (computed)
 
 ```html
-<div id="“app”">
+<div id="app">
 	<h1>{{fullName}}</h1>
 	<h1>{{getFullName()}}</h1>
 </div>
@@ -626,19 +631,19 @@ html
 <script>
 	//创建实例
 	const = app new vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {
-	    firstName: ‘Shihao’,
-	    lastName: ‘Xiong’
+	    firstName: 'Shihao',
+	    lastName: 'Xiong'
 	  },
 	  computed: {
 	    fullName: function() {
-	      return this.firstName + ‘ ’ + this.lastName;
+	      return this.firstName + ' ' + this.lastName;
 	    }
 	  },
 	  methods: {
 	    getFullName: function() {
-	      return this.firstName + ‘ ’ + this.lastName;
+	      return this.firstName + ' ' + this.lastName;
 	    }
 	  }
 	})
@@ -653,29 +658,29 @@ html
 ### 计算属性的 setter 和 getter
 
 ```html
-<div id="“app”">
+<div id="app">
 	<h1>{{fullName}}</h1>
 </div>
 
 <script>
 	  //创建实例
 	  const = app new vue({
-	    el: ‘#app’,
+	    el: '#app',
 	    data: {
-	      firstName: ‘Shihao’,
-	      lastName: ‘Xiong’
+	      firstName: 'Shihao',
+	      lastName: 'Xiong'
 	    },
 	    computed: {
 	      //计算属性一般没有set方法
 	//    fullName: {
 	//      set: function(newValue) {},
 	//      get: function() {
-	//        return this.firstName + ‘ ’ + this.lastName;
+	//        return this.firstName + ' ' + this.lastName;
 	//       }
 	//    }
 	      //以下为以上方式的简写
 	      fullName() {
-	        return this.firstName + ‘ ’ + this.lastName;
+	        return this.firstName + ' ' + this.lastName;
 	      }
 	    }
 	  })
@@ -687,22 +692,22 @@ html
 ## 过滤器 (filters)
 
 ```html
-<div id="“app”">
+<div id="app">
 	<ul>
-		<li v-for="“item" in price”>{{item | showPrice}}</li>
+		<li v-for="item" in price">{{item | showPrice}}</li>
 	</ul>
 </div>
 
 <script>
 	const app = new Vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {
 	    price: [85, 123, 48, 34]
 	  }
 	  filters: {
 	    showPrice(price) {
 	      //.toFixed(x) - 保留x位小数
-	      return ‘¥’ + price.toFixed(2);
+	      return '¥' + price.toFixed(2);
 	    }
 	  }
 	})
@@ -735,7 +740,7 @@ const cpnConstructor = Vue.extend({
 
 ```javascript
 //全局组件
-Vue.component(‘my-cpn’, cpnConstructor);
+Vue.component('my-cpn', cpnConstructor);
 ```
 
 3. 使用组件
@@ -752,10 +757,10 @@ Vue.component(‘my-cpn’, cpnConstructor);
 ```javascript
 //局部组件注册
 const app = new Vue({
-  el: ‘#app’,
+  el: '#app',
   data: {...},
   components: {
-    ‘my-cpn’: cpnConstructor
+    'my-cpn': cpnConstructor
   }
 })
 ```
@@ -763,7 +768,7 @@ const app = new Vue({
 ### 父组件和子组件
 
 ```html
-<div id="“app”">
+<div id="app">
 	<cpn2></cpn2>
 </div>
 
@@ -778,15 +783,15 @@ const app = new Vue({
 	    <cpn1></cpn1>`,
 	  components: {
 	    //允许在cpn2的template中使用cpn1组件
-	    ‘cpn1’: cpn1
+	    'cpn1': cpn1
 	  }
 	})
 
 	const app = new Vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {...},
 	  components: {
-	    ‘cpn2’: cpn2
+	    'cpn2': cpn2
 	  }
 	})
 </script>
@@ -801,16 +806,16 @@ const app = new Vue({
 //直接注册
 
 //全局组件
-Vue.component(‘my-cpn’, {
+Vue.component('my-cpn', {
   template: `...`
 })
 
 //局部组件
 const app = new Vue({
-  el: ‘#app’,
+  el: '#app',
   data: {...},
   components: {
-    ‘my-cpn’: {
+    'my-cpn': {
       template: `...`
     })
   }
@@ -823,28 +828,28 @@ const app = new Vue({
 
 ```html
 <!-- 定义模板-script标签：类型为text/x-template -->
-<script type=“text/x-template” id=“cpn”>
-  //html代码
+<script type="text/x-template" id="cpn">
+	//html代码
 </script>
 
 <!-- 定义模板-template标签 -->
-<template id=“cpn”>
-  <!-- html代码 -->
+<template id="cpn">
+	<!-- html代码 -->
 </template>
 
 <script>
 	//全局组件
-	Vue.component(‘my-cpn’, {
-	  template: ‘#cpn’
+	Vue.component('my-cpn', {
+	  template: '#cpn'
 	})
 
 	//局部组件
 	const app = new Vue({
-	  el: ‘#app’,
+	  el: '#app',
 	  data: {...},
 	  components: {
-	    ‘my-cpn’: {
-	      template: ‘#cpn’
+	    'my-cpn': {
+	      template: '#cpn'
 	    }
 	  }
 	})
@@ -858,26 +863,26 @@ const app = new Vue({
 - 函数返回一个**对象**，对象内部保存数据
 
 ```html
-<div id="“app”">
+<div id="app">
 	<my-cpn></my-cpn>
 </div>
 
-<template id="“myCpn”">
+<template id="myCpn">
 	<div>{{message}}</div>
 </template>
 
 <script>
 	const app = new Vue({
-	   el: ‘#app’,
-	   components: {
-	     ‘cpn’: {
-	       template: ‘#myCpn’,
-	       data()  {
-			return { message: ‘Hello Vue!’ }
-		  }
-	     }
-	   }
-	})
+		el: '#app',
+		components: {
+			cpn: {
+				template: '#myCpn',
+				data() {
+					return { message: 'Hello Vue!' };
+				}
+			}
+		}
+	});
 </script>
 ```
 
@@ -885,18 +890,18 @@ const app = new Vue({
 
 - 通过 props 向子组件传递数据
 - 通过事件向父组件发送信息
-  ![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%887%E6%97%A5%20110704.jpg)
+  ![](/assets/vue/03.jpg)
 
 #### 父传子 (props)
 
 ##### props 基本用法
 
 ```html
-<div id="“app”">
-	<cpn :cmovies="“movies”" :cmessage="“message”"></cpn>
+<div id="app">
+	<cpn :cmovies="movies" :cmessage="message"></cpn>
 </div>
 
-<template id="“cpn”">
+<template id="cpn">
 	<div>
 		<p>{{cmovies}}</p>
 		<h2>{{cmessage}}</h2>
@@ -905,9 +910,9 @@ const app = new Vue({
 
 <script>
 	const cpn = {
-	  template: ‘#cpn’,
+	  template: '#cpn',
 	  //1. 传入数组
-	  props: [‘cmovies’, ‘cmessage’],
+	  props: ['cmovies', 'cmessage'],
 
 	  //2. 传入对象
 	  props: {
@@ -918,7 +923,7 @@ const app = new Vue({
 		//2. 提供一些默认值
 		cmessage: {
 		  type: String,
-		  default: ‘...’,
+		  default: '...',
 		  //设置必传属性，表示cmessage不可缺失
 		  required: true
 		}
@@ -936,10 +941,10 @@ const app = new Vue({
 	}
 
 	const app = new Vue({
-	   el: ‘#app’,
+	   el: '#app',
 	  data: {
-		movies: [‘m1’,’m2’,’m3’],
-		message: ‘Hello Vue!’
+		movies: ['m1','m2','m3'],
+		message: 'Hello Vue!'
 	  },
 	   components: {
 	     cpn
@@ -962,44 +967,44 @@ _ function
 _ symbol
 
 ```javascript
-Vue.component(‘my-cpn’, {
+Vue.component('my-cpn', {
 	props: {
-	  //基础的类型检查 (‘null’匹配任何类型)
-	  propA: number,
+		//基础的类型检查 ('null'匹配任何类型)
+		propA: number,
 
-	  //多个可能的类型
-	  propB: [String, Number],
+		//多个可能的类型
+		propB: [String, Number],
 
-	  //必填的字符串
-	  propC: {
-		type: String,
-		required: true
-	  },
+		//必填的字符串
+		propC: {
+			type: String,
+			required: true
+		},
 
-	  //带有默认值的数字
-	  prosD: {
-		type: Number,
-		default: 100
-	  },
+		//带有默认值的数字
+		prosD: {
+			type: Number,
+			default: 100
+		},
 
-	  //带有默认值的对象
-	  propE: {
-		type: Object,
-		//对象或数组默认值必须是一个工厂函数获取
-		default() {
-		  return { message: ‘hello’ }
+		//带有默认值的对象
+		propE: {
+			type: Object,
+			//对象或数组默认值必须是一个工厂函数获取
+			default() {
+				return { message: 'hello' };
+			}
+		},
+
+		//自定义验证函数
+		propF: {
+			validator(value) {
+				//这个值必须匹配下列字符串中的一个
+				return ['success', 'warning', 'danger'].indexOf(value) !== -1;
+			}
 		}
-	  },
-
-	  //自定义验证函数
-	  propF: {
-		validator(value) {
-		  //这个值必须匹配下列字符串中的一个
-		  return [‘success’,’warning’,’danger’].indexOf(value) !== -1
-		}
-	  }
 	}
-})
+});
 ```
 
 #### 子传父 (自定义事件)
@@ -1007,43 +1012,43 @@ Vue.component(‘my-cpn’, {
 **自定义事件流程：** 1. 在子组件中，通过 `$emit()` 来触发事件 2. 在父组件中，通过 `v-on` 来监听子组件事件
 
 ```html
-<div id="“app”">
-	<cpn @itemclick="“cpnClick”"></cpn>
+<div id="app">
+	<cpn @itemclick="cpnClick"></cpn>
 </div>
 
-<template id="“cpn”">
+<template id="cpn">
 	<div>
-		<button v-for:”item in categories” @click="“btnClick(item)”">{{item.name}}</button>
+		<button v-for:"item in categories" @click="btnClick(item)">{{item.name}}</button>
 	</div>
 </template>
 
 <script>
 	//子组件
 	const cpn = {
-	  template: ‘#cpn’,
+	  template: '#cpn',
 	  data() {
 		return {
 		  categories: [
-			{ id: ‘aaa’, name: ‘推荐’ },
-			{ id: ‘bbb’, name: ‘手机’ },
-			{ id: ‘ccc’, name: ‘电器’ },
+			{ id: 'aaa', name: '推荐' },
+			{ id: 'bbb', name: '手机' },
+			{ id: 'ccc', name: '电器' },
 		  ]
 		}
 	  },
 	  methods: {
 		btnClick(item) {
 		  //发射事件，自定义事件
-		  this.$emit(‘itemclick’, item);
+		  this.$emit('itemclick', item);
 		}
 	  }
 	}
 
 	//父组件
 	const app = new Vue({
-	   el: ‘#app’,
+	   el: '#app',
 	  data: {
-		movies: [‘m1’,’m2’,’m3’],
-		message: ‘Hello Vue!’
+		movies: ['m1','m2','m3'],
+		message: 'Hello Vue!'
 	  },
 	   components: {
 	     cpn
@@ -1064,69 +1069,69 @@ Vue.component(‘my-cpn’, {
 - `this.$refs` 是一个对象类型，默认是空对象
 
 ```html
-<div id="“app”">
+<div id="app">
 	<cpn></cpn>
 	<cpn></cpn>
-	<cpn ref="“myCpn”"></cpn>
-	<button @click="“btnClick”"></button>
+	<cpn ref="myCpn"></cpn>
+	<button @click="btnClick"></button>
 </div>
 
-<template id="“cpn”">
+<template id="cpn">
 	<!-- 模板代码 -->
 </template>
 
 <script>
 	//子组件
 	const cpn = {
-	  template: ‘#cpn’,
-	}
+		template: '#cpn'
+	};
 
 	//父组件
 	const app = new Vue({
-	   el: ‘#app’,
-	  data: {
-		message: ‘Hello Vue!’
-	  },
-	   components: {
-	     cpn
-	   },
-	  methods: {
-		btnClick() {
-		  //$children访问子组件
-		  this.$children[0].data
+		el: '#app',
+		data: {
+			message: 'Hello Vue!'
+		},
+		components: {
+			cpn
+		},
+		methods: {
+			btnClick() {
+				//$children访问子组件
+				this.$children[0].data;
 
-		  //$refs访问子组件，需要在子组件上添加ref属性
-		  this.$refs.myCpn.data
+				//$refs访问子组件，需要在子组件上添加ref属性
+				this.$refs.myCpn.data;
+			}
 		}
-	  }
-	})
+	});
 </script>
 ```
 
 #### 子访问父 ($parent)
 
 ```html
-<div id="“app”">
+<div id="app">
 	<cpn></cpn>
 </div>
 
-<template id="“cpn”">
+<template id="cpn">
 	<div>
 		<ccpn></ccpn>
 	</div>
 </template>
 
-<template id="“ccpn”">
+<template id="ccpn">
 	<div>
 		<!-- 模板代码 -->
-		<button @click="“btnClick”"></button>
+		<button @click="btnClick"></button>
 	</div>
 </template>
 
 <script>
 	//子组件
 	const ccpn = {
-	  template: ‘#ccpn’,
+	  template: '#ccpn',
 	  methods: {
 		btnClick() {
 		  //$parent访问父组件
@@ -1138,7 +1143,7 @@ Vue.component(‘my-cpn’, {
 	  }
 	}
 	const cpn = {
-	  template: ‘#cpn’,
+	  template: '#cpn',
 	  data: { return { ... } },
 	  components: {
 		ccpn
@@ -1147,9 +1152,9 @@ Vue.component(‘my-cpn’, {
 
 	//父组件
 	const app = new Vue({
-	   el: ‘#app’,
+	   el: '#app',
 	  data: {
-		message: ‘Hello Vue!’
+		message: 'Hello Vue!'
 	  },
 	   components: {
 	     cpn
@@ -1165,7 +1170,7 @@ Vue.component(‘my-cpn’, {
 #### slot 的基本使用
 
 ```html
-<div id="“app”">
+<div id="app">
 	<cpn>
 		<!-- button会替换到slot的位置 -->
 		<button>按钮</button>
@@ -1178,7 +1183,7 @@ Vue.component(‘my-cpn’, {
 	</cpn>
 </div>
 
-<template id="“cpn”">
+<template id="cpn">
 	<div>
 		<!-- 模板代码 -->
 
@@ -1192,11 +1197,11 @@ Vue.component(‘my-cpn’, {
 
 <script>
 	const cpn = {
-	  template: ‘#cpn’,
+	  template: '#cpn',
 	}
 
 	const app = new Vue({
-	   el: ‘#app’,
+	   el: '#app',
 	  data: { ... },
 	  components: {
 		cpn
@@ -1208,31 +1213,31 @@ Vue.component(‘my-cpn’, {
 #### 具名插槽的使用
 
 ```html
-<div id="“app”">
+<div id="app">
 	<cpn>
 		<!-- 替换center插槽 -->
 		<button v-slot="center"></button>
 	</cpn>
 </div>
 
-<template id="“cpn”">
+<template id="cpn">
 	<div>
 		<!-- ...模板代码... -->
-		<slot name="“left”"><span>左边</span></slot>
+		<slot name="left"><span>左边</span></slot>
 		<!-- ...模板代码... -->
-		<slot name="“center”"><span>中间</span></slot>
+		<slot name="center"><span>中间</span></slot>
 		<!-- ...模板代码... -->
-		<slot name="“right”"><span>右边</span></slot>
+		<slot name="right"><span>右边</span></slot>
 	</div>
 </template>
 
 <script>
 	const cpn = {
-	  template: ‘#cpn’,
+	  template: '#cpn',
 	}
 
 	const app = new Vue({
-	   el: ‘#app’,
+	   el: '#app',
 	  data: { ... },
 	  components: {
 		cpn
@@ -1250,22 +1255,22 @@ Vue.component(‘my-cpn’, {
 父组件替换插槽的标签，但是内容由子组件来提供
 
 ```html
-<div id="“app”">
+<div id="app">
 	<cpn></cpn>
 
 	<!-- 获取子组件中的pLanguages -->
 	<cpn>
-		<template v-slot:default="“{pLanguages}”">
-			<span v-for="“item" in slotProps.data”></span>
+		<template v-slot:default="{pLanguages}">
+			<span v-for="item" in slotProps.data"></span>
 		</template>
 	</cpn>
 </div>
 
-<template id="“cpn”">
+<template id="cpn">
 	<div>
-		<slot :pLanguages="“pLanguages”">
+		<slot :pLanguages="pLanguages">
 			<ul>
-				<li v-for="“item" in pLanguages”>{{item}}</li>
+				<li v-for="item" in pLanguages">{{item}}</li>
 			</ul>
 		</slot>
 	</div>
@@ -1273,16 +1278,16 @@ Vue.component(‘my-cpn’, {
 
 <script>
 	const cpn = {
-	  template: ‘#cpn’,
+	  template: '#cpn',
 	  data() {
 		return {
-		  pLanguages: [‘javascript’,’C++’,’Swift’]
+		  pLanguages: ['javascript','C++','Swift']
 		}
 	  }
 	}
 
 	const app = new Vue({
-	   el: ‘#app’,
+	   el: '#app',
 	  data: { ... },
 	  components: {
 		cpn
@@ -1314,10 +1319,10 @@ module.exports = {
 
 ```javascript
 //CommonJS模块
-let {flag, demo} = require(‘url’);
+let { flag, demo } = require('url');
 
 //等同于
-let _mA = require(‘url’);
+let _mA = require('url');
 let flag = _mA.flag;
 let demo = _mA.demo;
 ```
@@ -1325,29 +1330,29 @@ let demo = _mA.demo;
 ### ES6 的模块化
 
 - html 引入
-  `<script src=“url” type=“module”></script> `
+  `<script src="url" type="module"></script> `
 
 - **export (导出)**
   export 用于导出变量/函数/类
 
 ```javascript
 //info.js
-let name = “Shihao”;
+let name = 'Shihao';
 let age = 21;
 function func() {
 	//函数体
-};
+}
 class Person {
 	//内容
 }
 
-export {name, age, func, Person};
+export { name, age, func, Person };
 ```
 
     * **export default**
 
 ```javascript
-let address = “Sichuan”;
+let address = "Sichuan";
 
 //export default只允许导出一个参数
 export default name
@@ -1362,15 +1367,15 @@ export default function() {
 
 ```javascript
 //导入参数可选
-import {name, Person} from ‘./info.js’;
+import { name, Person } from './info.js';
 //统一全部导入，param为自命名参数
-import * as param from ‘./info.js’;
+import * as param from './info.js';
 
 //使用导出的类
 let p = new Person();
 
 //使用export default的导入，可自命名参数，不需要{}
-import myParam from ‘./info.js’;
+import myParam from './info.js';
 ```
 
 ---
@@ -1388,12 +1393,12 @@ import myParam from ‘./info.js’;
 
 ```javascript
 new Vue({
-	el: ‘#app’,
+	el: '#app',
 	template: `
-	  <div id=“app”>{{message}}</div>
+	  <div id="app">{{message}}</div>
 	`,
-	data: { message: ‘...’ }
-})
+	data: { message: '...' }
+});
 ```
 
 ::以上代码在运行时，Vue 会将 index.html 中 id 为 app 的 div 替换为 template 中的代码::
@@ -1406,14 +1411,14 @@ new Vue({
 <!-- Vue文件，用于定义组件 -->
 
 <template>
-	<div id=“app”>{{message}}</div>
+	<div id="app">{{message}}</div>
 <template>
 
 <script>
 	export default {
-	  name: “App”,
+	  name: "App",
 	  data() {
-		return {  message: ‘...’ }
+		return {  message: '...' }
 	  }
 	}
 </script>
@@ -1425,15 +1430,15 @@ new Vue({
 ```
 
 ```javascript
-import App from ‘./app.vue’;
+import App from './app.vue';
 
 new Vue({
-	el: ‘#app’,
-	template: ‘<App></App>’,
+	el: '#app',
+	template: '<App></App>',
 	components: {
-	  App
+		App
 	}
-})
+});
 ```
 
 **vue 文件封装处理：**
@@ -1444,7 +1449,7 @@ new Vue({
 ```
 {
 	tese:: /\.vue$/,
-	use: [‘vue-loader’]
+	use: ['vue-loader']
 }
 ```
 
@@ -1465,7 +1470,7 @@ Vue CLI 3 初始化项目
 `npm install -g @vue/cli-init`
 Vue CLI 2 初始化项目
 `vue init webpack 项目名称`
-![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%8817%E6%97%A5%20172540.jpg)
+![](/assets/vue/04.jpg)
 
 ### runtime-compiler 和 runtime-only
 
@@ -1478,17 +1483,17 @@ Vue CLI 2 初始化项目
 
 ```javascript
 const cpn = {
-	template: ‘<div>{{message}}</div>’,
+	template: '<div>{{message}}</div>',
 	data() {
-	  return { message: ‘hello vue’ }
+	  return { message: 'hello vue' }
 	}
 }
 
 new Vue({
-	el: ‘#app’,
+	el: '#app',
 	render: function(createElement) {
-	  //1. 普通用法：createElement(‘标签’, {标签的属性}, [‘’])
-	  return createElement(‘h2’, {class: ‘box’}, [‘hello world’], createElement(‘button’, [‘按钮’])]);
+	  //1. 普通用法：createElement('标签', {标签的属性}, [''])
+	  return createElement('h2', {class: 'box'}, ['hello world'], createElement('button', ['按钮'])]);
 
 	  //2. 传入组件对象
 	  return createElement(cpn);
@@ -1506,7 +1511,7 @@ new Vue({
 4. 移除了 static 文件夹，新增了 public 文件夹，并且 index.html 移动到 public 中
 
 **目录结构：**
-![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%8819%E6%97%A5%20130406.jpg)
+![](/assets/vue/05.jpg)
 
 ---
 
@@ -1592,25 +1597,25 @@ export default new Router({
 
 ```javascript
 export default new Router({
-  routes: [
-    {
-      //设置路由默认值
-      path: '',
-      redirect: '/home'
-    },
-    {
-      path: '/home',
-      component: home
-    },
-    {
-      path: '/about',
-      component: about
-    }
-  ],
+	routes: [
+		{
+			//设置路由默认值
+			path: '',
+			redirect: '/home'
+		},
+		{
+			path: '/home',
+			component: home
+		},
+		{
+			path: '/about',
+			component: about
+		}
+	],
 
 	//设置为history
-	mode: ‘history’
-})
+	mode: 'history'
+});
 ```
 
 #### router-link
@@ -1619,7 +1624,7 @@ export default new Router({
 
 - to：用于指定跳转的路径
 - tag：指定 `<router-link>` 之后渲染什么组件
-  `<router-link to=‘...’ tag=‘button’></router-link>`
+  `<router-link to='...' tag='button'></router-link>`
   以上渲染出 button
 - replace：replace 不会留下 history 记录，指定 replace 的情况下，后退键不能返回上一个页面
 - active-class：当 `<router-link>` 对应的路由匹配成功时，会自动给当前元素设置一个 router-link-active 的 class
@@ -1633,20 +1638,20 @@ export default new Router({
 <!-- App.vue -->
 <template>
 	<div id="app">
-		<button @click="‘homeClick’">首页</button>
-		<button @click="‘aboutClick’">关于</button>
+		<button @click="'homeClick'">首页</button>
+		<button @click="'aboutClick'">关于</button>
 	</div>
 </template>
 
 <script>
 	export default {
-	  name: ‘App’,
+	  name: 'App',
 	  methods: {
 		homeClick() {
-		  this.$router.push(‘/home’)
+		  this.$router.push('/home')
 		}
 		aboutClick() {
-		  this.$router.push(‘/about’)
+		  this.$router.push('/about')
 		}
 	  }
 	}
@@ -1719,7 +1724,7 @@ export default new Router({
 
 #### 路由懒加载的效果
 
-![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%8820%E6%97%A5%20111527.jpg)
+![](/assets/vue/06.jpg)
 
 #### 懒加载的方式
 
@@ -1727,27 +1732,28 @@ export default new Router({
 
 ```javascript
 const home = resolve => {
-	require.ensure([‘../components/home.vue’],
-	() => { resolve(require(‘../components/home.vue’))})
+	require.ensure(['../components/home.vue'], () => {
+		resolve(require('../components/home.vue'));
+	});
 };
 ```
 
 2. AMD 写法
 
 ```javascript
-const about = resolve => require([‘../components/about.vue’], resolve);
+const about = resolve => require(['../components/about.vue'], resolve);
 ```
 
 3. **ES6**
 
 ```javascript
-const home = () => import(‘../components/home.vue’);
+const home = () => import('../components/home.vue');
 ```
 
 ### 路由的嵌套
 
 **路径和组件的关系**
-![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%8820%E6%97%A5%20112644.jpg)
+![](/assets/vue/07.jpg)
 
 **实现的步骤：**
 
@@ -1769,7 +1775,7 @@ routes: [
 				redirect: 'news'
 			},
 			{
-				//子路由path不需要“/”
+				//子路由path不需要"/"
 				path: 'news',
 				component: homeNews
 			},
@@ -1834,23 +1840,23 @@ routes: [
 <!-- App.vue -->
 <template>
 	<div id="app">
-		<button @click="‘userClick’">用户</button>
-		<button @click="‘ProfileClick’">Profile</button>
+		<button @click="'userClick'">用户</button>
+		<button @click="'ProfileClick'">Profile</button>
 	</div>
 </template>
 
 <script>
 	export default {
-	  name: ‘App’,
+	  name: 'App',
 	  methods: {
 		homeClick() {
-		  this.$router.push(‘/user/’ + this.userID)
+		  this.$router.push('/user/' + this.userID)
 		}
 		profileClick() {
 		  this.$router.push({
-			path: ‘/profile’,
+			path: '/profile',
 			query: {
-				name: ‘xsh’,
+				name: 'xsh',
 				age: 21
 			  }
 		  })
@@ -1944,7 +1950,7 @@ Vuex 是一个专门为 Vue.js 应用程序开发的**状态管理模式**
 
 ### 单页面状态管理
 
-![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%8822%E6%97%A5%20213504.jpg)
+![](/assets/vue/08.jpg)
 
 - State：状态，可理解为 data 中的属性
 - View：视图层，可以针对 State 的变化显示不同的信息
@@ -1956,8 +1962,8 @@ Vuex 的基本使用
 
 ```javascript
 //store/index.js
-import Vue from ‘vue’
-import Vuex from ‘vuex’
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 //安装插件
 Vue.use(Vuex);
@@ -1965,8 +1971,8 @@ Vue.use(Vuex);
 //创建对象
 const store = new Vuex.Store({
 	state: {
-	  //定义数据
-	  data: 0
+		//定义数据
+		data: 0
 	},
 	//定义方法
 	mutations: {},
@@ -1979,12 +1985,12 @@ const store = new Vuex.Store({
 });
 
 //导出store对象
-export default store
+export default store;
 ```
 
 Views 调用 `{{$store.state.data}}`
 
-![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%8822%E6%97%A5%20213516.jpg)
+![](/assets/vue/09.jpg)
 ::异步操作需要在 Actions 中完成::
 
 ### vuex-devtools 和 mutations
@@ -2009,19 +2015,19 @@ const store = new Vuex.Store({
 ```html
 <!-- App.vue -->
 <template>
-	<div @click="“click”"></div>
+	<div @click="click"></div>
 </template>
 
 <script>
 	export default {
-	  //...
-	  methods: {
-		click() {
-		  //通过commit调用mutations中的func方法
-		  this.$store.commit(‘func’)
+		//...
+		methods: {
+			click() {
+				//通过commit调用mutations中的func方法
+				this.$store.commit('func');
+			}
 		}
-	  }
-	}
+	};
 </script>
 ```
 
@@ -2141,19 +2147,19 @@ const store = new Vuex.Store({
 ```html
 <!-- App.vue -->
 <template>
-	<div @click="“click(...)”"></div>
+	<div @click="click(...)"></div>
 </template>
 
 <script>
 	export default {
-	  //...
-	  methods: {
-		click(param) {
-		  //通过commit调用mutations中的func方法
-		  this.$store.commit(‘func’, param)
+		//...
+		methods: {
+			click(param) {
+				//通过commit调用mutations中的func方法
+				this.$store.commit('func', param);
+			}
 		}
-	  }
-	}
+	};
 </script>
 ```
 
@@ -2164,16 +2170,16 @@ const store = new Vuex.Store({
 ```html
 <script>
 	export default {
-	  //...
-	  methods: {
-		click(param) {
-		  this.$store.commit({
-			type: ‘funcName’,
-			data
-		  })
+		//...
+		methods: {
+			click(param) {
+				this.$store.commit({
+					type: 'funcName',
+					data
+				});
+			}
 		}
-	  }
-	}
+	};
 </script>
 ```
 
@@ -2197,7 +2203,7 @@ Vuex 的 store 中的 state 是响应式的，当 state 中的数据发生改变
 
 1. 提前在 store 中初始化好所需要的属性
 2. 当给 state 中的对象添加/删除新属性时，使用以下方法：
-   1. 使用 `Vue.set(obj, ‘newProp’, param)` 添加属性；`Vue.delete(obj, ‘prop’)` 删除属性
+   1. 使用 `Vue.set(obj, 'newProp', param)` 添加属性；`Vue.delete(obj, 'prop')` 删除属性
    2. 用新对象给旧对象重新赋值
 
 ##### Mutations 类型常量
@@ -2205,14 +2211,14 @@ Vuex 的 store 中的 state 是响应式的，当 state 中的数据发生改变
 ```javascript
 //store/mutations-types
 //定义类型常量
-export const FUNC = ‘func’;
+export const FUNC = 'func';
 ```
 
 类型常量的使用：
 
 ```javascript
 //store/index.js
-import * from ‘./store/mutations-types’
+import * from './store/mutations-types'
 
 const store = new Vuex.Store({
 	mutations: {
@@ -2248,7 +2254,7 @@ Actions 类似于 Mutations，但是是用来替代 Mutations 执行异步操作
 
 ```javascript
 //store/index.js
-import * from ‘./store/mutations-types’;
+import * from './store/mutations-types';
 
 const store = new Vuex.Store({
 	mutations: {
@@ -2261,7 +2267,7 @@ const store = new Vuex.Store({
 	  funcA(context, payload) {
 		//仿异步操作更改state中的属性
 		setTimeout({
-		  context.commit(‘funcM’);
+		  context.commit('funcM');
 		}, 1000)
 	  }
 	}
@@ -2271,13 +2277,13 @@ const store = new Vuex.Store({
 ```html
 <script>
 	export default {
-	  //...
-	  methods: {
-		click() {
-		  this.$store.dispatch(‘funcA’, param);
+		//...
+		methods: {
+			click() {
+				this.$store.dispatch('funcA', param);
+			}
 		}
-	  }
-	}
+	};
 </script>
 ```
 
@@ -2285,7 +2291,7 @@ const store = new Vuex.Store({
 
 ```javascript
 //store/index.js
-import * from ‘./store/mutations-types’
+import * from './store/mutations-types'
 
 const store = new Vuex.Store({
 	actions: {
@@ -2305,15 +2311,15 @@ const store = new Vuex.Store({
 ```html
 <script>
 	export default {
-	  //...
-	  methods: {
-		click() {
-		  this.$store.dispatch(‘funcA’, param).then(() => {
-			//...
-		  })
+		//...
+		methods: {
+			click() {
+				this.$store.dispatch('funcA', param).then(() => {
+					//...
+				});
+			}
 		}
-	  }
-	}
+	};
 </script>
 ```
 
@@ -2354,7 +2360,7 @@ const store = new Vuex.Store({
 
 #### 项目结构
 
-![](Vue.js/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%8823%E6%97%A5%20104517.jpg)
+![](/assets/vue/10.jpg)
 推荐将~mutations、actions、getters、modules~抽离作为模块导入 index.js，modules 每个模块推荐形成单一文件。
 
 ---
@@ -2391,20 +2397,20 @@ const store = new Vuex.Store({
 **使用**
 
 ```javascript
-import axios from ‘axios’;
+import axios from 'axios';
 
 //支持Promise，内置resolve，可直接调用.then()
 axios({
 	//httpbin.org可用于网络模拟
 	//123.207.32.32:8000/home/multidata可用于相关测试
 	//123.207.32.32:8000/home/data?...可用于相关测试 (含参数)
-	url: ‘httpbin.org’,
-	method: ‘get’,
+	url: 'httpbin.org',
+	method: 'get',
 	//针对get请求的参数拼接
 	params: {}
 }).then(res => {
 	//...
-})
+});
 ```
 
 ### 发送并发请求
@@ -2419,25 +2425,25 @@ axios.all([axios({...}),axios({...})]).then(axios.spread((res1, res2) => {...}))
 ### 全局配置
 
 BaseURL
-`axios.defaults.baseURL = ‘...’;`
-`axios.defaults.headers.post[‘Content-Type’] = ‘application/x-www-form-urlencoded’;`
+`axios.defaults.baseURL = '...';`
+`axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';`
 
 **常见的配置选项**
 
-- 请求地址：url: ‘/user’
-- 请求类型：method: ‘get’
-- 请根路径：baseURL: ‘http://...’
+- 请求地址：url: '/user'
+- 请求类型：method: 'get'
+- 请根路径：baseURL: 'http://...'
 - 请求前的数据处理：transformRequest: [function(data) {}]
 - 请求后的数据处理：transformResponse: [function(data) {}]
-- 自定义的请求头：headers: {‘x-Requested-With’:’XMLHttpRequest’}
+- 自定义的请求头：headers: {'x-Requested-With':'XMLHttpRequest'}
 - URL 查询对象：params: {id: 12}
 - 查询对象序列化函数：paramsSerializer: function(params) {}
 - request body：data: {key: value}
 - 超时设置：timeout: 1000
 - 跨域是否带 Token：withCredentials: false
 - 自定义请求处理：adapter: function(resolve, reject, config) {}
-- 身份验证信息：auth: {uname: ‘’, pwd: ‘123’}
-- 响应的数据格式 (json/blob/document/arraybuffer/text/stream)：responseType: ‘json’
+- 身份验证信息：auth: {uname: '', pwd: '123'}
+- 响应的数据格式 (json/blob/document/arraybuffer/text/stream)：responseType: 'json'
 
 ### axios 实例和模块封装
 
@@ -2445,24 +2451,24 @@ BaseURL
 
 ```javascript
 const instance1 = axios.create({
-	baseURL: ‘http://ip1’
+	baseURL: 'http://ip1'
 	timeout: 1000
 })
 
 instance1({
-	url: ‘...’,
+	url: '...',
 	//...
 }).then(res => {
 	//...
 })
 
 const instance2 = axios.create({
-	baseURL: ‘http://ip2’
+	baseURL: 'http://ip2'
 	timeout: 1000
 })
 
 instance2({
-	url: ‘...’,
+	url: '...',
 	//...
 }).then(res => {
 	//...
@@ -2475,63 +2481,71 @@ instance2({
 
 ```javascript
 //network/request.js
-import axios from ‘axios’;
+import axios from 'axios';
 
 export function request(config, success, failure) {
 	//创建axios实例
 	const instance = axios.create({
-	  baseURL: ‘http://...’,
-	  timeout: 1000
-	})
+		baseURL: 'http://...',
+		timeout: 1000
+	});
 
 	//发送真正的网络请求
-	instance(config).then(res => {
-	  success(res);
-	}).catch(err => {
-	  failure(err)
-	})
+	instance(config)
+		.then(res => {
+			success(res);
+		})
+		.catch(err => {
+			failure(err);
+		});
 }
 ```
 
 导入调用
 
 ```javascript
-import {request} from ‘./network/request.js’;
+import { request } from './network/request.js';
 
-request({
-	url: ‘...’
-}, res => {}, err => {})
+request(
+	{
+		url: '...'
+	},
+	res => {},
+	err => {}
+);
 ```
 
 ##### 方案 2
 
 ```javascript
 //network/request.js
-import axios from ‘axios’;
+import axios from 'axios';
 
 export function request(config) {
 	return new Promise((resolve, reject) => {
-	  const instance = axios.create({
-		baseURL: ‘http://...’,
-		timeout: 1000
-	  })
-	})
+		const instance = axios.create({
+			baseURL: 'http://...',
+			timeout: 1000
+		});
+	});
 
-	instance(config).then(res => {
-	  resolve(res);
-	}).catch(err => {
-	  reject(err);
-	})
+	instance(config)
+		.then(res => {
+			resolve(res);
+		})
+		.catch(err => {
+			reject(err);
+		});
 }
 ```
 
 导入调用
 
 ```javascript
-import {request} from ‘./network/request.js’;
+import {request} from './network/request.js';
 
 request({
-	url: ‘...’
+	url: '...'
 }).then(res => {...}).catch(err => {...})
 ```
 
@@ -2539,13 +2553,13 @@ request({
 
 ```javascript
 //network/request.js
-import axios from ‘axios’;
+import axios from 'axios';
 
 export function request(config) {
 	const instance = axios.create({
-	  baseURL: ‘http://...’,
-	  timeout: 1000
-	})
+		baseURL: 'http://...',
+		timeout: 1000
+	});
 
 	return instance(config);
 }
@@ -2554,10 +2568,10 @@ export function request(config) {
 导入调用
 
 ```javascript
-import {request} from ‘./network/request.js’;
+import {request} from './network/request.js';
 
 request({
-	url: ‘...’
+	url: '...'
 }).then(res => {...}).catch(err => {...})
 ```
 
