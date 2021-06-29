@@ -1,9 +1,9 @@
 ---
-title: Vue.js
+title: Vue
 date: 2021-06-28 13:40:59
 tags: [Web, Vue]
 toc: true
-cover: /assets/vue/cover.png
+categories: Note
 thumbnail: /assets/vue/cover.png
 ---
 
@@ -21,6 +21,8 @@ thumbnail: /assets/vue/cover.png
 
 - 下载和引入
 - npm 安装
+
+<!-- more -->
 
 ---
 

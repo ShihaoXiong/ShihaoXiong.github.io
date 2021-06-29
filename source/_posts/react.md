@@ -1,10 +1,28 @@
 ---
-title: react
+title: React
 date: 2021-06-28 17:40:01
 tags: [Web, React]
 toc: true
-cover: /assets/react/cover.png
+categories: Note
 thumbnail: /assets/react/cover.png
+---
+
+## 特点
+
+1. 采用 <u>组件化模式</u>、<u>声明式编码</u>，提高开发效率
+2. 在 React Native 中可以使用 React 语法进行 <u>移动端开发</u>
+3. 使用虚拟 DOM+ <u>Diffing 算法</u>，尽量减少与真实 DOM 的交互
+
+<!-- more -->
+
+---
+
+## js 相关库
+
+1. react.development.js
+2. react-dom.development.js
+3. babel.min.js
+
 ---
 
 ## 骨架
@@ -51,7 +69,7 @@ thumbnail: /assets/react/cover.png
    - 若小写字母开头，则将标签转为 html 中同名元素；若 html 中无该标签对应的同名元素，则报错
    - 若大写字母开头， react 就去渲染对应的组件，若组件未定义，则报错
 
-```javascript
+```jsx
 // 创建虚拟DOM
 const VDOM = (
 	<div className='react-container'>
@@ -63,17 +81,18 @@ ReactDOM.render(VDOM, document.getElementById('test'));
 ```
 
 **示例**
-::注意区分 js 表达式和和 js 语句::
+
+> 注意区分 js 表达式和和 js 语句
 
 1. 表达式：一个表达式会产生一个值，可以放在任何一个需要的地方
    - a
    - a + b
-   - demo(1) ~有返回值~
+   - demo(1) <u>有返回值</u>
    - arr.map()
    - function test () {}
 2. 语句（代码）
 
-```javascript
+```jsx
 const data = ['Angular', 'React', 'Vue'];
 
 // 创建虚拟DOM
@@ -106,7 +125,7 @@ ReactDOM.render(VDOM, document.getElementById('test'));
 
 ### 函数式组件
 
-```javascript
+```jsx
 // 创建函数式组件
 function Component() {
 	console.log(this); // undifined babel编译后开启了严格模式
@@ -123,7 +142,7 @@ ReactDOM.render(<Component />, document.getElementById('test'));
 2. 必须包含 `render()` 函数
 3. `render()` 必须有返回值
 
-```javascript
+```jsx
 // 创建类式组件
 // 必须继承React.Component
 class Component extends React.Component {
@@ -143,7 +162,7 @@ ReactDOM.render(<Component />, document.getElementById('test'));
 
 ### State
 
-```javascript
+```jsx
 class Component extends React.Component {
 	// 构造器中是否接收props，是否传递给super，取决于是否希望在构造器中通过this访问props
 	constructor(props) {
@@ -163,9 +182,9 @@ ReactDOM.render(<Component />, document.getElementById('test'));
 
 #### setState
 
-状态不能直接更改，需要通过 `setState` 进行更新，更新是合并操作，不是替换
+状态不能直接更改，需要通过 `setState` 进行更新，更新是合并操作不是替换
 
-```javascript
+```jsx
 class Component extends React.Component {
 	constructor(props) {
 		// 必须调用super()
@@ -191,11 +210,11 @@ class Component extends React.Component {
 ReactDOM.render(<Component />, document.getElementById('test'));
 ```
 
-::构造器执行了 1 次，render()函数执行了 1 + n 次::
+**构造器执行了 1 次，render()函数执行了 1 + n 次**
 
 #### state 的简写方式
 
-```javascript
+```jsx
 class Component extends React.Component {
 	state = { status: true, status2: true };
 
@@ -223,11 +242,14 @@ ReactDOM.render(<Component />, document.getElementById('test'));
 
 ### Props
 
-::Props 是只读的，不允许直接修改::
+> Props 是只读的，不允许直接修改
+
+1. 通过标签属性从组件外向组建内传递变化的数据
+2. 组件内部不要修改 props 数据
 
 #### 基本使用
 
-```javascript
+```jsx
 class Component extends React.Component {
 	render() {
 		console.log(this);
@@ -244,7 +266,7 @@ ReactDOM.render(<Component param='param' />, document.getElementById('test'));
 
 #### 批量传递 props
 
-```javascript
+```jsx
 class Component extends React.Component {
 	render() {
 		const { param1, param2 } = this.props;
@@ -266,7 +288,7 @@ ReactDOM.render(<Component {...params} />, document.getElementById('test'));
 在 16 版本以前可通过 `React.PropTypes. ...` 进行类型限制
 16 版本以后需要引入 `PropTypes`
 
-```javascript
+```jsx
 class Component extends React.Component {
 	render() {
 		const { param1, param2 } = this.props;
@@ -305,7 +327,7 @@ ReactDOM.render(<Component param1='param1' param2={2} />, document.getElementByI
 
 通过 `static` 将属性直接加在组件类上
 
-```javascript
+```jsx
 class Component extends React.Component {
 	static propTypes = {
 		param1: PropTypes.string,
@@ -328,7 +350,7 @@ class Component extends React.Component {
 
 #### 函数式组件使用 Props
 
-```javascript
+```jsx
 function Component(props) {
 	return (
 		<div>
@@ -344,11 +366,104 @@ Component.defaultProps = { params: 'defaultParams' };
 ReactDOM.render(<Component />, document.getElementById('test'));
 ```
 
+### Refs
+
+#### 字符串形式的 ref
+
+```jsx
+class Demo extends React.Component {
+	showValue = () => {
+		const { input } = this.refs;
+		console.log(input.value);
+	};
+
+	render() {
+		return (
+			<div>
+				<input ref='input' onBlur={this.showValue} />
+			</div>
+		);
+	}
+}
+```
+
+#### 回调形式的 ref
+
+- 內联函数
+
+```jsx
+class Demo extends React.Component {
+	showValue = () => {
+		const { input } = this;
+		console.log(input.value);
+	};
+
+	render() {
+		return (
+			<div>
+				<input ref={node => (this.input = node)} onBlur={this.showValue} />
+			</div>
+		);
+	}
+}
+```
+
+**回调执行次数**：如果 `ref` 回调函数是以内联函数的方式定义的，在更新过程中它会被执行 ~两次~ ，第一次传入参数 null，然后第二次会传入参数 DOM 元素。这是因为在每次渲染时会创建一个新的函数实例，所以 React 清空旧的 ref 并且设置新的。通过将 ref 的回调函数定义成 class 的绑定函数的方式可以避免上述问题。
+
+- class 的绑定函数
+
+```jsx
+class Demo extends React.Component {
+	showValue = () => {
+		const { input } = this;
+		console.log(input.value);
+	};
+
+	saveInput = node => {
+		this.input = node;
+	};
+
+	render() {
+		return (
+			<div>
+				<input ref={this.saveInput} onBlur={this.showValue} />
+			</div>
+		);
+	}
+}
+```
+
+#### createRef
+
+`React.createRef` 调用后可以返回一个容器，该容器可以储存被 `ref` 所标识的节点
+
+- current 是内置字段，不可更改
+- 一个 `createRef` 只能装载一个 ref
+
+```jsx
+class Demo extends React.Component {
+	myRef = React.createRef();
+	showValue = () => {
+		// current 是内置字段，不可更改
+		const { current } = this.myRef;
+		console.log(current.value);
+	};
+
+	render() {
+		return (
+			<div>
+				<input ref={this.myRef} onBlur={this.showValue} />
+			</div>
+		);
+	}
+}
+```
+
 ---
 
 ## 事件绑定
 
-```javascript
+```jsx
 class Component extends React.Component {
 	constructor(props) {
 		// 必须调用super()
@@ -376,4 +491,146 @@ class Component extends React.Component {
 ReactDOM.render(<Component />, document.getElementById('test'));
 ```
 
-::通过箭头函数实现事件绑定 见 state 的简写方式::
+## ::通过箭头函数实现事件绑定见[state 的简写方式](bear://x-callback-url/open-note?id=85377815-8E25-4AB9-9EED-FDC5163E6BA3-1187-00000293D95B492C&header=state%20%E7%9A%84%E7%AE%80%E5%86%99%E6%96%B9%E5%BC%8F)::
+
+## 事件处理
+
+1. 通过 `onXxx` 属性指定事件处理函数（注意大小写）
+   1. React 使用的是自定义（合成）事件，而不是使用原生的 DOM 事件——为了更好的兼容
+   2. React 中的事件是通过事件委托方式处理的（委托给组件最外层的元素）——为了高效
+2. 通过 `event.target` 得到发生事件的 DOM 元素对象
+
+---
+
+## 包含表单的组件分类
+
+### 非受控组件
+
+```jsx
+class Demo extends React.Component {
+	handleSubmit = event => {
+		event.preventDefault(); // 阻止默认行为
+		const { username, password } = this;
+		console.log(`username: ${username.value}, password: ${password.value}`);
+	};
+
+	render() {
+		return (
+			<form action='…' onSubmit={this.handleSubmit}>
+				用户名：
+				<input ref={c => (this.username = c)} type='text' name='username' />
+				密码：
+				<input ref={c => (this.password = c)} type='password' name='password' />
+				<button>登录</button>
+			</form>
+		);
+	}
+}
+```
+
+### 受控组件
+
+```jsx
+class Demo extends React.Component {
+	state = { username: '', password: '' };
+
+	saveUsername = event => {
+		this.setState({ username: event.target.value });
+	};
+	savePassword = event => {
+		this.setState({ password: event.target.value });
+	};
+
+	handleSubmit = event => {
+		event.preventDefault(); // 阻止默认行为
+		const { username, password } = this;
+		console.log(`username: ${username}, password: ${password}`);
+	};
+
+	render() {
+		return (
+			<form action='…' onSubmit={this.handleSubmit}>
+				用户名：
+				<input onChange={this.saveUsername} name='username' />
+				密码：
+				<input onChange={this.savePassword} name='password' />
+				<button>登录</button>
+			</form>
+		);
+	}
+}
+```
+
+---
+
+## 高阶函数 & 函数柯里化
+
+### 函数柯里化
+
+```jsx
+class Demo extends React.Component {
+	state = { username: '', password: '' };
+
+	saveFormData = dataType => {
+		return event => {
+			this.setState({ [dataType]: event.target.value });
+		};
+	};
+
+	handleSubmit = event => {
+		event.preventDefault(); // 阻止默认行为
+		const { username, password } = this;
+		console.log(`username: ${username}, password: ${password}`);
+	};
+
+	render() {
+		return (
+			<form action='…' onSubmit={this.handleSubmit}>
+				用户名：
+				<input onChange={this.saveFormData('username')} name='username' />
+				密码：
+				<input onChange={this.saveFormData('password')} name='password' />
+				<button>登录</button>
+			</form>
+		);
+	}
+}
+```
+
+- **高阶函数**：如果一个函数符合下面 2 个规范中任何一个，那么该函数就是高阶函数 1. 接收的参数是一个函数 2. 调用的返回值是一个参数
+- **常见的高阶函数**：
+  - Promise
+  - setTimeout
+  - array.map
+  - …
+- **函数的柯里化**：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式。
+
+### 不用柯里化的写法
+
+```jsx
+class Demo extends React.Component {
+	state = { username: '', password: '' };
+
+	saveFormData = (dataType, value) => {
+		this.setState({ [dataType]: value });
+	};
+
+	handleSubmit = event => {
+		event.preventDefault(); // 阻止默认行为
+		const { username, password } = this;
+		console.log(`username: ${username}, password: ${password}`);
+	};
+
+	render() {
+		return (
+			<form action='…' onSubmit={this.handleSubmit}>
+				用户名：
+				<input onChange={event => this.saveFormData('username', event.target.value)} name='username' />
+				密码：
+				<input onChange={event => this.saveFormData('password', event.target.value)} name='password' />
+				<button>登录</button>
+			</form>
+		);
+	}
+}
+```
