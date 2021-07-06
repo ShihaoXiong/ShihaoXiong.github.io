@@ -297,7 +297,7 @@ System.out.println(Demo.isTrue); // true
 
 ### Time Complexity & Space Complexity
 
-**Big O notation**: algorithm complexity (time complexity, space complexity)
+**Big O notation**: algorithm complexity (time complexity(TC), space complexity(SC))
 
 `1 < log2n == log10(n) < sqrt(n) < n < nlog n < n^2 < n^3 < 2^n < 10^n < n! < n^n`
 
@@ -370,8 +370,8 @@ public long fib(int n) {
 }
 ```
 
-- time complexity: (2<sup>n</sup> - 1) _ T(node) = (2<sup>n</sup> - 1) _ O(1) = O(2<sup>n</sup> - 1) = O(2<sup>n</sup>)
-- space complexity: n _ S(node) = n _ O(1) = O(n)
+- TC: (2<sup>n</sup> - 1) _ T(node) = (2<sup>n</sup> - 1) _ O(1) = O(2<sup>n</sup> - 1) = O(2<sup>n</sup>)
+- SC: n _ S(node) = n _ O(1) = O(n)
 
 levels: n
 total number of nodes: 1 + 2 + 4 + ... + 2<sup>n-1</sup> = 2<sup>n</sup> - 1
@@ -386,8 +386,8 @@ a<sup>b</sup>
 
 **method 1: loop**
 
-- time complexity: O(b)
-- space complexity: O(1)
+- TC: O(b)
+- SC: O(1)
 
 **method 2: recursion**
 f(a, b)
@@ -405,8 +405,8 @@ public long power(int a, int b) {
 }
 ```
 
-- time complexity: O(b)
-- space complexity: O(b)
+- TC: O(b)
+- SC: O(b)
 
 **method 3: recursion**
 f(a, b)
@@ -414,7 +414,7 @@ f(a, b)
 1.  subproblem: f(a, b /2), f(a, b / 4), ..., f(a, 0)
 2.  recursion rule:
     a. b is even: f(a, b) = f(a, b / 2)<sup>2</sup>
-    b. b is add: f(a, n) = f(a, b / 2)<sup>2</sup> \* a
+    b. b is odd: f(a, n) = f(a, b / 2)<sup>2</sup> \* a
 3.  base case: f(a, 0) = 1
 
 ```java
@@ -429,8 +429,8 @@ public long power(int a, int b) {
 }
 ```
 
-- time complexity: (1 + 2 + 4 + ... + 2<sup>logb - 1</sup>) = (2<sup>logb</sup> - 1) \* O(1) = (b - 1) \* O(1) = O(b)
-- space complexity: logb \* O(1) = O(logb)
+- TC: (1 + 2 + 4 + ... + 2<sup>logb - 1</sup>) = (2<sup>logb</sup> - 1) \* O(1) = (b - 1) \* O(1) = O(b)
+- SC: logb \* O(1) = O(logb)
 
 <br/>
 
@@ -449,8 +449,40 @@ public long power(int a, int b) {
 }
 ```
 
-- time complexity: total number of nodes \* T(node) = logb \* O(1) = O(logb)
-- space complexity: logb \* O(1) = O(logb)
+- TC: total number of nodes \* T(node) = logb \* O(1) = O(logb)
+- SC: logb \* O(1) = O(logb)
+
+### Queue
+
+**FIFO** (first in first out) 先进先出
+
+```java
+Queue<Integer> queue = new LinkedList<>();
+```
+
+**APIs:**
+
+- offer(): insert an element in the tail of queue
+- poll(): get an element from the head of queue
+- peek(): read the value of head element of queue
+- size(): how many elements are in the queue
+- isEmpty(): if this queue is empty
+
+### Stack
+
+**LIFO** (last in first out) 后进先出
+
+```java
+Deque<Integer> stack = new LinkedList<>();
+```
+
+**APIs:**
+
+- offerFirst(): insert an element in the top of stack
+- pollFirst(): get an element from the top of stack
+- peekFirst(): read the value of top element stack
+- size(): how many elements are in the stack
+- isEmpty(): if this stack is empty or the size of this stack is 0
 
 ---
 
@@ -471,7 +503,12 @@ class ListNode {
 
 `ListNode1 -> ListNode2 -> ListNode3 -> null`
 
-#### Example 1: Given a linked list, fond the index - k element of it.
+**key points:**
+
+1. When you want to access value/next of a ListNode, **make sure it is not null pointer**.
+2. Never ever lose the control of the head pointer of the LinkedList.
+
+#### Example 1: Given a linked list, find the index - k element of it.
 
 ```java
 public class FindKth {
@@ -492,7 +529,7 @@ public class FindKth {
 }
 ```
 
-#### Example 2: How to find the middle node of a linked list?
+#### Example 2: How to find the middle node of a linked list ?
 
 快慢指针法：slow 每次走一步，fast 每次走两步
 
@@ -537,6 +574,107 @@ public ListNode insert(ListNode head, int value) {
 }
 ```
 
+#### Example 4: How to merge two sorted LinkedList into one long sorted LinkedList ?
+
+```java
+public ListNode merge(ListNode head1, ListNode head2) {
+   ListNode dummyHead = new ListNode(0);
+   ListNode cur1 = head1;
+   ListNode cur2 = head2;
+   ListNode curr = dummyHead;
+
+   while (cur1 != null && cur2 != null) {
+      if (cur1.value < cur2.value) {
+         curr.next = cur1;
+         cur1 = cur1.next;
+      } else {
+         curr.next = cur2;
+         cur2 = cur2.next;
+      }
+      curr = curr.next;
+   }
+
+   if (cur1 == null) {
+      curr.next = cur2;
+   }
+   if (cur2 == null) {
+      curr.next = cur1;
+   }
+
+   return dummyHead.next;
+}
+```
+
+- TC: O(n)
+- SC: O(1)
+
+#### Example 5: Remove nodes with target value in the LinkedList.
+
+```java
+public ListNode removeNodes(ListNode head, int target) {
+   ListNode dummyHead = new ListNode(0);
+   dummyHead.next = head;
+   ListNode pre = dummyHead;
+   ListNode cur = head;
+   while (cur != null) {
+      if (cur.value == target) {
+         pre.next = cur.next;
+      } else {
+         pre = cur;
+      }
+      cur = cur.next;
+   }
+
+   return dummyHead.next;
+}
+```
+
+- TC: O(n)
+- SC: O(1)
+
+#### Example 6: Reverse a LinkedList.
+
+##### Iterative
+
+```java
+public ListNode reverseIterative(ListNode head) {
+   ListNode cur = head;
+   ListNode pre = null;
+   while (cur != null) {
+      ListNode next = cur.next;
+      cur.next = pre;
+      pre = cur;
+      cur = next;
+   }
+
+   return pre;
+}
+```
+
+##### Recursion
+
+- subproblem: reverse(head) -> reverse(head.next)
+- base case: only 1 node or 0 node
+
+```java
+public ListNode reverseRecursion(ListNode head) {
+   // base case
+   if (head == null || head.next == null) {
+      return head;
+   }
+
+   ListNode newHead = reverseRecursion(head.next);
+   head.next.next = head;
+   head.next = null;
+   return newHead;
+}
+```
+
+- TC: O(n)
+- SC: O(n)
+
+---
+
 ## Sorting Algorithms
 
 - **Selection sort**
@@ -553,13 +691,36 @@ public ListNode insert(ListNode head, int value) {
 
 - sorted range: `[0, i)`
 - unsorted range: `[i, length - 1]`
-- stop condition: `i < n - 1` (we don't have ti process the last emement)
+- stop condition: `i < n - 1` (we don't have to process the last element)
 
 ```java
-public void selectionSort(int[] arr) {
+class SelectionSort {
+   public void selectionSort(int[] arr) {
+      if (arr == null || arr.length < 1) {
+         return;
+      }
 
+      for (int i = 0; i < arr.length; i++) {
+         int min = i;
+         for (int j = i; j < arr.length; j++) {
+            if (arr[j] < arr[min]) {
+               min = i;
+            }
+         }
+         swap(arr, i, min);
+      }
+   }
+
+   private void swap(int[] arr, int x, int y) {
+      int temp = arr[x];
+      arr[x] = arr[y];
+      arr[y] = temp;
+   }
 }
 ```
+
+- TC: O(n<sup>2</sup>)
+- SC: O(1)
 
 ### Merge Sort
 
@@ -618,8 +779,10 @@ class MergeSort {
 ```
 
 - subproblem: mergeSort(arr, left, mid), mergeSort(arr, mid + 1, right)
-- recursion rule:
+- recursion rule: merge(left, right)
 - base case: left == right
   <br/>
-- time complexity: O(n) + O(nlogn) = O(nlogn)
-- space complexity: stack + heap = O(logn) + O(n) = O(n)
+- TC: O(n) + O(nlogn) = O(nlogn)
+- SC: stack + heap = O(logn) + O(n) = O(n)
+
+![](/assets/algorithm/01.png)
