@@ -517,3 +517,126 @@ class MergeSort {
 - SC: stack + heap = O(logn) + O(n) = O(n)
 
 ![](/assets/algorithm/01.png)
+
+### Quick Sort
+
+```java
+class QuickSort {
+   private Random random = new Random();
+
+   public void quickSort(int[] arr) {
+      // corner case
+      if (arr == null || arr.length <= 1) {
+         return;
+      }
+      quickSort(arr, 0, arr.length - 1);
+   }
+
+   public void quickSort(int[] arr, int left, int right) {
+      // base case
+      // [a] -> left = right
+      // [] -> left > right (pivot is the first or the last element of the array)
+      if (left >= right) {
+         return;
+      }
+
+      // step 1: choose pivot
+      // random.nextInt(x) -> a random integer in [0, x) -------
+      // goal: a random number (pivot index) in [left, right]  |
+      // [left, right] -> left + [0, right - left]             |
+      //               -> left + [0, right - left + 1) <--------
+      int pivotIndex = left + random.nextInt(right - left + 1);
+      swap(arr, pivotIndex, right);
+
+      // step 2: partition
+      int i = left;
+      int j = right - 1;
+      while (i <= j) {
+         if (arr[i] < arr[right]) {
+            i++;
+         } else {
+            swap(arr, j, i);
+            j--;
+         }
+      }
+
+      // step 3: put the pivot back
+      swap(arr, i, right);
+
+      // recursion rule
+      quickSort(arr, left, i - 1);
+      quickSort(arr, i + 1, right);
+   }
+}
+```
+
+- TC:
+  - worst case: O(n<sup>2</sup>)
+    ![](/assets/algorithm/02.png)
+  - average case: O(nlogn)
+    ![](/assets/algorithm/03.png)
+- SC:
+  - worst case: O(n)
+  - average case: O(logn)
+
+### Rainbow Sort
+
+Dutch Flag Problem 荷兰旗问题 (only 3 kinds of numbers)
+![](/assets/algorithm/04.png)
+
+```java
+class RainbowSort {
+   public void rainbowSort(int[] arr) {
+      // corner case
+      if (arr == null || arr.length <= 1) {
+         return;
+      }
+
+      int i = 0, j = 0,k = arr.length - 1;
+      while (j <= k) {
+         if (arr[j] == 1) {
+            swap(arr, i, j);
+            i++;
+            j++;
+         } else if (arr[j] == 2) {
+            j++:
+         } else {
+            swap(arr, j, k);
+            k--;
+         }
+      }
+   }
+}
+```
+
+- TC: O(n)
+- SC: O(1)
+
+---
+
+## Binary Tree
+
+<u>at most two children node</u>
+
+```java
+class TreeNode {
+   int value; // the storage value
+   TreeNode left; // by default = null
+   TreeNode right; // by default = null
+}
+```
+
+**LeafNode:** both rigth and left are nul
+
+**Tree Traverse:**
+
+1. pre-order: current node before its subtress (self-left-right)
+2. in-order: current node in its subtrees (left-self-right)
+3. post-order: current node after its subtrees (left-right-self)
+
+**Base Concept:**
+
+1. **Height of binary tree:** The distance between the root with the deepest leaf node.
+2. **Balanced binary tree:** is commonly defined as a bnary tree in which the depth (alse known as height) of the left and right subtrees of **every node** differ by 1 or less.
+   1. for each of the nodes in this binary tree
+   2. satisfyL the height of lesf subtree, right subtree at most diff by 1.
