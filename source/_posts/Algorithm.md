@@ -101,8 +101,8 @@ public long fib(int n) {
 }
 ```
 
-- TC: (2<sup>n</sup> - 1) _ T(node) = (2<sup>n</sup> - 1) _ O(1) = O(2<sup>n</sup> - 1) = O(2<sup>n</sup>)
-- SC: n _ S(node) = n _ O(1) = O(n)
+- TC: (2<sup>n</sup> - 1) \* T(node) = (2<sup>n</sup> - 1) \* O(1) = O(2<sup>n</sup> - 1) = O(2<sup>n</sup>)
+- SC: n \* S(node) = n \* O(1) = O(n)
 
 levels: n
 total number of nodes: 1 + 2 + 4 + ... + 2<sup>n-1</sup> = 2<sup>n</sup> - 1
@@ -251,7 +251,7 @@ public class FindKth {
       ListNode cur = head;
       int index = 0;
 
-      while (index != 0 && cur != null) {
+      while (index != k && cur != null) {
          cur = cur.next;
          index++;
       }
@@ -295,6 +295,7 @@ public ListNode insert(ListNode head, int value) {
       return newNode;
    }
 
+   ListNode cur = head;
    while (cur.next && cur.next.value < value) {
       cur = cur.next;
    }
@@ -475,14 +476,14 @@ class MergeSort {
       // subproblem
       int mid = left + (right - left) / 2;
       int[] leftRes = mergeSort(arr, left, mid);
-      int[] rightRes = mergeSort(arr, right, mid);
+      int[] rightRes = mergeSort(arr, mid + 1, right);
 
       // recursion rule
       return merge(leftRes, rightRes);
    }
 
    private int[] merge(int[] leftRes, int[] rightRes) {
-      int res = new int[leftRes.length + rightRes.length];
+      int[] res = new int[leftRes.length + rightRes.length];
       int i = 0;
       int j = 0;
       int k = 0;
@@ -491,7 +492,7 @@ class MergeSort {
          if (leftRes[i] < rightRes[j]) {
             res[k] = leftRes[i++];
          } else {
-            res[k] = right[j++];
+            res[k] = rightRes[j++];
          }
          k++;
          // res[k++] = leftRes[i] < rightRes[j] ? leftRes[i++] : rightRes[j++];
@@ -505,6 +506,8 @@ class MergeSort {
       while (j < rightRes.length) {
          res[k++] = rightRes[j++];
       }
+
+      return res;
    }
 }
 ```
@@ -592,7 +595,7 @@ class RainbowSort {
          return;
       }
 
-      int i = 0, j = 0,k = arr.length - 1;
+      int i = 0, j = 0, k = arr.length - 1;
       while (j <= k) {
          if (arr[j] == 1) {
             swap(arr, i, j);
