@@ -239,6 +239,12 @@ class ListNode {
 1. When you want to access value/next of a ListNode, **make sure it is not null pointer**.
 2. Never ever lose the control of the head pointer of the LinkedList.
 
+### Array vs. LinkedList
+- Memory Layout
+   - Array: consecutive allocated memory space, no overhead (额外开销)
+   - Linked List: non-consecutive, overhead of multiple objects with the "next"
+- (Random) access time
+
 #### Example 1: Given a linked list, find the index - k element of it.
 
 ```java
