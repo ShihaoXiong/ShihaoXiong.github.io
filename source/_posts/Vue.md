@@ -1388,11 +1388,9 @@ import myParam from './info.js';
 
 ---
 
-## Webpack
+## [Webpack](./Webpack.md)
 
-## [[Webpack]]
-
-### el 和 template 的区别
+## el 和 template 的区别
 
 **问题：** 1. 如果我们希望将 data 中的数据显示在界面中，就必须修改 index.html 2. 如果我们后面自定义了组件，也必须修改 index.html 来使用组件 3. 但是 html 模板在之后的开发中，我们并不希望手动的来频繁修改，是否可以做到？
 

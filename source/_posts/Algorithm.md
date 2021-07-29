@@ -240,9 +240,10 @@ class ListNode {
 2. Never ever lose the control of the head pointer of the LinkedList.
 
 ### Array vs. LinkedList
+
 - Memory Layout
-   - Array: consecutive allocated memory space, no overhead (额外开销)
-   - Linked List: non-consecutive, overhead of multiple objects with the "next"
+  - Array: consecutive allocated memory space, no overhead (额外开销)
+  - Linked List: non-consecutive, overhead of multiple objects with the "next"
 - (Random) access time
 
 #### Example 1: Given a linked list, find the index - k element of it.
@@ -649,3 +650,45 @@ class TreeNode {
 2. **Balanced binary tree:** is commonly defined as a bnary tree in which the depth (alse known as height) of the left and right subtrees of **every node** differ by 1 or less.
    1. for each of the nodes in this binary tree
    2. satisfyL the height of lesf subtree, right subtree at most diff by 1.
+      > **If a tree has n number of nodes and it is balanced, the the heght (level of the tree = O(logn)).**
+3. **Complete binary tree:** is a binary tree in which every level, _except possibly the last_, is completely filled, and all nodes are as far left as possible.
+   > **If a tree is a complete tree, then it must be a balanced tree.**
+4. **Binary Search Tree:** for every single node in the tree, the values in its left subtree are all smaller than its value, and the values in its right subtree are all larger than its value.
+   > **If we print the value of the nodes in BST in in-order sequence, then it must from an ascending order.**
+
+#### Example 1: Get the height of a binary tree.
+
+```java
+int getHeight(TreeNode root) {
+   if (root == null) {
+      return 0;
+   }
+
+   int leftHeight = getHeight(root.left);
+   int rightHeight = getHeight(root.right);
+
+   return Math.max(leftHeight, rightHeight) + 1;
+}
+```
+
+#### Example 2: How to determine whether a binary tree is a balanced binary tree?
+
+```java
+boolean isBalanced(TreeNode root) {
+   if (root == null) {
+      return true;
+   }
+
+   if (Math.abs(getHeight(root.left) - getHeight(root.right) > 1) {
+      return false;
+   }
+
+   return isBalanced(root.left) && isBalanced(root.right);
+}
+```
+
+#### Example 3: How to determine whether a binary tree is symmetric?
+
+```java
+
+```
