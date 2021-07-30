@@ -236,7 +236,7 @@ In general, each pair of **curly brackets** defines a scope. Each variable is as
 
 ### Static
 
-Members (filed, methods) belong to class, not object.
+Members (filed, methods) belong to class, not object (instance).
 
 ```java
 class Demo {
@@ -259,6 +259,12 @@ System.out.println(Demo.isTrue); // true
 - **Non-static method can access both static and non-static variables / methods**
 
 ### Final
+
+constans, once assigned, cannot be changed.
+
+- **final class:** A class that cannot be derived
+- **final method:** A method that cannot be overridden
+- **final variable:** Avariable that once assigned, cannot be assigned again
 
 ### Array & Object
 

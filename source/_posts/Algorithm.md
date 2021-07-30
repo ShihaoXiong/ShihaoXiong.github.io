@@ -80,7 +80,7 @@ public class ArrayListDemo {
    a. **Base case**: smallest problem to solve
    b. **Recursion rule**
 
-#### Example 1: <u>Fibonacci Sequence</u>
+**Example 1: Fibonacci Sequence**
 
 f(n)
 0 1 2 3 4 5 6 7 ...
@@ -111,7 +111,7 @@ total number of nodes: 1 + 2 + 4 + ... + 2<sup>n-1</sup> = 2<sup>n</sup> - 1
 2. leaf nodes = base cases
 3. one node = function call
 
-#### Example 2: <u>Power</u>
+**Example 2: Power**
 
 a<sup>b</sup>
 
@@ -246,7 +246,7 @@ class ListNode {
   - Linked List: non-consecutive, overhead of multiple objects with the "next"
 - (Random) access time
 
-#### Example 1: Given a linked list, find the index - k element of it.
+**Example 1: Given a linked list, find the index - k element of it.**
 
 ```java
 public class FindKth {
@@ -267,7 +267,7 @@ public class FindKth {
 }
 ```
 
-#### Example 2: How to find the middle node of a linked list ?
+**Example 2: How to find the middle node of a linked list ?**
 
 快慢指针法：slow 每次走一步，fast 每次走两步
 
@@ -288,7 +288,7 @@ public ListNode findMidNode(ListNode head) {
 }
 ```
 
-#### Example 3: Insert a node in a sorted linked list
+**Example 3: Insert a node in a sorted linked list.**
 
 ```java
 public ListNode insert(ListNode head, int value) {
@@ -313,7 +313,7 @@ public ListNode insert(ListNode head, int value) {
 }
 ```
 
-#### Example 4: How to merge two sorted LinkedList into one long sorted LinkedList ?
+**Example 4: How to merge two sorted LinkedList into one long sorted LinkedList ?**
 
 ```java
 public ListNode merge(ListNode head1, ListNode head2) {
@@ -347,7 +347,7 @@ public ListNode merge(ListNode head1, ListNode head2) {
 - TC: O(n)
 - SC: O(1)
 
-#### Example 5: Remove nodes with target value in the LinkedList.
+**Example 5: Remove nodes with target value in the LinkedList.**
 
 ```java
 public ListNode removeNodes(ListNode head, int target) {
@@ -371,7 +371,7 @@ public ListNode removeNodes(ListNode head, int target) {
 - TC: O(n)
 - SC: O(1)
 
-#### Example 6: Reverse a LinkedList.
+**Example 6: Reverse a LinkedList.**
 
 ##### Iterative
 
@@ -640,9 +640,9 @@ class TreeNode {
 
 **Tree Traverse:**
 
-1. pre-order: current node before its subtress (self-left-right)
-2. in-order: current node in its subtrees (left-self-right)
-3. post-order: current node after its subtrees (left-right-self)
+1. pre-order: current node before its subtress **(self -> left -> right)**
+2. in-order: current node in its subtrees **(left -> self -> right)**
+3. post-order: current node after its subtrees **(left -> right -> self)**
 
 **Base Concept:**
 
@@ -656,7 +656,9 @@ class TreeNode {
 4. **Binary Search Tree:** for every single node in the tree, the values in its left subtree are all smaller than its value, and the values in its right subtree are all larger than its value.
    > **If we print the value of the nodes in BST in in-order sequence, then it must from an ascending order.**
 
-#### Example 1: Get the height of a binary tree.
+<br/>
+
+**Example 1: Get the height of a binary tree.**
 
 ```java
 int getHeight(TreeNode root) {
@@ -671,7 +673,7 @@ int getHeight(TreeNode root) {
 }
 ```
 
-#### Example 2: How to determine whether a binary tree is a balanced binary tree?
+**Example 2: How to determine whether a binary tree is a balanced binary tree?**
 
 ```java
 boolean isBalanced(TreeNode root) {
@@ -687,8 +689,160 @@ boolean isBalanced(TreeNode root) {
 }
 ```
 
-#### Example 3: How to determine whether a binary tree is symmetric?
+**Example 3: How to determine whether a binary tree is symmetric?**
 
 ```java
+boolean isSymmetric(TreeNode left, TreeNode right) {
+   if (left == null && right == null) {
+      return true;
+   } else if (left == null || right == null) {
+      return false;
+   } else if (left.value != right.value) {
+      return false;
+   }
 
+   return isSymmetric(left.left, right.right) && isSymmetric(right.left, left.right);
+}
 ```
+
+- TC: O(n)
+- SC: O(height)
+
+---
+
+## Binary Search Tree
+
+For every single node in the tree, the values in its left subtree are all smaller than its value, and the values in its right subtree are all larger than its value.
+
+- search() - O(h), worst case O(n), best O(logn)
+- insert() - O(h), worst case O(n), best O(logn)
+- remove() - O(h), worst case O(n), best O(logn)
+
+**Example 1: Search in BST.**
+
+**method 1: recursion**
+
+```java
+// tail recursion
+TreeNode search(TreeNode root, int target) {
+   if (root == null || root.value == target) {
+      return root;
+   }
+
+   if (target < root.value) {
+      return search(root.left, target);
+   }
+
+   return search(root.right, target);
+}
+```
+
+- TC: O(h)
+
+**method 2: iteration**
+
+```java
+TreeNode search(TreeNode root, int target) {
+   TreeNode cur = root;
+   while (cur != null && cur.value != targer) {
+      if (target < cur.value) {
+         cur = root.left;
+      } else if (target > cur.value) {
+         cur = root.right;
+      }
+   }
+
+   return cur;
+}
+```
+
+- TC: O(h)
+- SC: O(1)
+
+**Example 2: Insert in BST.**
+
+**method 1: recursion**
+
+```java
+TreeNode insert(TreeNode root, int targer) {
+   if (root == null) {
+      return new TreeNode(target);
+   }
+
+   if (target < root.value) {
+      root.left = insert(root.left, target);
+   } else if (target > root.value) {
+      root.right = insert(root.right, target);
+   }
+   return root;
+}
+```
+
+**method 2: iteration**
+
+```java
+TreeNode insert(TreeNode root, int targer) {
+   if (root == null) {
+      return new TreeNode(targer);
+   }
+   TreeNode cur = root;
+   TreeNode pre = null;
+   while (cur != null) {
+      if (target < cur.value) {
+         if (cur.left != null) {
+            cur = cur.left;
+         } else {
+            cur.left = new TreeNode(target);
+            break;
+         }
+      } else {
+         if (cur.right != null) {
+            cur = cur.right;
+         } else {
+            cur.right = new TreeNode(target);
+         }
+      }
+   }
+   return root;
+}
+```
+
+---
+
+## Graph
+
+### General Tree
+
+Each node can have an arbitrary number of children
+
+```java
+class TreeNode {
+   int key;
+   List<TreeNode> children;
+   public TreeNode(int key) {
+      this.key = key;
+      children = new ArrayList<TreeNode>();
+   }
+}
+```
+
+We use the `root` to represent the general tree.
+
+> G = V + E
+
+### Graph
+
+Tree is a special kind of **Graph**
+
+```java
+class GraphNode {
+   int key;
+   List<GraphNode> neighbors;
+   public GraphNode(int key) {
+      this.key = key;
+      neighbors = new ArrayList<GraphNode>();
+   }
+}
+```
+
+We use the `List<GraphNode>` to represent the general tree.
