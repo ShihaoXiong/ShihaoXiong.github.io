@@ -373,7 +373,7 @@ public ListNode removeNodes(ListNode head, int target) {
 
 **Example 6: Reverse a LinkedList.**
 
-##### Iterative
+**method 1: iterative**
 
 ```java
 public ListNode reverseIterative(ListNode head) {
@@ -390,7 +390,7 @@ public ListNode reverseIterative(ListNode head) {
 }
 ```
 
-##### Recursion
+**method 2: recursion**
 
 - subproblem: reverse(head) -> reverse(head.next)
 - base case: only 1 node or 0 node
