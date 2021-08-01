@@ -708,9 +708,11 @@ boolean isSymmetric(TreeNode left, TreeNode right) {
 - TC: O(n)
 - SC: O(height)
 
+### Binary Tree Iteration (Traversal)
+
 ---
 
-## Binary Search Tree
+## Binary Search Tree (BST)
 
 For every single node in the tree, the values in its left subtree are all smaller than its value, and the values in its right subtree are all larger than its value.
 
@@ -720,26 +722,7 @@ For every single node in the tree, the values in its left subtree are all smalle
 
 **Example 1: Search in BST.**
 
-**method 1: recursion**
-
-```java
-// tail recursion
-TreeNode search(TreeNode root, int target) {
-   if (root == null || root.value == target) {
-      return root;
-   }
-
-   if (target < root.value) {
-      return search(root.left, target);
-   }
-
-   return search(root.right, target);
-}
-```
-
-- TC: O(h)
-
-**method 2: iteration**
+**method 1: iteration**
 
 ```java
 TreeNode search(TreeNode root, int target) {
@@ -759,26 +742,28 @@ TreeNode search(TreeNode root, int target) {
 - TC: O(h)
 - SC: O(1)
 
-**Example 2: Insert in BST.**
-
-**method 1: recursion**
+**method 2: recursion**
 
 ```java
-TreeNode insert(TreeNode root, int targer) {
-   if (root == null) {
-      return new TreeNode(target);
+// tail recursion
+TreeNode search(TreeNode root, int target) {
+   if (root == null || root.value == target) {
+      return root;
    }
 
    if (target < root.value) {
-      root.left = insert(root.left, target);
-   } else if (target > root.value) {
-      root.right = insert(root.right, target);
+      return search(root.left, target);
    }
-   return root;
+
+   return search(root.right, target);
 }
 ```
 
-**method 2: iteration**
+- TC: O(h)
+
+**Example 2: Insert in BST.**
+
+**method 1: iteration**
 
 ```java
 TreeNode insert(TreeNode root, int targer) {
@@ -805,6 +790,29 @@ TreeNode insert(TreeNode root, int targer) {
    }
    return root;
 }
+```
+
+**method 2: recursion**
+
+```java
+TreeNode insert(TreeNode root, int targer) {
+   if (root == null) {
+      return new TreeNode(target);
+   }
+
+   if (target < root.value) {
+      root.left = insert(root.left, target);
+   } else if (target > root.value) {
+      root.right = insert(root.right, target);
+   }
+   return root;
+}
+```
+
+**Example 3: Delete in BST.**
+
+```java
+
 ```
 
 ---
@@ -846,3 +854,30 @@ class GraphNode {
 ```
 
 We use the `List<GraphNode>` to represent the general tree.
+
+---
+
+## Heap & Graph Search Algorithms
+
+### Heap
+
+**堆**，亦被称为**优先队列**
+
+**用途：** 维护一个变化的数据集的最优值
+
+**性质：** 堆的数显通过构造二叉堆 (binary heap)， 这种数据结构具有以下性质
+
+1. 堆总是一颗**完全二叉树 (complete binary tree)**
+2. **任意节点小于(等于)它的所有后裔 (descendent) (堆序性)**
+
+根节点最小的堆叫做**MIN HEAP**，根节点最大的堆叫做**MAX HEAP**
+
+**Example 1: Find smallest k elements from an unsorted array of size n.**
+
+**method 1: sort**
+O(nlogn)
+
+**method 2: min head**
+**method 3: max head**
+
+### Graph Search Algorithms

@@ -9,14 +9,14 @@ categories: Note
 ## Webpack 介绍
 
 Webpack 是一个现在的 JavaScript 应用的静态**模块打包**工具。
-![](Webpack/%E7%85%A7%E7%89%87%202020%E5%B9%B48%E6%9C%8814%E6%97%A5%20113202.jpg)
+![](/assets/webpack/01.png)
+
+<!-- more -->
 
 **打包：**
 
 1. 将 Webpack 中的各种资源模块进行打包合并成一个或多个包 (Bundle)；
 2. 并且在打包的过程中，还可以对资源进行处理，比如压缩图片，将 scss 转 成 css，将 ES6 语法转成 ES5 语法，将 TypeScript 转成 JavaScript 等操作；
-
-<!-- more -->
 
 ---
 

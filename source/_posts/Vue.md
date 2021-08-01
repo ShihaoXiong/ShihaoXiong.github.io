@@ -1388,7 +1388,9 @@ import myParam from './info.js';
 
 ---
 
-## [Webpack](./Webpack.md)
+## Webpack
+
+{% post_link Webpack %}
 
 ## el 和 template 的区别
 
