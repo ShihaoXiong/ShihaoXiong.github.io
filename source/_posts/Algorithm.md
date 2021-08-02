@@ -868,9 +868,9 @@ We use the `List<GraphNode>` to represent the general tree.
 **性质：** 堆的数显通过构造二叉堆 (binary heap)， 这种数据结构具有以下性质
 
 1. 堆总是一颗**完全二叉树 (complete binary tree)**
-2. **任意节点小于(等于)它的所有后裔 (descendent) (堆序性)**
-
-根节点最小的堆叫做**MIN HEAP**，根节点最大的堆叫做**MAX HEAP**
+2. 根节点最小的堆叫做**MIN HEAP**，根节点最大的堆叫做**MAX HEAP**
+   - MIN HEAP: 任意节点**小于(等于)** 它的所有后裔 (descendent) (堆序性)
+   - MAX HEAP: 任意节点**大于(等于)** 它的所有后裔 (descendent) (堆序性)
 
 **Example 1: Find smallest k elements from an unsorted array of size n.**
 
@@ -879,5 +879,239 @@ O(nlogn)
 
 **method 2: min head**
 **method 3: max head**
+
+### Heap in Java (PriorityQueue)
+
+#### PriorityQueue
+
+It is a heap with same Queue interface with `offer(), peek(), poll()`.
+But, it is not FIFO, when `poll()` or `peek()` we always look at the smallest / largest element (min heap / max heap).
+Internally it is implemented using an array.
+
+#### 概念区分
+
+| 数据结构 (逻辑层面)  | 内存里的存放方法      | 对应 java class         | 对应 java interface |
+| -------------------- | --------------------- | ----------------------- | ------------------- |
+| queue (FIFO)         | array / linked list   | ArrayDeque / LinkedList | Queue               |
+| stack (LIFO)         | array / linked list   | ArrayDeque / LinkedList | Deque               |
+| deque (double-ended) | array / linked list   | ArrayDeque / LinkedList | Deque               |
+| heap (tree like)     | array (abstract tree) | PriorityQueue           | Queue               |
+
+#### Order
+
+The PriorityQueue need to know how to compare the elements and determine which one is smaller / larger.
+
+- **The element type implementing Comparable interface**
+  The element's class can implement `Comparable interface` and thus implement the required method `compareTo()`, PriorityQueue will use this method to compare any tow elements.
+
+```java
+interface Comparable<E> {
+   int compareTo(E ele);
+}
+```
+
+```java
+// part of the Integer class implementation...
+class Integer implements Comparable<Integer> {
+   private int value;
+
+   public Integer(int value) {
+      this.value = value;
+   }
+
+   @Override
+   public int compareTo(Integer another) {
+      if (this.value == another.value) {
+         return 0;
+      }
+      return this.value < another.value ? -1 : 1;
+   }
+}
+```
+
+- **Provide an extra Comparator object to compare the elements**
+  There is another interface `Compartor`, it is used to compare two elements with same type E.
+
+```java
+interface Comparator<E> {
+   int compare(E o1, E o2);
+}
+```
+
+```java
+class Cell {
+   public int row;
+   public int col;
+   public int value;
+   public Cell(int row, int col, int value) {
+      this.row = row;
+      this.col = col;
+      this.value = value;
+   }
+}
+
+class MyComparator implements Comparator<Cell> {
+   @Override
+   public int compare(Cell c1, Cell c2) {
+      if (c1.value == c2.value) {
+         return 0;
+      }
+      return c1.value < c2.value ? -1 : 1;
+   }
+}
+```
+
+- **MIN HEAP & MAX HEAP**
+  There is a utility method `Collections.reverseOrder()`, it will return a comparator that **reverses the natural order**.
+
+```java
+// min heap
+PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+
+// max heap
+PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+```
+
+#### Most frequently used constructors of PriorityQueue
+
+1. ```java
+   PriorityQueue<Cell> heap = new PriorityQueue<Cell>();
+   ```
+   - initialize the internal array with default capacity(11)
+   - **class `Cell` must implements `Comparable<Cell>`**
+2. ```java
+   PriorityQueue<Cell> heap = new PriorityQueue<Cell>(16);
+   ```
+   - initialize the internal array with specified capacity(16)
+   - **class `Cell` must implements `Comparable<Cell>`**
+3. ```java
+   PriorityQueue<Cell> heap = new PriorityQueue<Cell>(16, new MyComparator());
+   ```
+   - initialize the internal array with specified capacity(16)
+   - **class `MyComparator` must implements `Comparator<Cell>`**
+4. ```java
+   PriorityQueue<Cell> heap = new PriorityQueue<Cell>(new MyComparator());
+   ```
+   - **class `MyComparator` must implements `Comparator<Cell>`**
+   - **Java 8+**
+
+#### Nested Classes
+
+A class within another class:
+
+- It is a way of logically grouping classes that are only used in one place
+- It increases encapsulation
+- It can lead to more readable and maintainable code
+
+```java
+class LinkedList {
+   // Nested class
+   class ListNode {
+      // ...
+   }
+}
+```
+
+#### Anonymous inner class (define in a method with just new and no definition)
+
+```java
+class Solution {
+   PriorityQueue<Cell> pQueue = new PriorityQueue<>(16, new Comparator<Cell>() {
+      @Override
+      public int compare(Cell c1, Cell c2) {
+         if (c1.value == c2.value) {
+            return 0;
+         }
+         return c1.value < c2.value ? -1 : 1;
+      }
+   })
+}
+```
+
+1. 实现一个接口
+2. 定义一个类
+3. 创建一个 instance
+4. call constructor
+
+**Similar to:**
+
+```java
+class MyComparator implements Comparator<Cell> {
+   @Override
+   public int compare(Cell c1, Cell c2) {
+      if (c1.value == c2.value) {
+         return 0;
+      }
+      return c1.value < c2.value ? -1 : 1;
+   }
+}
+
+PriorityQueue<Cell> pQueue = new PriorityQueue<>(16, new MyComparator())
+```
+
+**Lambda (Java 8)**
+
+```java
+PriorityQueue<Cell> pQueue = new PriorityQueue<>(16,
+   (Cell c1, Cell c2) -> {
+      if (c1.value == c2.value) {
+         return 0;
+      }
+      return c1.value < c2.value ? -1 : 1;
+   }
+)
+```
+
+**Example: Smalest k elements in unsorted array.**
+Find the K smassles numbers in an unsorted integer array A. The returned numbers should
+
+**method 1: MIN HEAP**
+
+```java
+public int[] findKSmallest(int[] arr, int k) {
+   if (k > arr.length) {
+      return null;
+   }
+
+   PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+   // TC: O(nlogn)
+   for (int num: arr) {
+      minHeap.offer(num);
+   }
+
+   int[] res = new int[k];
+   // TC: O(klogn)
+   for (int i = 0; i < k; i++) {
+      res[i] = minHeap.poll();
+   }
+
+   return res;
+}
+```
+
+- TC: O(nlogn) + O(klogn) = P(nlogn)
+
+**method 2: MAX HEAP**
+
+```java
+public int[] findKSmallest(int[] arr, int k) {
+   if (k > arr.length) {
+      return null;
+   }
+   PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+   for (int i = 0; i < k; i++) {
+      maxHeap.offer(arr[i]);
+   }
+
+   int[] res = new int[k];
+   for (int i = 0; i < k; i++) {
+      res[i] = minHeap.poll();
+   }
+
+   return res;
+}
+```
+
+- TC: O((n + k)logk)
 
 ### Graph Search Algorithms
