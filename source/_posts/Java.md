@@ -174,16 +174,41 @@ public static void main(String[] args) {
 - **object**
 - **reference**: the business card of object, find the object by ref.
 
+### Working with Objects
+
+The `new` keyword: create an object
+
+```java
+Student firstStudent = new Student("Tom");
+```
+
+There are actually three important operations that happened in this statement.
+
+1. **Declaration:** associate a variable name with an object type
+
+   ```java
+   Student firstStudent
+   ```
+
+2. **Instantiation:** the `new` keyword is a Java operator that creates the object
+   ```java
+   firstStudent = new Student();
+   ```
+3. **Initialization:** the new operator is followed by a call to a `constructor`, which initializes the new object
+   ```java
+   Student firstStudent = new Student("Tom");
+   ```
+
 ### Object Memory Layout
 
 Memery spaces in a Kava program: `Stack` and `Heap`
 
-- **Stack**: In computer science, a call stack is a stack data structure that stores information about the active subroutines of a computer program (stack frame). This kind of stack is also known as an execution stack, program stack, control stack, run-time stack, or machine stack, and is often shortened to just "the stack".
-- **Heap**: Java objects reside in an area called te heap. The heap is created when the JVM starts up adn may increase or decrease in size while the application runs.
+- **Stack**: In computer science, a call stack is a stack data structure that stores information about the active subroutines of a computer program (stack frame). This kind of stack is also known as an execution stack, program stack, control stack, run-time stack, or machine stack, and is often shortened to just "the stack". **(LIFO)**
+- **Heap**: Java objects reside in an area called te heap. The heap is created when the JVM starts up adn may increase or decrease in size while the application runs. **(FIFO)**
 
 ### Call Stack
 
-_no function call, no call stack_
+> _no function call, no call stack_
 
 ### Stack + Heap
 
