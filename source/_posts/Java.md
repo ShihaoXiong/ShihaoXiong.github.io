@@ -227,6 +227,22 @@ Memery spaces in a Kava program: `Stack` and `Heap`
 2. Simply, the scope is the **innermost** {} warpping up the **decalration**.
 3. <u>Local (local to function) variables</u>: the variables whose lifetime is strictly tied with a function.
 
+### Default Values
+
+- It's not always necessary to assign a value when a field is declared. Fields that are declared but not initailized will be set to a reasonable defalut by the compiler.
+- The following chart summarizes the default values for the above data types.
+
+  | Data Type  | Default Value (for fields) |
+  | ---------- | -------------------------- |
+  | byte       | 0                          |
+  | short      | 0                          |
+  | int        | 0                          |
+  | long       | 0L                         |
+  | float      | 0.0f                       |
+  | double     | 0.0d                       |
+  | char       | '\u0000'                   |
+  | any object | null                       |
+
 ### Java Parameter Passing
 
 **Java function call is always pass by value (copy)**
@@ -305,5 +321,3 @@ constans, once assigned, cannot be changed.
 
 - ArrayIndexOutOfBoundExpecption
 - NullPointerException
-
----

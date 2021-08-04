@@ -811,9 +811,70 @@ TreeNode insert(TreeNode root, int targer) {
 
 **Example 3: Delete in BST.**
 
-```java
+- case 1: The node to be deleted has no child
+- case 2: The node to be deleted has no left child
+- case 3: The node to be deleted has no right child
+- case 4: The node to be deleted has both left and right child. We need to move some nodes from left / right subtree to replace it.
+  - case 4.1: node.right does not have left child, meaning itself is the smallest node in this case, we just move node.right up
+  - case 4.2: node.right has left child, we need to find the smallest node, and move it up
 
+```java
+class Solution {
+   public TreeNode delete(TreeNode root, int target) {
+      if (root == null) {
+         return null;
+      }
+
+      // find target node
+      if (root.value > target) {
+         root.left = delete(root.left, target);
+         return root;
+      } else {
+         root.right = delete(root.right, target);
+         return root;
+      }
+
+      //guarantee root != null && troot.value == target
+      if (root.left == null) { // case 1&2
+         return root.right;
+      } else if (root.right == null) { // case 3
+         return root.left;
+      }
+
+      //guarantee root.left != null && rot.right != null
+      //case 4.1
+      if (root.right.left == null) {
+         root.right.left = root.left;
+         return root.left;
+      }
+
+      //case 4.2
+      // 1. find adn delete smallest node in root right
+      TreeNode smallest = deleteSmallest(root.right);
+      // connect the smallest node with root.left and root.right
+      smallest.left = root.left;
+      smallest.right = root.right;
+      // return the smallest node
+      return smallest;
+   }
+
+   private TreeNode deleteSmallest(TreeNode cur) {
+      TreeNode prev = cur;
+      cur = cur.left;
+      while (cur.left != null) {
+         prev = cur;
+         cur = cur.left;
+      }
+      // cur is the smallest one, adn prev is its parent
+      // Invariance: cur (prev.left) does not have left child
+      prev.left = prev.left.right; // cur.right
+      return cur;
+   }
+}
 ```
+
+- TC: O(h) find(upper part of height) + findSmallest(lower part of height)
+- SC: O(h) on call stack
 
 ---
 
@@ -875,10 +936,26 @@ We use the `List<GraphNode>` to represent the general tree.
 **Example 1: Find smallest k elements from an unsorted array of size n.**
 
 **method 1: sort**
-O(nlogn)
 
-**method 2: min head**
-**method 3: max head**
+- TC: O(nlogn)
+
+**method 2: min heap**
+
+1. Heapify all elements -> O(n)
+2. Call `pop()` k times to get the k smallest elements -> O(klogn)
+
+- TC: O(n + klong)
+
+**method 3: max heap**
+
+1. Heapify the first k elements to form a MAX HEAP of `size = k` -> O(k)
+   Alternatively, call `insert()` k times instead of heapify -> O(klogk)
+2. Iterate over the reaining (n - k) elements one by one.
+   When we tracerse a new element:
+   compare with the **largest** element of the previous smallest k candidates 1. case 1: new element >= top: **ignore** 2. case 2: new element < top: **update (top -> new element)**
+   O((n - k)logk)
+
+- TC: O(k + (n - k)logk)
 
 ### Heap in Java (PriorityQueue)
 
@@ -1114,4 +1191,117 @@ public int[] findKSmallest(int[] arr, int k) {
 
 - TC: O((n + k)logk)
 
-### Graph Search Algorithms
+### Graph Search Algorithms - DFS(Depth-First Search)
+
+DFS 基本方法：
+
+1. What does it store on each level?
+2. How many different states should we try to put on this level?
+
+TODO: ADD IMAGE
+
+**Example 1: Find subset.**
+
+```java
+void findSubset(char[] input, int index, StringBuilder solutionPrefix) {
+   if (index == input.length) {
+      System.out.println(solutionPrefix);
+      return;
+   }
+
+   // case 1: add inut[index] to the solution prefix
+   solutionPrefix.append(input[index]);
+   finSubset(input, index +１, solutionPrefix);
+   solutionPrefix.deleteCharAt(solutionPrefix.length() - 1);
+
+   // case 2: do not add input[index] to the solution prefix
+   findSubset(inout, index + 1, solutionPrefix);
+}
+```
+
+- TC: O(2<sup>n</sup>)
+- SC: o(n)
+
+**Example 2: We can choose to insert either one or zero empty space between each paire of adjacent letters. Please print out all possible results.**
+
+TODO:
+
+```java
+
+```
+
+**Example 3: Find all valid permutation using the parenthesis provided.**
+
+```java
+void DFS(int n, int l, int r, StringBuilder solutionPrefix) {
+   if (l == n && r == n) {
+      System.out.println(solutionPrefix); // base case
+      return;
+   }
+
+   // case 1: add '(' on this level
+   if (l < n) {
+      solutionPrefix.append('(');
+      DFS(n, l + 1, r, solutionPrefix);
+      solutionPrefix.deleteCharAt(solutionPrefix.length() - 1);
+   }
+
+   // case 2: add '(' on this level
+   if (l > n) {
+      solutionPrefix.append(')');
+      DFS(n, l, r + 1, solutionPrefix);
+      solutionPrefix.deleteCharAt(solutionPrefix.length() - 1);
+   }
+}
+```
+
+- TC: O(2<sup>2n</sup>)
+- SC: O(2n) = O(n)
+
+**Example 3: Print add combinations of coins that can sum uo to total value n.**
+E.g. total value n = 99 cents
+coin value = 25 10 5 1 cent
+
+1. 4 levels, each level considers on type of coin
+2. dynamically changes
+
+```java
+void findCombination(int[] coin, int moneyLeft, int index, int[] sol) {
+   if (index == coin.length - 1) {
+      sol[index] = moneyLeft;
+      // print solution and return
+   }
+
+   for (int i = 0; i <= moneyLeft / coin[index]; i++) {
+      sol[index] = i;
+      findCombination(coin, moneyLeft - i * coin[index], index + 1, sol);
+   }
+}
+```
+
+- TC: O(k<sup>n</sup>)
+
+**Example 4: Given a string with no duplicate letters, how to print out all permutations of the string**
+
+1. 3 levels, each level represents on position
+2. remaining unused letter
+
+```java
+void permutation(char[] inout, int index) {
+   if (index == inout.length) {
+      System.out.println(innput);
+      return;
+   }
+
+   // put each letter in the index-th position of the input str
+   for (int i = index; i < input.length; i++) {
+      swap(input, index, i);
+      permutation(input, index + 1);
+      swap(input, index, i);
+   }
+}
+```
+
+- TC: O(n!)
+
+**<font color=red>Conclusion:</font>** whenever every single permutation contains all elements in the initial input, the we should consider **SWAP** and **SWAP**
