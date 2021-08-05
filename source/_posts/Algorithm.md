@@ -80,7 +80,7 @@ public class ArrayListDemo {
    a. **Base case**: smallest problem to solve
    b. **Recursion rule**
 
-**Example 1: Fibonacci Sequence**
+<font color=#3273DC><h4>Example.1 Fibonacci Sequence</h4></font>
 
 f(n)
 0 1 2 3 4 5 6 7 ...
@@ -111,7 +111,7 @@ total number of nodes: 1 + 2 + 4 + ... + 2<sup>n-1</sup> = 2<sup>n</sup> - 1
 2. leaf nodes = base cases
 3. one node = function call
 
-**Example 2: Power**
+<font color=#3273DC><h4>Example.2 Power</h4></font>
 
 a<sup>b</sup>
 
@@ -246,7 +246,7 @@ class ListNode {
   - Linked List: non-consecutive, overhead of multiple objects with the "next"
 - (Random) access time
 
-**Example 1: Given a linked list, find the index - k element of it.**
+<font color=#3273DC><h4>Example.1 Given a linked list, find the index - k element of it.</h4></font>
 
 ```java
 public class FindKth {
@@ -267,7 +267,7 @@ public class FindKth {
 }
 ```
 
-**Example 2: How to find the middle node of a linked list ?**
+<font color=#3273DC><h4>Example.2 How to find the middle node of a linked list ?</h4></font>
 
 快慢指针法：slow 每次走一步，fast 每次走两步
 
@@ -288,7 +288,7 @@ public ListNode findMidNode(ListNode head) {
 }
 ```
 
-**Example 3: Insert a node in a sorted linked list.**
+<font color=#3273DC><h4>Example.3 Insert a node in a sorted linked list.</h4></font>
 
 ```java
 public ListNode insert(ListNode head, int value) {
@@ -313,7 +313,7 @@ public ListNode insert(ListNode head, int value) {
 }
 ```
 
-**Example 4: How to merge two sorted LinkedList into one long sorted LinkedList ?**
+<font color=#3273DC><h4>Example.4 How to merge two sorted LinkedList into one long sorted LinkedList ?</h4></font>
 
 ```java
 public ListNode merge(ListNode head1, ListNode head2) {
@@ -347,7 +347,7 @@ public ListNode merge(ListNode head1, ListNode head2) {
 - TC: O(n)
 - SC: O(1)
 
-**Example 5: Remove nodes with target value in the LinkedList.**
+<font color=#3273DC><h4>Example.5 Remove nodes with target value in the LinkedList.</h4></font>
 
 ```java
 public ListNode removeNodes(ListNode head, int target) {
@@ -371,7 +371,7 @@ public ListNode removeNodes(ListNode head, int target) {
 - TC: O(n)
 - SC: O(1)
 
-**Example 6: Reverse a LinkedList.**
+<font color=#3273DC><h4>Example.6 Reverse a LinkedList.</h4></font>
 
 **method 1: iterative**
 
@@ -658,7 +658,7 @@ class TreeNode {
 
 <br/>
 
-**Example 1: Get the height of a binary tree.**
+<font color=#3273DC><h4>Example.1 Get the height of a binary tree.</h4></font>
 
 ```java
 int getHeight(TreeNode root) {
@@ -673,7 +673,7 @@ int getHeight(TreeNode root) {
 }
 ```
 
-**Example 2: How to determine whether a binary tree is a balanced binary tree?**
+<font color=#3273DC><h4>Example.2 How to determine whether a binary tree is a balanced binary tree ?</h4></font>
 
 ```java
 boolean isBalanced(TreeNode root) {
@@ -689,7 +689,7 @@ boolean isBalanced(TreeNode root) {
 }
 ```
 
-**Example 3: How to determine whether a binary tree is symmetric?**
+<font color=#3273DC><h4>Example.3 How to determine whether a binary tree is symmetric ?</h4></font>
 
 ```java
 boolean isSymmetric(TreeNode left, TreeNode right) {
@@ -720,7 +720,7 @@ For every single node in the tree, the values in its left subtree are all smalle
 - insert() - O(h), worst case O(n), best O(logn)
 - remove() - O(h), worst case O(n), best O(logn)
 
-**Example 1: Search in BST.**
+<font color=#3273DC><h4>Example.1 Search in BST.</h4></font>
 
 **method 1: iteration**
 
@@ -761,7 +761,7 @@ TreeNode search(TreeNode root, int target) {
 
 - TC: O(h)
 
-**Example 2: Insert in BST.**
+<font color=#3273DC><h4>Example.2 Insert in BST.</h4></font>
 
 **method 1: iteration**
 
@@ -809,7 +809,7 @@ TreeNode insert(TreeNode root, int targer) {
 }
 ```
 
-**Example 3: Delete in BST.**
+<font color=#3273DC><h4>Example.3 Delete in BST.</h4></font>
 
 - case 1: The node to be deleted has no child
 - case 2: The node to be deleted has no left child
@@ -933,7 +933,7 @@ We use the `List<GraphNode>` to represent the general tree.
    - MIN HEAP: 任意节点**小于(等于)** 它的所有后裔 (descendent) (堆序性)
    - MAX HEAP: 任意节点**大于(等于)** 它的所有后裔 (descendent) (堆序性)
 
-**Example 1: Find smallest k elements from an unsorted array of size n.**
+<font color=#3273DC><h4>Example.1 Find smallest k elements from an unsorted array of size n.</h4></font>
 
 **method 1: sort**
 
@@ -1139,7 +1139,7 @@ PriorityQueue<Cell> pQueue = new PriorityQueue<>(16,
 )
 ```
 
-**Example: Smalest k elements in unsorted array.**
+<font color=#3273DC><h4>Example. Smalest k elements in unsorted array.</h4></font>
 Find the K smassles numbers in an unsorted integer array A. The returned numbers should
 
 **method 1: MIN HEAP**
@@ -1200,7 +1200,7 @@ DFS 基本方法：
 
 TODO: ADD IMAGE
 
-**Example 1: Find subset.**
+<font color=#3273DC><h4>Example.1 Find subset.</h4></font>
 
 ```java
 void findSubset(char[] input, int index, StringBuilder solutionPrefix) {
@@ -1222,7 +1222,8 @@ void findSubset(char[] input, int index, StringBuilder solutionPrefix) {
 - TC: O(2<sup>n</sup>)
 - SC: o(n)
 
-**Example 2: We can choose to insert either one or zero empty space between each paire of adjacent letters. Please print out all possible results.**
+<font color=#3273DC><h4>Example.2 Insert empty space.</h4></font>
+We can choose to insert either one or zero empty space between each paire of adjacent letters. Please print out all possible results.
 
 TODO:
 
@@ -1230,7 +1231,7 @@ TODO:
 
 ```
 
-**Example 3: Find all valid permutation using the parenthesis provided.**
+<font color=#3273DC><h4>Example.3 Find all valid permutation using the parenthesis provided.</h4></font>
 
 ```java
 void DFS(int n, int l, int r, StringBuilder solutionPrefix) {
@@ -1258,7 +1259,7 @@ void DFS(int n, int l, int r, StringBuilder solutionPrefix) {
 - TC: O(2<sup>2n</sup>)
 - SC: O(2n) = O(n)
 
-**Example 3: Print add combinations of coins that can sum uo to total value n.**
+<font color=#3273DC><h4>Example.3.1 Print add combinations of coins that can sum uo to total value n.</h4></font>
 E.g. total value n = 99 cents
 coin value = 25 10 5 1 cent
 
@@ -1281,7 +1282,7 @@ void findCombination(int[] coin, int moneyLeft, int index, int[] sol) {
 
 - TC: O(k<sup>n</sup>)
 
-**Example 4: Given a string with no duplicate letters, how to print out all permutations of the string**
+<font color=#3273DC><h4>Example.4 Given a string with no duplicate letters, how to print out all permutations of the string.</h4></font>
 
 1. 3 levels, each level represents on position
 2. remaining unused letter
