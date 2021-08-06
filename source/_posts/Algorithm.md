@@ -80,7 +80,7 @@ public class ArrayListDemo {
    a. **Base case**: smallest problem to solve
    b. **Recursion rule**
 
-<font color=#3273DC><h4>Example.1 Fibonacci Sequence</h4></font>
+**<font color=#3273DC>Example.1 Fibonacci Sequence</font>**
 
 f(n)
 0 1 2 3 4 5 6 7 ...
@@ -111,7 +111,7 @@ total number of nodes: 1 + 2 + 4 + ... + 2<sup>n-1</sup> = 2<sup>n</sup> - 1
 2. leaf nodes = base cases
 3. one node = function call
 
-<font color=#3273DC><h4>Example.2 Power</h4></font>
+**<font color=#3273DC>Example.2 Power</font>**
 
 a<sup>b</sup>
 
@@ -246,7 +246,7 @@ class ListNode {
   - Linked List: non-consecutive, overhead of multiple objects with the "next"
 - (Random) access time
 
-<font color=#3273DC><h4>Example.1 Given a linked list, find the index - k element of it.</h4></font>
+**<font color=#3273DC>Example.1 Given a linked list, find the index - k element of it.</font>**
 
 ```java
 public class FindKth {
@@ -267,7 +267,7 @@ public class FindKth {
 }
 ```
 
-<font color=#3273DC><h4>Example.2 How to find the middle node of a linked list ?</h4></font>
+**<font color=#3273DC>Example.2 How to find the middle node of a linked list ?</font>**
 
 快慢指针法：slow 每次走一步，fast 每次走两步
 
@@ -288,7 +288,7 @@ public ListNode findMidNode(ListNode head) {
 }
 ```
 
-<font color=#3273DC><h4>Example.3 Insert a node in a sorted linked list.</h4></font>
+**<font color=#3273DC>Example.3 Insert a node in a sorted linked list.</font>**
 
 ```java
 public ListNode insert(ListNode head, int value) {
@@ -313,7 +313,7 @@ public ListNode insert(ListNode head, int value) {
 }
 ```
 
-<font color=#3273DC><h4>Example.4 How to merge two sorted LinkedList into one long sorted LinkedList ?</h4></font>
+**<font color=#3273DC>Example.4 How to merge two sorted LinkedList into one long sorted LinkedList ?</font>**
 
 ```java
 public ListNode merge(ListNode head1, ListNode head2) {
@@ -347,7 +347,7 @@ public ListNode merge(ListNode head1, ListNode head2) {
 - TC: O(n)
 - SC: O(1)
 
-<font color=#3273DC><h4>Example.5 Remove nodes with target value in the LinkedList.</h4></font>
+**<font color=#3273DC>Example.5 Remove nodes with target value in the LinkedList.</font>**
 
 ```java
 public ListNode removeNodes(ListNode head, int target) {
@@ -371,7 +371,7 @@ public ListNode removeNodes(ListNode head, int target) {
 - TC: O(n)
 - SC: O(1)
 
-<font color=#3273DC><h4>Example.6 Reverse a LinkedList.</h4></font>
+**<font color=#3273DC>Example.6 Reverse a LinkedList.</font>**
 
 **method 1: iterative**
 
@@ -658,7 +658,7 @@ class TreeNode {
 
 <br/>
 
-<font color=#3273DC><h4>Example.1 Get the height of a binary tree.</h4></font>
+**<font color=#3273DC>Example.1 Get the height of a binary tree.</font>**
 
 ```java
 int getHeight(TreeNode root) {
@@ -673,7 +673,7 @@ int getHeight(TreeNode root) {
 }
 ```
 
-<font color=#3273DC><h4>Example.2 How to determine whether a binary tree is a balanced binary tree ?</h4></font>
+**<font color=#3273DC>Example.2 How to determine whether a binary tree is a balanced binary tree ?</font>**
 
 ```java
 boolean isBalanced(TreeNode root) {
@@ -689,7 +689,7 @@ boolean isBalanced(TreeNode root) {
 }
 ```
 
-<font color=#3273DC><h4>Example.3 How to determine whether a binary tree is symmetric ?</h4></font>
+**<font color=#3273DC>Example.3 How to determine whether a binary tree is symmetric ?</font>**
 
 ```java
 boolean isSymmetric(TreeNode left, TreeNode right) {
@@ -720,7 +720,7 @@ For every single node in the tree, the values in its left subtree are all smalle
 - insert() - O(h), worst case O(n), best O(logn)
 - remove() - O(h), worst case O(n), best O(logn)
 
-<font color=#3273DC><h4>Example.1 Search in BST.</h4></font>
+**<font color=#3273DC>Example.1 Search in BST.</font>**
 
 **method 1: iteration**
 
@@ -761,7 +761,7 @@ TreeNode search(TreeNode root, int target) {
 
 - TC: O(h)
 
-<font color=#3273DC><h4>Example.2 Insert in BST.</h4></font>
+**<font color=#3273DC>Example.2 Insert in BST.</font>**
 
 **method 1: iteration**
 
@@ -809,7 +809,7 @@ TreeNode insert(TreeNode root, int targer) {
 }
 ```
 
-<font color=#3273DC><h4>Example.3 Delete in BST.</h4></font>
+**<font color=#3273DC>Example.3 Delete in BST.</font>**
 
 - case 1: The node to be deleted has no child
 - case 2: The node to be deleted has no left child
@@ -933,7 +933,13 @@ We use the `List<GraphNode>` to represent the general tree.
    - MIN HEAP: 任意节点**小于(等于)** 它的所有后裔 (descendent) (堆序性)
    - MAX HEAP: 任意节点**大于(等于)** 它的所有后裔 (descendent) (堆序性)
 
-<font color=#3273DC><h4>Example.1 Find smallest k elements from an unsorted array of size n.</h4></font>
+**Index of `parent = i`, what is the index of the two child nodes?**
+
+- left child of index `- = 2 * i + 1`
+- right child of index `i = 2 * i + 2`
+- parent of index `i = (i - 1) / 2`
+
+**<font color=#3273DC>Example. Find smallest k elements from an unsorted array of size n.</font>**
 
 **method 1: sort**
 
@@ -1139,7 +1145,7 @@ PriorityQueue<Cell> pQueue = new PriorityQueue<>(16,
 )
 ```
 
-<font color=#3273DC><h4>Example. Smalest k elements in unsorted array.</h4></font>
+**<font color=#3273DC>Example. Smalest k elements in unsorted array.</font>**
 Find the K smassles numbers in an unsorted integer array A. The returned numbers should
 
 **method 1: MIN HEAP**
@@ -1191,6 +1197,165 @@ public int[] findKSmallest(int[] arr, int k) {
 
 - TC: O((n + k)logk)
 
+### Implementing Heaps
+
+#### Basic Heap Internal Operations
+
+##### `percolateUp()`
+
+- When to use?
+  The element need to be moved up to maintain the heap's property, for example, when offering a new element into the heap.
+- How?
+  Compare the element with its parent, move it up when necessary, do this until the element does not need to be moved.
+- **TC: O(logn)**
+
+##### `percolateDown()`
+
+- When to use?
+  The element need to be moved down to maintain the heap's property, for example, when poll the root element from the heap.
+- How?
+  Compare the element with its two children, if the smallest one of the two children is smaller than the element, swap the element with that child, do this until the element does not need to be moved.
+- **TC: O(logn)**
+
+##### `heapiyf()`
+
+- Convert an array into a heap in **O(n)** time.
+- How?
+  For each node that has at least one child, we perform `percolateDown` action, in the order of from the nodes on the deepest level to the root.
+- **TC: O(n)**
+
+> 原理： 当一个 node 左子树和右子树都是堆，对它本身做 `percolateDown`，会使得以它为 root 的整颗子树成为堆。
+
+The range of indices nees to perform `percolateDown` is: **[0, n / 2 - 1]**
+**Last non-leaf node: parent of last node `index = ((n - 1) - 1) / 2 = n / 2 - 1`**
+
+##### `update()`
+
+- If you know the position of the element you want to update, it will take **O(logn)**
+- How?
+  Either you need `percolateUp`, or `percolateDown` on that element
+- Waht if you do not know the position of the element?
+  You need to find the position of the element first, if not asking for help with other additional data structure, this operation is **O(n)**
+
+#### Implementaion of Min Heap
+
+```java
+public class MinHeap {
+   private int[] array;
+   private int size;
+   public MinHap(int[] array) {
+      if (array == null || array.length == 0) {
+         throw new IllegalArgumentException("input array can not be null or empty");
+      }
+      this.array = array;
+      size = array.length;
+      heapify();
+   }
+
+   private void heapify() {
+      for (int i = size / 2 - 1; i >= 0; i--) {
+         percolateDown(i);
+      }
+   }
+
+   public MinHeap(int cap) {
+      if (cap <= 0) {
+         throw new IllegalArgumentException("capacity can not be <= 0");
+      }
+      array = new int[cap];
+      size = 0;
+   }
+
+   public int size() {
+      return size;
+   }
+
+   public boolean isEmpty() {
+      return size == 0;
+   }
+
+   public boolean isFull() {
+      return size == array.length;
+   }
+
+   private void percolateUp(int index) {
+      if (index < 0 || index >= size) {
+         return;
+      }
+
+      while (index > 0) {
+         int parent = (index - 1) / 2;
+         if (array[parent] > array[index]) {
+            swap(parent, index);
+         } else {
+            break;
+         }
+         index = parent;
+      }
+   }
+
+   private void percolateDown(int index) {
+      while (index <= size / 2 -1) {
+         int left = index * 2 + 1;
+         int right = index * 2 - 1;
+         int toSwap = left;
+         if (right < size && array[left] >= array[right]) {
+            toSwap = right;
+         }
+         if (array[index] > array[toSwap]) {
+            swap(index, toSwap);
+         } else {
+            break;
+         }
+         index = toSwap;
+      }
+   }
+
+   public Integer peek() {
+      if (size == 0) {
+         return null;
+      }
+      return array[0];
+   }
+
+   public Integer poll() {
+      if (size == 0) {
+         return null;
+      }
+      int res = array[0];
+      array[0] = array[size - 1];
+      size--;
+      percolateDown(0);
+      return res;
+   }
+
+   public void offer(int ele) {
+      if (size == array.length) {
+         array = Arrays.copyOf(array, (int)(array.length * 1.5));
+      }
+      array[size] = ele;
+      size++;
+      percolateUp(size - 1);
+   }
+
+   public int update(int index, int ele) {
+      if (index > array.length || index < 0) {
+         throw new
+      }
+      int oldVal = array[index];
+      array[index] = ele;
+      ele < oldVal ? percolateUp(index) : percolateDown(index);
+      return oldVal;
+   }
+
+   private void swap(int l, int r) {
+      int temp = array[l];
+      array[l] = array[r];
+      array[r] = temp;
+   }
+}
+```
+
 ### Graph Search Algorithms - DFS(Depth-First Search)
 
 DFS 基本方法：
@@ -1198,9 +1363,15 @@ DFS 基本方法：
 1. What does it store on each level?
 2. How many different states should we try to put on this level?
 
-TODO: ADD IMAGE
+**<font color=#3273DC>Example.1 Find subset.</font>**
+E.g. Print all subsets of a set Set = {'a', 'b', 'c'}
 
-<font color=#3273DC><h4>Example.1 Find subset.</h4></font>
+1. **What does it store on each level?**
+   Three levels. For each level, it makes the decision on whether to put this element into the final set.
+2. **How many different states should we try to put on this level?**
+   Two different states, each state(case) considers either select or not select
+
+![](/assets/algorithm/05.png)
 
 ```java
 void findSubset(char[] input, int index, StringBuilder solutionPrefix) {
@@ -1220,18 +1391,23 @@ void findSubset(char[] input, int index, StringBuilder solutionPrefix) {
 ```
 
 - TC: O(2<sup>n</sup>)
-- SC: o(n)
+- SC: O(n)
 
-<font color=#3273DC><h4>Example.2 Insert empty space.</h4></font>
+**<font color=#3273DC>Example.1.1 Insert empty space.</font>**
 We can choose to insert either one or zero empty space between each paire of adjacent letters. Please print out all possible results.
-
-TODO:
 
 ```java
 
 ```
 
-<font color=#3273DC><h4>Example.3 Find all valid permutation using the parenthesis provided.</h4></font>
+**<font color=#3273DC>Example.2 Find all valid permutation using the parenthesis provided.</font>**
+
+1. **What does it store on each level?**
+   Six levels, each level considers one position (in which there will be onle one parenthesis added in this position).
+2. **How many different states should we try to put on this level?**
+   Two states,either left or right parenthesis.
+
+![](/assets/algorithm/06.png)
 
 ```java
 void DFS(int n, int l, int r, StringBuilder solutionPrefix) {
@@ -1259,12 +1435,16 @@ void DFS(int n, int l, int r, StringBuilder solutionPrefix) {
 - TC: O(2<sup>2n</sup>)
 - SC: O(2n) = O(n)
 
-<font color=#3273DC><h4>Example.3.1 Print add combinations of coins that can sum uo to total value n.</h4></font>
+**<font color=#3273DC>Example.3 Print all combinations of coins that can sum uo to total value n.</font>**
 E.g. total value n = 99 cents
 coin value = 25 10 5 1 cent
 
-1. 4 levels, each level considers on type of coin
-2. dynamically changes
+1. **What does it store on each level?**
+   4 levels, each level considers on type of coin
+2. **How many different states should we try to put on this level?**
+   dynamically changes
+
+![](/assets/algorithm/07.png)
 
 ```java
 void findCombination(int[] coin, int moneyLeft, int index, int[] sol) {
@@ -1282,10 +1462,12 @@ void findCombination(int[] coin, int moneyLeft, int index, int[] sol) {
 
 - TC: O(k<sup>n</sup>)
 
-<font color=#3273DC><h4>Example.4 Given a string with no duplicate letters, how to print out all permutations of the string.</h4></font>
+**<font color=#3273DC>Example.4 Given a string with no duplicate letters, how to print out all permutations of the string.</font>**
 
-1. 3 levels, each level represents on position
-2. remaining unused letter
+1. **What does it store on each level?**
+   3 levels, each level represents on position
+2. **How many different states should we try to put on this level?**
+   remaining unused letter
 
 ```java
 void permutation(char[] inout, int index) {
