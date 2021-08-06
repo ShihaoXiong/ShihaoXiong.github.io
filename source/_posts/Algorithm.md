@@ -1340,7 +1340,7 @@ public class MinHeap {
 
    public int update(int index, int ele) {
       if (index > array.length || index < 0) {
-         throw new
+         throw new ArrayIndexOutOfBoundsException("Invalid index range")
       }
       int oldVal = array[index];
       array[index] = ele;
