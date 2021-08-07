@@ -188,7 +188,7 @@ public long power(int a, int b) {
 **FIFO** (first in first out) 先进先出
 
 ```java
-Queue<Integer> queue = new LinkedList<>();
+Queue<Integer> queue = new LinkedList<Integer>();
 ```
 
 **APIs:**
@@ -204,7 +204,9 @@ Queue<Integer> queue = new LinkedList<>();
 **LIFO** (last in first out) 后进先出
 
 ```java
-Deque<Integer> stack = new LinkedList<>();
+Deque<Integer> stack = new LinkedList<Integer>();
+// also could
+Deque<Integer> stack = new ArrayDeque<Integer>();
 ```
 
 **APIs:**
@@ -935,7 +937,7 @@ We use the `List<GraphNode>` to represent the general tree.
 
 **Index of `parent = i`, what is the index of the two child nodes?**
 
-- left child of index `- = 2 * i + 1`
+- left child of index `i = 2 * i + 1`
 - right child of index `i = 2 * i + 2`
 - parent of index `i = (i - 1) / 2`
 
@@ -1340,7 +1342,7 @@ public class MinHeap {
 
    public int update(int index, int ele) {
       if (index > array.length || index < 0) {
-         throw new ArrayIndexOutOfBoundsException("Invalid index range")
+         throw new ArrayIndexOutOfBoundsException("Invalid index range");
       }
       int oldVal = array[index];
       array[index] = ele;
@@ -1382,16 +1384,16 @@ void findSubset(char[] input, int index, StringBuilder solutionPrefix) {
 
    // case 1: add inut[index] to the solution prefix
    solutionPrefix.append(input[index]);
-   finSubset(input, index +１, solutionPrefix);
+   finSubset(input, index + 1, solutionPrefix);
    solutionPrefix.deleteCharAt(solutionPrefix.length() - 1);
 
    // case 2: do not add input[index] to the solution prefix
-   findSubset(inout, index + 1, solutionPrefix);
+   findSubset(input, index + 1, solutionPrefix);
 }
 ```
 
 - TC: O(2<sup>n</sup>)
-- SC: O(n)
+- SC: O(n) on heap + O(n) on call stack = O(n)
 
 **<font color=#3273DC>Example.1.1 Insert empty space.</font>**
 We can choose to insert either one or zero empty space between each paire of adjacent letters. Please print out all possible results.
@@ -1424,7 +1426,7 @@ void DFS(int n, int l, int r, StringBuilder solutionPrefix) {
    }
 
    // case 2: add '(' on this level
-   if (l > n) {
+   if (l > r) {
       solutionPrefix.append(')');
       DFS(n, l, r + 1, solutionPrefix);
       solutionPrefix.deleteCharAt(solutionPrefix.length() - 1);
@@ -1440,9 +1442,9 @@ E.g. total value n = 99 cents
 coin value = 25 10 5 1 cent
 
 1. **What does it store on each level?**
-   4 levels, each level considers on type of coin
+   Four levels, each level considers on type of coin
 2. **How many different states should we try to put on this level?**
-   dynamically changes
+   Dynamically changes
 
 ![](/assets/algorithm/07.png)
 
@@ -1465,14 +1467,14 @@ void findCombination(int[] coin, int moneyLeft, int index, int[] sol) {
 **<font color=#3273DC>Example.4 Given a string with no duplicate letters, how to print out all permutations of the string.</font>**
 
 1. **What does it store on each level?**
-   3 levels, each level represents on position
+   Three levels, each level represents on position
 2. **How many different states should we try to put on this level?**
-   remaining unused letter
+   Rmaining unused letter
 
 ```java
-void permutation(char[] inout, int index) {
-   if (index == inout.length) {
-      System.out.println(innput);
+void permutation(char[] input, int index) {
+   if (index == input.length) {
+      System.out.println(input);
       return;
    }
 
@@ -1486,5 +1488,6 @@ void permutation(char[] inout, int index) {
 ```
 
 - TC: O(n!)
+- SC: O(n)
 
 **<font color=red>Conclusion:</font>** whenever every single permutation contains all elements in the initial input, the we should consider **SWAP** and **SWAP**
