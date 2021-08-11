@@ -305,7 +305,7 @@ public ListNode insert(ListNode head, int value) {
    }
 
    ListNode cur = head;
-   while (cur.next && cur.next.value < value) {
+   while (cur.next ！= null && cur.next.value < value) {
       cur = cur.next;
    }
    newNode.next = cur.next;
@@ -1147,7 +1147,7 @@ PriorityQueue<Cell> pQueue = new PriorityQueue<>(16,
 )
 ```
 
-**<font color=#3273DC>Example. Smalest k elements in unsorted array.</font>**
+**<font color=#3273DC>Example. Smallest k elements in unsorted array.</font>**
 Find the K smassles numbers in an unsorted integer array A. The returned numbers should
 
 **method 1: MIN HEAP**
@@ -1491,3 +1491,200 @@ void permutation(char[] input, int index) {
 - SC: O(n)
 
 **<font color=red>Conclusion:</font>** whenever every single permutation contains all elements in the initial input, the we should consider **SWAP** and **SWAP**
+
+---
+
+## HashTable & String
+
+### HashTable
+
+### String
+
+**<font color=#3273DC>Example.1 Remove a/some particular cahrs from a string in place</font>**
+E.g. string input = "student", remove "u" adn "n" -> output: "stdet" (in place)
+
+快慢指针，同向而行
+
+```java
+void removeChar(StringBuilder input) {
+   int slow = 0;
+   for (int fast = 0; fast < input.length; fast++) {
+      if (input.charAt(fast) != 'u' && input.charAt(fast) != 'n') {
+         input.setCharAt(slow, input.charAt(fast));
+         slow++;
+      }
+   }
+   input.delete(slow, input.length);
+}
+```
+
+**<font color=#3273DC>Example.2 Remove all leading/trailing and duplicate empty spaces (only leave onw empty space if duplicated spaces happen) from the input string. (must in place)</font>**
+E.g. input = "\_\_\_abc_de\_\_\_" -> output = "abc_de"
+
+```java
+
+```
+
+**<font color=#3273DC>Example.2.1 Remove duplicated and adjacent letters (leave only one letter in each duplicated section) in a string</font>**
+E.g. input = "aabbbbazw" -> output = "abazw"
+
+```java
+
+```
+
+**<font color=#3273DC>Example.2.2 Char de-duplication adjacent letters repeatedly</font>**
+E.g. input = "abbbazw" -> output = "zw"
+
+**method 1: Stack**
+
+```java
+
+```
+
+**method 2: slow & fast**
+
+```java
+
+```
+
+**<font color=#3273DC>Example.3 Sub-string Finding</font>**
+How to determine whether a string is a substring of another string.
+
+```java
+public int subStr(String text, String pattern) {
+   if (text == null || pattern == null || text.length() < pattern.length()) {
+      return -1;
+   }
+   if (pattern.length() == 0) {
+      return 0;
+   }
+
+   // i is every possible start index in text to test
+   for (int i = 0; i <= text.length() - pattern.length(); i++) {
+      int j = 0;
+      while (j < pattern.length() && text.charAt(i + j) == pattern.charAt(j)) {
+         j++;
+      }
+      if (j == pattern.length()) {
+         return i;
+      }
+   }
+   return -1;
+}
+```
+
+- TC: O(n<sup>2</sup>)
+
+**<font color=#3273DC>Example.4 String Reversal</font>**
+**M1: iteration**
+
+```java
+
+```
+
+**M2: recursion**
+
+```java
+
+```
+
+**<font color=#3273DC>Example.4.1 Reverse the word.</font>**
+E.g. input = "I love yahoo" -> output = "yahpp love I"
+
+**M1**
+step1: Reverse the whole sentence.
+step2: Reverse every single word.
+
+```java
+
+```
+
+**<font color=#3273DC>Example5.Char Replacement</font>**
+E.g. input = "student" -> output = "stu**xx**t" (den -> xx)
+
+```java
+
+```
+
+What if we do not know the size relationship between s1 and s2?
+case 1: `s1.length() >= s2.length()`
+case 2: `s1.length() < s2.length()`
+
+#### Advanced Topics
+
+1. Shuffling
+2. permutation
+3. Decoding/encoding
+4. Sliding windows using slow/fast pointers
+
+##### String Shuffling
+
+**<font color=#3273DC>Example.1 "A1B2C3D4E5" -> "ABCDE12345"</font>**
+
+```java
+
+```
+
+**<font color=#3273DC>Example.2 "ABCDE12345" -> "A1B2C3D4E5"</font>**
+
+**<font color=#3273DC>Example.3 "ABCDEFG1234567" -> "ABC123DEFG4567"</font>**
+
+```java
+void convert(char[] a, int left, int right) {
+   // base case
+   if (rigth - left <= 1) {
+      return;
+   }
+   int size = right - left + 1;
+   int mid = left + size / 2;
+   int leftMid = left + size / 4;
+   int rightMid = left + size * 3 / 4;
+
+   reverse(a, leftMid, mid - 1);
+   reverse(a, mid, rightMid - 1);
+   reverse(a, leftMid, rightMid - 1);
+
+   convert(a, left, left + 2 * (leftMid - left) - 1);
+   convert(a, left + 2 * (leftMid - left), right);
+}
+```
+
+##### String permutation
+
+**<font color=#3273DC>Example.1 No duplicate letters in the input string.</font>**
+**Solution:** DFS
+
+**<font color=#3273DC>Example.2 Maybe duplicate letters in the input string.</font>**
+We need to avoid the same type of letter to be swapped to the index-th position more than once (under the same parent node)
+
+```java
+
+```
+
+##### String En/Decoding
+
+TODO:
+
+##### Sliding window in a string (slow + fast indices
+
+**<font color=#3273DC>Example.1 Longest substring that contains only unique char</font>**
+Given a string , returns the length of the longest **<font color=red>substring</font>** **without** duplicate characters.
+TODO:
+
+**<font color=#3273DC>Example.2 Find all anagrams(同形异构体) of a substring S2 in a long string S1.</font>**
+
+**M1: use two hashMap**
+
+```java
+
+```
+
+**M2: use one hashMap**
+We only use one hashMap t store the information of S2.
+
+```java
+
+```
+
+**<font color=#3273DC>Example.3 Givena 0-1 array, you can flip at most k '0's to '1's. Find the longest subarray that consists of all '1's.</font>**
+It's actually a sliding window problem.
