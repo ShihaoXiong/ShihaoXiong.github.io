@@ -76,7 +76,7 @@ public class ArrayListDemo {
 
 1. 表象上：function calls itself
 2. 实质上：Boil down a big problem to smaller ones (size n depends on size n-1, or n-2 or ... n/2)
-3. **Implementaion 上**：
+3. **Implementation 上**：
    a. **Base case**: smallest problem to solve
    b. **Recursion rule**
 
@@ -1239,7 +1239,7 @@ The range of indices nees to perform `percolateDown` is: **[0, n / 2 - 1]**
 - Waht if you do not know the position of the element?
   You need to find the position of the element first, if not asking for help with other additional data structure, this operation is **O(n)**
 
-#### Implementaion of Min Heap
+#### Implementation of Min Heap
 
 ```java
 public class MinHeap {
@@ -1494,9 +1494,90 @@ void permutation(char[] input, int index) {
 
 ---
 
-## HashTable & String
+## HashTable (HashMap) & String
 
-### HashTable
+### HashTable (HashMap)
+
+#### HashMap Implementation
+
+1. define the class for each entry
+
+   ```java
+   class Node<K, V> {
+      private final K key;
+      private V value;
+      Node<K, V> next;
+      Node(K key, V value) {
+         this.key = key;
+         this.value = value;
+      }
+
+      public K getKey() {
+         return key;
+      }
+
+      public V getValue() {
+         return value;
+      }
+
+      public void setValue(V value) {
+         this.value = value;
+      }
+   }
+   ```
+
+2. Maintain an array of entries
+   `Node<K, V>[] array;`
+3. Hash(key) to get the hash#
+   ```java
+   private int hash(K key) {
+      // return the hash# of the key
+      if (key == null) {
+         return 0;
+      }
+      int hashNumber = key.hashCode();
+      return hashNumber & 0x7FFFFFFF;
+   }
+   ```
+4. From the hash#, mapped to the entry index.
+
+   ```java
+   int getIndex(int hashNumber) {
+      // reutrn the corresponding index of array
+      return hashNumber % array.length;
+   }
+   ```
+
+5. When iterate the corresponding entry for the given key, which is actually a singly linked list, we need compare each of the entry in the list, if **the key is the same** as the key we want.
+   ```java
+   Node<k, V> cur = array[index];
+   while (cur != null) {
+      K curKey = cur.getKey();
+      if (curKey is the same as given key) {
+         //...
+      }
+   }
+   ```
+
+**Implementation:**
+
+- APIs: `put`, `get`, `remove`, `size`, `isEmpty`
+- Fields: array[], size
+- Constructor: capacity, load factor (threshold), no parameter
+
+TODO:
+
+```java
+class HashMap<K, V> {
+   private int size;
+   private Node[] buckets;
+   private double loadFactor;
+
+   HashMap() {
+
+   }
+}
+```
 
 ### String
 
