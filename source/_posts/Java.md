@@ -204,7 +204,7 @@ There are actually three important operations that happened in this statement.
 Memery spaces in a Kava program: `Stack` and `Heap`
 
 - **Stack**: In computer science, a call stack is a stack data structure that stores information about the active subroutines of a computer program (stack frame). This kind of stack is also known as an execution stack, program stack, control stack, run-time stack, or machine stack, and is often shortened to just "the stack". **(LIFO)**
-- **Heap**: Java objects reside in an area called te heap. The heap is created when the JVM starts up adn may increase or decrease in size while the application runs. **(FIFO)**
+- **Heap**: Java objects reside in an area called te heap. The heap is created when the JVM starts up and may increase or decrease in size while the application runs. **(FIFO)**
 
 ### Call Stack
 

@@ -851,7 +851,7 @@ class Solution {
       }
 
       //case 4.2
-      // 1. find adn delete smallest node in root right
+      // 1. find and delete smallest node in root right
       TreeNode smallest = deleteSmallest(root.right);
       // connect the smallest node with root.left and root.right
       smallest.left = root.left;
@@ -867,7 +867,7 @@ class Solution {
          prev = cur;
          cur = cur.left;
       }
-      // cur is the smallest one, adn prev is its parent
+      // cur is the smallest one, and prev is its parent
       // Invariance: cur (prev.left) does not have left child
       prev.left = prev.left.right; // cur.right
       return cur;
@@ -1582,7 +1582,7 @@ class HashMap<K, V> {
 ### String
 
 **<font color=#3273DC>Example.1 Remove a/some particular cahrs from a string in place</font>**
-E.g. string input = "student", remove "u" adn "n" -> output: "stdet" (in place)
+E.g. string input = "student", remove "u" and "n" -> output: "stdet" (in place)
 
 快慢指针，同向而行
 
@@ -1746,7 +1746,7 @@ We need to avoid the same type of letter to be swapped to the index-th position 
 
 TODO:
 
-##### Sliding window in a string (slow + fast indices
+##### Sliding window in a string (slow + fast indices)
 
 **<font color=#3273DC>Example.1 Longest substring that contains only unique char</font>**
 Given a string , returns the length of the longest **<font color=red>substring</font>** **without** duplicate characters.
@@ -1769,3 +1769,228 @@ We only use one hashMap t store the information of S2.
 
 **<font color=#3273DC>Example.3 Givena 0-1 array, you can flip at most k '0's to '1's. Find the longest subarray that consists of all '1's.</font>**
 It's actually a sliding window problem.
+
+---
+
+## Bit Representation & Bit Operations
+
+### Bit Operations (TC: O(1))
+
+- bitwise AND (&)
+
+  ```java
+     0b11001110 (-50)
+  &  0b10011000 (-104)
+  =  0b10001000 (-120)
+
+  byte a = -50;
+  byte b = -104;
+  byte c = a & b; // c = -120
+  ```
+
+- bitwise OR (|)
+- NOT (~)
+  - a = 5 = 0b00000101
+  - b = ~a = 0b11111010
+  - -a = (~a) + 1, if a >= 0
+- XOR (^)
+
+  - 00 -> 0
+  - 11 -> 0
+  - 01 or 10 -> 1
+
+  ```java
+     0b11001110 (-50)
+  ^  0b10011000 (-104)
+  =  0b01010110 (86)
+  ```
+
+  - `x ^ y = y ^ x`
+  - `x ^ (y ^ z) = (x ^ y) ^ z`
+  - `x ^ x = 0`
+  - `x ^ 0 = x`
+
+- left shift (<<) **右侧补充零**
+- right shift (>>) **正数左侧补充零，负数左侧补充 1**
+
+### BUilding Blocks
+
+**<font color=red>Given an integer x, test whether x's k-th bit is one. (bit tester)</font>**
+
+```java
+int x = 0b b7 b6 b5 b4 b3 b2 b1 b0
+_x    = 0b b7 b7 b7 b6 b5 b4 b3 b2 (x >> k)
+&     = 0b 0  0  0  0  0  0  0  1
+      = 0b 0  0  0  0  0  0  0  0
+
+
+if ((x >> k) & 1 == 0) {
+   // b2 is 0
+} else {
+   // b2 is 1
+}
+```
+
+**<font color=red>Given an integer x, how to set x's k-th bit to 1? (bit setter)</font>**
+
+```java
+// k = 2
+int x = 0b b7 b6 b5 b4 b3 b2 b1 b0
+|     = 0b 0  0  0  0  0  1  0  0  (1 << k)
+      = 0b b7 b6 b5 b4 b3 1  b1 b0
+
+int res = x | (1 << k);
+```
+
+**<font color=red>Given an integer x, how to set x's k-th bit to 0? (bit resetter)</font>**
+
+```java
+// k = 2
+int x = 0b b7 b6 b5 b4 b3 b2 b1 b0
+&     = 0b 1  1  1  1  1  0  1  1  (~0b00000100) = ~(1 << k)
+      = 0b b7 b6 b5 b4 b3 0  b1 b0
+
+int res = x & ~(1 << k);
+```
+
+**<font color=#3273DC>Example.1 Determine whether an integer x is a power of 2.</font>**
+
+```java
+boolean isPowerTwo(int x) {
+   return (x > 0) && (x & (x - 1) == 0);
+}
+
+// debug
+// 2的幂次
+x     = 0b 00010000
+x - 1 = 0b 00001111
+
+// 不是2的幂次
+x     = 0b 00010010
+x - 1 = 0b 00010001
+```
+
+**<font color=#3273DC>Example.2 How to determine the number of bits that are different between two integers?</font>**
+
+```java
+int numberOfDifferentBits(int a, int b) {
+   int count = 0;
+   for (int c = a ^ b; c != 0; c = c >> 1) {
+      count += (c & 1);
+   }
+   return count;
+}
+```
+
+**<font color=#3273DC>Example.3 Conversion between signed and unsigned, bit extension and bit truncation.</font>**
+
+**<font color=#3273DC>Example.4 Determine whether a string contains unique characters.</font>**
+**M1: HashSet**
+
+```java
+boolean hasUnique(String str) {
+   HashSet<Character> set = new HashSet<Character>();
+   for (int i = 0; i < str.length(); ++i) {
+      if (set.contains(str.charAt(i))) {
+         return false;
+      }
+      set.add(str.charAt(i));
+   }
+   return true;
+}
+```
+
+- TC: O(1)
+- SC: O(1)
+
+**M2: boolean[]**
+
+```java
+boolean hasUnique(String str) {
+   // assume ASCII
+   // set[i] 表示ascii为i的字符是否出现过
+   boolean[] set = new boolean[256];
+   for (int i = 0; i < str.length(); ++i) {
+      if (set[str.charAt(i)]) {
+         return false;
+      }
+      set[str.charAt(i)] = true;
+   }
+   return true;
+}
+```
+
+- TC: O(1)
+- SC: O(1)
+
+**M3: bit**
+
+```java
+boolean hasUnique(String str) {
+   // int set = 0b b31 b30 b29 ... b0
+   // b0 代表 'a' 是否出现
+   // b1 代表 'b' 是否出现
+   // ...
+   // b25 代表 'z' 是否出现
+   int set = 0;
+   for (int i = 0; i < str.length(); ++i) {
+      int k = a.charAt(i) - 97;
+      if ((set >> k) & 1 == 1) {
+         return false;
+      }
+      // bit setter
+      set = set | (1 << k);
+   }
+   return true;
+}
+```
+
+**<font color=#3273DC>Example.5 How to reverse all bits of a numver?</font>**
+
+TODO:
+
+```java
+void reverseBits(int num) {
+
+}
+```
+
+**<font color=#3273DC>Example.6 Given a non-negative integer x, how to get the hexadecimal representation of the number in string type?</font>**
+
+**M1: 除模**
+![](/assets/algorithm/08.png)
+
+```java
+String toHex(int num) {
+   if (num == 0) {
+      return "0x0";
+   }
+   char[] base = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E','F'};
+
+   StringBuilder sb = new StringBuilder();
+   while (num > 0) {
+      int remainder = num % 16;
+      num = num / 16;
+      sb.append(base[remainder]);
+   }
+   sb.append("x0");
+   sb.reverse();
+   return sb.toString();
+}
+```
+
+**M2: 四位二进制变为一位十六进制**
+![](/assets/algorithm/09.png)
+
+```java
+String toHex(int num) {
+   char[] base = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E','F'};
+
+   StringBuilder sb = new StringBuilder();
+   for (int maskEnd = 28; maskEnd >= 0; maskEnd -= 4) {
+      char digit = base[(num >> maskEnd) & 0xF];
+      sb.append(digit);
+   }
+   return sb.toString();
+}
+```
