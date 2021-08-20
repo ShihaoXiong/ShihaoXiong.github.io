@@ -72,7 +72,7 @@ public class ArrayListDemo {
 
 ## Recursion, Queue & Stack
 
-### Recursion
+### Recursion 与计算的结合
 
 1. 表象上：function calls itself
 2. 实质上：Boil down a big problem to smaller ones (size n depends on size n-1, or n-2 or ... n/2)
@@ -182,6 +182,144 @@ public long power(int a, int b) {
 
 - TC: total number of nodes \* T(node) = logb \* O(1) = O(logb)
 - SC: logb \* O(1) = O(logb)
+
+### Recursion 与 1D or 2D Array 的结合
+
+**<font color=#3273DC>Example.1. 1D Array</font>**
+二分法比较常见
+
+1. MergeSort
+2. QuickSort
+
+**<font color=#3273DC>Example.2.1 8 queen</font>**
+![](/assets/algorithm/12.png)
+
+```java
+
+```
+
+**<font color=#3273DC>Example.2.2 How to print 2D Array in spiral order.</font>**
+
+<!-- TODO: -->
+
+### Recursion 与 LinkedList 的结合
+
+**<font color=#3273DC>Example.1 Reverse a linked list. (pair by pair)</font>**
+![](/assets/algorithm/13.png)
+![](/assets/algorithm/14.png)
+
+```java
+ListNode reverseLinkedList(ListNode head) {
+   if (head == null || head.next == null) {
+      return head;
+   }
+   ListNode next = head.next;
+   ListNode newHead = reverseLinkedList(head.next.next);
+
+   head.next = newHead;
+   next.next = head;
+   return next;
+}
+```
+
+**<font color=#3273DC>Example.3 Reverse a binary tree upside down.</font>**
+Given a binary tree where all the right nodes are leaf nodes, flip it upside down and turn it into a tree left nodes. For example, turn these:
+![](/assets/algorithm/15.png)
+![](/assets/algorithm/16.png)
+
+```java
+TreeNode reverseTree(TreeNode root) {
+   if (root == null || root.left == null) {
+      return root;
+   }
+
+   TreeNode newRoot = reverseTree(root.left);
+
+   root.left.left = root.right;
+   root.left.right = root;
+   root.left = null;
+   root.right = null;
+   return newRoot;
+}
+```
+
+### Recursion 与 String 的结合
+
+### Recursion 与 Tree 的结合
+
+#### Recursion + Tree 第一类问题：从下往上反值
+
+**<font color=#3273DC>Example.1 How to store how many nodes in each node's left-subtree?</font>**
+**<font color=#3273DC>Example.2 Find the node with the max difference in the total number of descendents in its left subtree and right subtree.</font>**
+
+```java
+int maxDiffNode(TreeNode root, int[] globalMax, TreeNode[] solu) {
+   if (root == null) {
+      return 0;
+   }
+
+   int leftTotal = maxDiffNode(root.left, globalMax, solu);
+   int rightTotal = maxDiffNode(root.right, globalMax, solu);
+
+   if (Math.abs(leftTotal - rightTotal) > globalMax[0]) {
+      globalMax[0] = Math.abs(leftTotal - rightTotal);
+      solu[0] = root;
+   }
+
+   return leftTotal + rightTotal + 1;
+}
+```
+
+**<font color=#3273DC>Example.3 Lowest Common Ancestor</font>**
+![](/assets/algorithm/17.png)
+![](/assets/algorithm/18.png)
+
+```java
+TreeNode LCA(TreeNode root, TreeNode a, TreeNode b) {
+   // base case
+   if (root == null || root == a || root == b) {
+      return root;
+   }
+
+   TreeNode left = LCA(root.left, a, b);
+   TreeNode right = LCA(root.right, a, b);
+
+   if (left != null && right != null) {
+      return root;
+   }
+   return left == null ? right : left;
+}
+```
+
+**<font color=#3273DC>Example.4 Max Path Sum Binary Tree II (path from any node to any node)</font>**
+Given a binary tree in which each node contains an integer number. Find the maximum possible sum from any node to any node (the start node and the end node can be the same)
+![](/assets/algorithm/19.png)
+
+1. **What do you expect from your lchild / rchild?** (usually it is the return type of the recursion funciton)
+   (1) left: 直上直下的 path
+   (2) right: 直上直下的 path
+2. **What do you want to do in the current layer?**
+   sum of 人字形 path = left 的一撇 + right 的一捺 + root.value
+3. What do you want to report to your parent?
+   root.value + Math.max(left, right)
+
+```java
+private int helper(TreeNode root, int[max]) {
+   if (root == null) {
+      return 0;
+   }
+
+   int left = helper(root.left, max);
+   int right = helper(root.right, max);
+
+   left = left < 0 ? 0 : left;
+   right = right < 0 ? 0 : right;
+
+   max[0] = Math.max(root.key + left + right, max[0]);
+
+   return root.key + Math.max(left, right);
+}
+```
 
 ### Queue
 
@@ -1744,13 +1882,45 @@ We need to avoid the same type of letter to be swapped to the index-th position 
 
 ##### String En/Decoding
 
-TODO:
+**<font color=#3273DC>Example.1 String Encoding</font>**
+E.g. input = "aaaabccaaaa5" -> output = "a4b1c2a5"
+
+**step 1:** From left to right, deal with the cases where the adjacent occurrence of the letters >= 2, which will make the original string shorter, in the meantime record the count of single letters and keep it as it was.
+**step 2:** Calculate extra space we need for single letters, resize string.
+**step 3:** From right to left, deal with single letters.
+
+<!-- MODIFY -->
+
+```java
+class Solution {
+   public void strEncoding(char[] str) {
+      int slow = 0, fast = 1;
+      int extraSpace = 0;
+      // step 1 & step 2
+      for (; fast <= str.length; fast++) {
+         if (fast >= str.length || str[slow] != str[fast]) {
+            if (fast - slow < 2) {
+               extraSpace++;
+            }
+            slow = fast;
+         }
+      }
+   }
+
+   public void swap(char[] input, int i, int j) {
+      char temp = input[i];
+      input[i] = input[j];
+      input[j] = temp;
+   }
+}
+```
 
 ##### Sliding window in a string (slow + fast indices)
 
 **<font color=#3273DC>Example.1 Longest substring that contains only unique char</font>**
 Given a string , returns the length of the longest **<font color=red>substring</font>** **without** duplicate characters.
-TODO:
+
+<!-- TODO: -->
 
 **<font color=#3273DC>Example.2 Find all anagrams(同形异构体) of a substring S2 in a long string S1.</font>**
 
@@ -1813,7 +1983,7 @@ It's actually a sliding window problem.
 - left shift (<<) **右侧补充零**
 - right shift (>>) **正数左侧补充零，负数左侧补充 1**
 
-### BUilding Blocks
+### Building Blocks
 
 **<font color=red>Given an integer x, test whether x's k-th bit is one. (bit tester)</font>**
 
@@ -1994,3 +2164,26 @@ String toHex(int num) {
    return sb.toString();
 }
 ```
+
+### Bit Representation for Integers
+
+|                        |    min    |   max    | count |
+| ---------------------- | :-------: | :------: | :---: |
+| 原码(true)             | 1111 (-7) | 0111 (7) |  15   |
+| 反码(one's complement) | 1000 (-7) | 0111 (7) |  15   |
+| 补码(two's complement) | 1000 (-8) | 0111 (7) |  16   |
+
+ont's complement can only represent **-(2<sup>N-1</sup> - 1)** to **(2<sup>N-1</sup> - 1)** unding N bits
+two's complement can represent **-2<sup>N-1</sup>** to \*\*2<sup>N-1</sup> using N bits
+
+### ">>>" vs. ">>"
+
+- unsigned shift ">>>" - logical
+  ![](/assets/algorithm/10.png)
+- signed shift ">>" - arithmetical
+  ![](/assets/algorithm/11.png)
+
+### Autoboxing & Unboxing
+
+- **Autoboxing** is the automatic conversion that the Java complier makes between the primitive types and their corresponding object wrapper classes.
+- **Unboxing** is the reverse operation of autoboxing.
