@@ -1719,7 +1719,7 @@ class HashMap<K, V> {
 
 ### String
 
-**<font color=#3273DC>Example.1 Remove a/some particular cahrs from a string in place</font>**
+**<font color=#3273DC>Example.1 Remove a/some particular chars from a string in place</font>**
 E.g. string input = "student", remove "u" and "n" -> output: "stdet" (in place)
 
 快慢指针，同向而行
@@ -1889,28 +1889,64 @@ E.g. input = "aaaabccaaaa5" -> output = "a4b1c2a5"
 **step 2:** Calculate extra space we need for single letters, resize string.
 **step 3:** From right to left, deal with single letters.
 
-<!-- MODIFY -->
-
 ```java
 class Solution {
-   public void strEncoding(char[] str) {
-      int slow = 0, fast = 1;
-      int extraSpace = 0;
-      // step 1 & step 2
-      for (; fast <= str.length; fast++) {
-         if (fast >= str.length || str[slow] != str[fast]) {
-            if (fast - slow < 2) {
-               extraSpace++;
-            }
-            slow = fast;
-         }
+   public String strEncoding(String str) {
+      if (str == null || str.isEmpty()) {
+         return str;
       }
+      char[] arr = str.toCharArray();
+      return encoding(arr);
    }
 
-   public void swap(char[] input, int i, int j) {
-      char temp = input[i];
-      input[i] = input[j];
-      input[j] = temp;
+   private String encoding(char[] input) {
+      // step1 & step2
+      int slow = 0, fast = 0;
+      int newLength = 0;
+      while (fast < input.length) {
+         int begin = fast;
+         while (fast < input.length && input[fast] == input[begin]) {
+            fast++;
+         }
+         input[slow++] = input[begin];
+         if (fast - begin == 1) {
+            newLength += 2;
+         } else {
+            int len = copyDigits(input, slow, fast - begin);
+            slow += len;
+            newLength += len + 1;
+         }
+      }
+
+      // step 3
+      char[] res = new char[newLength];
+      fast = slow - 1;
+      slow = newLength - 1;
+      while (fast >= 0) {
+         if (Character.isDigit(input[fast])) {
+            while (fast >= 0 && Character.isDigit(input[fast])) {
+               res[slow--] = input[fast--];
+            }
+         } else {
+            res[slow--] = '1';
+         }
+         res[slow--] = input[fast--];
+      }
+
+      return String(res);
+   }
+
+   private int copyDigits(char[] input, int index, int count) {
+      int len = 0;
+      while (int i = count; i > 0; i /= 10) {
+         index++;
+         len++;
+      }
+      while (int i = count; i > 0; i /= 10) {
+         int digit = i % 10;
+         input[--index] = digit;
+      }
+      return len;
    }
 }
 ```
@@ -2187,3 +2223,18 @@ two's complement can represent **-2<sup>N-1</sup>** to \*\*2<sup>N-1</sup> using
 
 - **Autoboxing** is the automatic conversion that the Java complier makes between the primitive types and their corresponding object wrapper classes.
 - **Unboxing** is the reverse operation of autoboxing.
+
+---
+
+## Dynamic Programming
+
+**核心思想**
+
+1. 把一个大问题 (size == n) 的解决方案用比他小的问题来解决，也就是思考从问题 size = n - 1 增加到 size = n 的时候，如何用小问题的 solution 构建大问题的 solution。
+2. 与 recursion 的关系：
+   - Recursion 从大到小来解决问题，不记录任何 sub-solution 只要考虑
+     - base case
+     - recursion rule
+   - DP 从小到大来解决问题，记录 sub-solution
+     - base case
+     - 由 size (< n) 的 sub-solution(s) -> size (n)的 solution
