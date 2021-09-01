@@ -26,7 +26,7 @@ categories: Note
 | no modidier |   Y   |    Y    |    N     |   N   |
 | PRIVATE     |   Y   |    N    |    N     |   N   |
 
-**How to select appropriate labels>**
+**How to select appropriate labels?**
 
 1. API: `public`
 2. Internal implementation: `private`

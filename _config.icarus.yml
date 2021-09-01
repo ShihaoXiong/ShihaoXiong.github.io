@@ -215,7 +215,7 @@ widgets:
     position: left
     type: profile
     # Author name
-    author: Xiong Shihao
+    author: Shihao Xiong
     # Author title
     author_title: Web Developer
     # Author's current location
@@ -253,7 +253,8 @@ widgets:
     # Names and URLs of the sites
     links:
       Hexo: 'https://hexo.io'
-      Bulma: 'https://bulma.io'
+      xFrame: 'https://github.com/ShihaoXiong/xFrameUI'
+      # Bulma: 'https://bulma.io'
   # Categories widget configurations
   - # Where should the widget be placed, left sidebar or right sidebar
     position: left

@@ -321,3 +321,178 @@ constans, once assigned, cannot be changed.
 
 - ArrayIndexOutOfBoundExpecption
 - NullPointerException
+
+---
+
+## Inheritance, Polymorphism, Access Modifier, Exceptions
+
+### Inheritance
+
+A class that is derived from another class is called a **sbuclass** (also a **derived** class, **extended** class, or **child** class). The class from which the sbuclass is derived is called s **superclass** (also a **base** class or a **parent** class).
+
+```java
+class Person {
+   public final String name;
+   private int age;
+   public String getName() {
+      return name;
+   }
+   public int getAge() {
+      return age;
+   }
+   public void setAge(int age) {
+      this.age = age;
+   }
+   public Person(String name) {
+      this.name = name;
+   }
+}
+
+class Employee extends Person {
+   public String company;
+   public void setCompany(String company) {
+      this.company = company;
+   }
+   public String getCompany() {
+      return company;
+   }
+   public Employee(String name) {
+      super(name);
+   }
+}
+```
+
+### Polymorphism
+
+使用父类的 reference 来指向子类的实现，并且调用**子类里面 override 了父类的 method**
+
+1. 哪些函数能够调用取决于 reference（声明）的类型 --compile time
+2. 对于被 override 的函数，调用哪个版本，取决于实现的类型 -- runtime
+
+#### Override
+
+**Override** is when you redefine a method that has been defined in a parent class (using the same signature). Resolved at runtime.
+
+#### Overload
+
+**Overload** is when you define two methods with the same name, in the same class, **distinguished by their signatures (different)**. Resolved at compile time.
+
+#### abstract vs. interface
+
+A class must be declared abstract when it has one or more abstract methods. A method is declared abstract when it has a method heading, but no boay - which means that an abstract method has no implementation code inside like normal methods do.
+
+**Difference:**
+
+1. An abstract class **has one or more abstract methods**, can have some **non-abstract methods, constructors** and **instance variables** as well, can have **non-public members**. An interface **has only abstract methods**. All methods must be **public**. Any class that implements the interface is responsible for providing the method definition / implementation.
+2. Java does not allow multiple inheritance. In Java, a class can only derive from one class, whether it's abstract or not. However, a class can implement multiple interfaces. Java does not allow multiple **extends**, but a class can **implements** multiple interfaces.
+
+**When use abstract class vs. interface?**
+
+1. An abstract class is good if you think you will plan on using inheritance since it provides **a common base class** implementation to derived classes.
+2. An abstract class is also good if you want to be able to declare non-public members. In an interface, all methods must be public.
+3. If you think you will need to **add non-abstract methods in the future**, then an abstract class is a better choice. Because if you add new method headings to an interface, then all of the classes that already implement that interface will hace to be changed to implement the new methods.
+4. Interface are a good choice when you think that the **API will not change for a while**. Interface are also good when you want to hace something similar to multiple inheritance, since you can implement multiple interfaces.
+
+### Access Modifier
+
+- `public`: everyone can access
+- `private`: only myself can access (but only at class level, other objects of the same calss can access as well)
+- `protected`: only my children and same package can access
+- `default`: only the same package can access
+
+| Modifier    | Class | Package | Subclass | World |
+| ----------- | :---: | :-----: | :------: | :---: |
+| public      |   Y   |    Y    |    Y     |   Y   |
+| protected   |   Y   |    Y    |    Y     |   N   |
+| no modifier |   Y   |    Y    |    N     |   N   |
+| private     |   Y   |    N    |    N     |   N   |
+
+### Exceptions
+
+![](/assets/java/1.png)
+
+```java
+class ExceptionTest {
+   public void getException() {
+      try {
+         exception();
+      } catch (Exception err) {
+         System.out.println(err);
+      }
+   }
+
+   public void throwException() throws Exception {
+      exception();
+   }
+
+
+   public void exception throws Exception {
+      throw new Exception();
+   }
+}
+```
+
+#### throw vs. throws
+
+- `throw`: The **throw** keyword in Java is used to explicitly throw an exception from a methods or any block of code.
+- `throws`: Throws is a keyword in Java which is used **in the head of method** to indicate that this method might throw one of the listed type exceptions. The caller to these methods **has to** handle the exception if it they are **checked exceptions**.
+
+![](/assets/java/2.png)
+
+---
+
+## How to test code?
+
+- smoke test
+- unit test
+- functional test
+- integration test
+- regression test
+- performance / load / stress test
+- end-to-end test
+- balckbox / whitebox test
+
+### JUnit Test
+
+#### Annotations
+
+- `@Test`: The Test annotation tells JUnit that the public void method to which it is attached can be run as a test case.
+- `@Before`: Several tests need similar objects created before they can run. Annotating a public void method with `@Before` causes that method to be run **before each** Test method.
+- `@After`: If you allocate external resources in a Before method, you need to release them after the test runs. Annotating a public void method with `@After` causes that method to be run after the Test method.
+- `@BeforeClass`: Annotating a public **static** void method with `@BeforeClass` causes it to be run once before any of the test methods in the class.
+- `@AfterClass`: This will perform the method after all tests hace finished. This can be used to perform clean-up activites.
+
+**Note**
+
+1. `@BeforeClass` runs once, at the very beginning
+2. `AfterClass` runs once, at the very end
+3. `@Before` runs before **each** test
+4. `@After` runs after **each** test
+5. Methods with `@BeforeClass` and `@AfterClass` must be **static**
+
+#### Assertions
+
+- `void assertEquals(int expected, int actual)`
+  Checks that two primitives / objects are **equal**
+  `void assertEquals(double expected, double actual, double delta)`
+- `void assertTrue(boolean condition)`
+  Checks that a condition is true
+- `void assertFalse(boolean condition)`
+  Checks that a condition is false
+- `void assertNotNull(Object object)`
+  Checks that an object isn't null
+- `void assertNull(Object object)`
+  Checks that an object is null
+- `void assertSame(Object a, Object b)`
+  The `assertSame()` method tests if two object **references** point ti the same object
+- `void assertArrayEquals(expectedArray, resultArray)`
+  The `assertArrayEquals()` method will test whether two arrays are equal to each other
+
+### What is a good test case?
+
+1. Should be accurate and tests what it is intended to test.
+2. No unnecessary steps should be included in it.
+3. It should be resuable.
+4. It should be traceable to requirements.
+5. It should be independent.
+6. It should be simple and clear, any tester should be able to understand it by reading once.
