@@ -3,7 +3,7 @@ title: Data Structure & Algorithm
 date: 2021-07-09 16:02:50
 tags: [Algorithm, Java]
 toc: true
-categories: Note
+categories: Notes
 ---
 
 ## Data Structure
@@ -67,6 +67,13 @@ public class ArrayListDemo {
 2. We must guarantee that the **target (if exists) cannot be ruled out** accidentally, when we change the value of Left or Right. **(It is critical to define the rule about how to move the range for search)**
 
 > Array has to be sorted.
+
+|                                                    | 可用的循环条件                                                                                                                                                                                        | 不可用的循环条件                                                                                          |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| case1: right = mid - 1 <br/> case2: left = mid + 1 | 1. left <= right 退出循环时一定是 empty <br/> 2. left < right 退出循环时一定是一个元素或者 empty -> 需要 postprocessing <br/>3. left + 1 < right 退出循环时一定是两个元素或者一个元素，不可能是 empty |                                                                                                           |
+| case1: right = mid - 1 <br/> case2: left = mid     | left + 1 < right 退出循环时一定是两个元素或者一个元素，不可能是 empty                                                                                                                                 | 1. left <= right 因为 length = 1 或 2 时，会出死循环 <br/> 2. left < right 因为 length = 2 时，会出死循环 |
+| case1: right = mid <br/> case2: left = mid + 1     | 1. left + 1 < right 退出循环时一定是两个元素或者一个元素，不可能是 empty <br/> 2. left < right 退出循环时一定是一个元素，不可能是 empty                                                               | left <= right 因为 length = 1 时，会出死循环                                                              |
+| case1: right = mid <br/> case2: left = mid         | left + 1 < right 退出循环时一定是两个元素或者一个元素，不可能是 empty                                                                                                                                 | 1. left <= right 因为 length = 1 或 2 时，会出死循环 <br/> left < right 因为 length = 2 时，会出死循环    |
 
 ---
 

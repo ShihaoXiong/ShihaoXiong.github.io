@@ -3,7 +3,7 @@ title: Vue
 date: 2021-07-29 17:32:59
 tags: [Web, Vue]
 toc: true
-categories: Note
+categories: Notes
 thumbnail: /assets/vue/cover.png
 ---
 

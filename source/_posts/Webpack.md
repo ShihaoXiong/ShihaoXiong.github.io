@@ -3,7 +3,7 @@ title: Webpack
 date: 2021-07-28 09:52:40
 tags: [Web, Vue]
 toc: true
-categories: Note
+categories: Notes
 ---
 
 ## Webpack 介绍

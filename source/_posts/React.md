@@ -3,7 +3,7 @@ title: React
 date: 2021-07-29 17:34:14
 tags: [Web, React]
 toc: true
-categories: Note
+categories: Notes
 thumbnail: /assets/react/cover.png
 ---
 

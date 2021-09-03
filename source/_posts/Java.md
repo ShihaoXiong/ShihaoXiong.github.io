@@ -3,7 +3,7 @@ title: Java
 date: 2021-07-09 16:01:50
 tags: Java
 toc: true
-categories: Note
+categories: Notes
 ---
 
 ## Primitive Types & Basic Operations

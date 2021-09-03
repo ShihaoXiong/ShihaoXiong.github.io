@@ -3,7 +3,7 @@ title: Design
 date: 2021-08-15 09:01:06
 tags: [Algorithm, Java]
 toc: true
-categories: Note
+categories: Notes
 ---
 
 ## Object Oriented Design (OOD)

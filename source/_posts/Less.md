@@ -3,7 +3,7 @@ title: Less
 date: 2021-07-09 15:36:56
 tags: [Web, Css]
 toc: true
-categories: Note
+categories: Notes
 ---
 
 Less 是一种动态样式语言，属于 css 预处理器的范畴，它扩展了 css 语言，增加了变量、mixin、函数等特性，使 css 更易维护和扩展。
