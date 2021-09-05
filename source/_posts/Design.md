@@ -6,9 +6,9 @@ toc: true
 categories: Notes
 ---
 
-<!-- more -->
-
 ## Object Oriented Design (OOD)
+
+<!-- more -->
 
 ### Class & Object
 

@@ -334,15 +334,17 @@ private int helper(TreeNode root, int[max]) {
 
 ```java
 Queue<Integer> queue = new LinkedList<Integer>();
+// also could
+Queue<Integer> queue = new ArrayDeque<Integer>();
 ```
 
 **APIs:**
 
-- offer(): insert an element in the tail of queue
-- poll(): get an element from the head of queue
-- peek(): read the value of head element of queue
-- size(): how many elements are in the queue
-- isEmpty(): if this queue is empty
+- `offer()`: insert an element in the tail of queue
+- `poll()`: get an element from the head of queue
+- `peek()`: read the value of head element of queue
+- `size()`: how many elements are in the queue
+- `isEmpty()`: if this queue is empty
 
 ### Stack
 
@@ -356,11 +358,207 @@ Deque<Integer> stack = new ArrayDeque<Integer>();
 
 **APIs:**
 
-- offerFirst(): insert an element in the top of stack
-- pollFirst(): get an element from the top of stack
-- peekFirst(): read the value of top element stack
-- size(): how many elements are in the stack
-- isEmpty(): if this stack is empty or the size of this stack is 0
+- `offerFirst()`: insert an element in the top of stack
+- `pollFirst()`: get an element from the top of stack
+- `peekFirst()`: read the value of top element stack
+- `size()`: how many elements are in the stack
+- `isEmpty()`: if this stack is empty or the size of this stack is 0
+
+### Deque
+
+**FIFO & LIFO**
+
+**APIs:**
+
+- `offerFirst()` / `offerLast()`
+- `pollFirst()` / `pollLast()`
+- `peekFirst()` / `peekLast()`
+
+### Queue, Stack & Deque
+
+| 数据结构(逻辑层面) | 内存里的存放方法    | 对应 java class         | 对应 java interface |
+| ------------------ | ------------------- | ----------------------- | :-----------------: |
+| queue (FIFO)       | array / linked list | ArrayDeque / LinkedList |        Queue        |
+| stack (LIFO)       | array / linked list | ArrayDeque / LinkedList |       Deque?        |
+| deque              | array / linked list | ArrayDeque / LinkedList |        Deque        |
+
+**Queue** and **Deque** are **interfaces**
+
+**Common APIs**
+
+**Queue**
+
+| Type of operation | throw exception | return special value (null/false) |
+| ----------------- | --------------- | --------------------------------- |
+| insert            | `add()`         | `offer()`                         |
+| remove            | `remove()`      | `poll()`                          |
+| examine           | `element()`     | `peek()`                          |
+
+- `element()` is the method introduced by interface Queue, `add()` and `remove()` follows the definition of interface Collection
+- `add()` and `offer()` return true when operation causes changes
+
+**Deque**
+
+<table>
+   <tr>
+      <th rowspan="2">Type of operation</th>
+      <th colspan="2">First Element</th>
+      <th colspan="2">Last Element</th>
+   </tr>
+   <tr>
+      <th>throw exception</th>
+      <th>return special value</th>
+      <th>throw exception</th>
+      <th>return special value</th>
+   </tr>
+   <tr>
+      <td>insert</td>
+      <td><code>addFirst()</code></td>
+      <td><code>offerFirst()</code></td>
+      <td><code>addLast()</code></td>
+      <td><code>offerLast()</code></td>
+   </tr>
+   <tr>
+      <td>remove</td>
+      <td><code>removeFirst()</code></td>
+      <td><code>pollFirst()</code></td>
+      <td><code>removeLast()</code></td>
+      <td><code>pollLast()</code></td>
+   </tr>
+   <tr>
+      <td>examine</td>
+      <td><code>getFirst()</code></td>
+      <td><code>peekFirst()</code></td>
+      <td><code>getLast()</code></td>
+      <td><code>peekLast()</code></td>
+   </tr>
+</table>
+
+> All the operations' cost is O(1)
+
+### Stack by Linked List
+
+**How to write an OOP?**
+
+1. 根据 use case 设计 public API (包括 signature)
+2. 思考实现算法，写出 class field
+3. 实现 API，先实现最简单的，再实现比较复杂的
+
+```java
+class Stack {
+   private ListNode head;
+   private int length;
+
+   public Stack() { }
+
+   public Integer pop() {
+      if (head == null) {
+         return null;
+      }
+
+      ListNode node = head;
+      head = head.next;
+      length--;
+
+      res.next == null; // best practice
+      return node.value;
+   }
+
+   public Integer peek() {
+      if (head == null) {
+         return null;
+      }
+
+      return head.value;
+   }
+
+   public boolean push(int val) {
+      ListNode newHead = new ListNode(val);
+      newHead.next = head;
+      head = newHead;
+      length++;
+
+      return true;
+   }
+
+   public int size() {
+      return length;
+   }
+
+   public boolean isEmpty() {
+      return length == 0;
+   }
+}
+```
+
+### Queue by Linked List
+
+```java
+class Queue {
+   private ListNode head;
+   private ListNode tail;
+   private int length;
+
+   public Queue() { }
+
+   public Integer poll() {
+      if (head == null) {
+         return null;
+      }
+
+      ListNode node = head;
+      head = head.next;
+      if (head == null) { // check
+         tail == null;
+      }
+      node.next == null;
+      length--;
+
+      return node.value;
+   }
+
+   public Integer peek() {
+      if (head == null) {
+         return null;
+      }
+
+      return head.value;
+   }
+
+   public boolean offer(int val) {
+      if (head == null) {
+         head = new ListNode(ele);
+         tail = head;
+      } else {
+         tail.next = new ListNode(val);
+         tail = tail.next;
+      }
+      length++;
+
+      return true;
+   }
+
+   public int size() {
+      return length;
+   }
+
+   public boolean isEmpty() {
+      return length == 0;
+   }
+}
+```
+
+### Queue by Array
+
+<!-- TODO: -->
+
+**Circle Array (ring buffer):**　 we can connect the start and end of the array, so that it is a cycle.
+
+```java
+class Queue {
+
+}
+```
 
 ---
 
