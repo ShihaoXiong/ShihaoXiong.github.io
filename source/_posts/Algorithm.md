@@ -1886,11 +1886,44 @@ void permutation(char[] input, int index) {
 
 ---
 
-## HashTable (HashMap) & String
+## Set, Map & String
 
-### HashTable (HashMap)
+### Set
+
+A collection that **can not contain duplicate elements**.
+
+- `HashSet`: Which stores its elements in a **hashtable**, is the best-performing implementation, however it makes **no guarantees concerning the order of iteration**.
+- `TreeSet`: Which stores it elements in a red-black tree (balanced binary search tree), orders its elements based on their value
+- `LinkedHashSet`: It is a HashSet and also it is a LinkedList, it maintains the order when each of the elements is inserted into the HashSet
+
+### Map
+
+A collection that maps keys to values. A `Map` cannot contain duplicate keys; each key can map to one value.
+
+- `HashMap`
+- `TreeMap`
+- `LinkedHashMap`
+
+### HashMap
 
 #### Common API
+
+- `V put(K key, V value)`
+- `V get(Object key)`
+- `V remove(Object key)`
+- `boolean containsKey(Object key)`
+- `boolean containsValue(Object value)`
+- `void clear()`
+- `int size()`
+- `boolean isEmpty()`
+
+**Time Complexity**
+
+| Operation                                                                 | Average | Worst (<= JDK 7) |
+| ------------------------------------------------------------------------- | ------- | ---------------- |
+| search: <br/> `boolean containsKey(Object key)` <br/> `V get(Object key)` | O(1)    | O(n)             |
+| insert / update: <br/> `V put(K key, V value)`                            | O(1)    | O(n)             |
+| delete: <br/> `V remove(Object key)` <br/> `V get(Object key)`            | O(1)    | O(n)             |
 
 #### HashMap Implementation
 
