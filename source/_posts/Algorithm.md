@@ -1053,6 +1053,53 @@ boolean isSymmetric(TreeNode left, TreeNode right) {
 - TC: O(n)
 - SC: O(height)
 
+**<font color=#3273DC>Example.4 LCA</font>**
+Given two nodes in a binary tree (with parent pointer available), find their lowest common ancestor.
+
+- There is parent pointer for the nodes in the binary tree
+- The given two nodes **are not guaranteed to be** in the binary tree
+
+```java
+class Solution {
+   public TreeNode findLCA(TreeNode one, TreeNode two) {
+      if (one == null || two == null) {
+         return null;
+      }
+
+      int depth1 = getDepth(one), depth2 = getDepth(two);
+      if (depth1 > depth2) {
+         return findLCA(one, two, depth1 - depth2);
+      } else {
+         return findLCA(two, one, depth2 - depth1);
+      }
+   }
+
+   private int getDepth(TreeNode node) {
+      int depth = -1;
+      while (node != null) {
+         depth++;
+         node = node.parent;
+      }
+
+      return depth;
+   }
+
+   private TreeNode findLCA(TreeNode longer, TreeNode shorter, int diff) {
+      while (diff > 0) {
+         longer = longer.parent;
+         diff--;
+      }
+
+      while (longer != shorter) {
+         longer = longer.parent;
+         shorter = shorter.parent;
+      }
+
+      return longer;
+   }
+}
+```
+
 ### Binary Tree Iteration (Traversal)
 
 ---
@@ -1842,6 +1889,8 @@ void permutation(char[] input, int index) {
 ## HashTable (HashMap) & String
 
 ### HashTable (HashMap)
+
+#### Common API
 
 #### HashMap Implementation
 

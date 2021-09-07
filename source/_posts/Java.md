@@ -324,6 +324,61 @@ constans, once assigned, cannot be changed.
 
 ---
 
+## APIs
+
+### List
+
+- `add(E e)`
+- `add(int index, E e)`
+- `remove(int index)`
+- `remove(E e)`
+- `set(int index, E e)`
+- `E get(int index)`
+- `int size()`
+
+### Queue
+
+- `offer(E e)`
+- `E peek()`
+- `E poll()`
+
+### Deque
+
+- `offerFirst(E e)`
+- `offerLast(E e)`
+- `E peekFirst()`
+- `E peekLast()`
+- `E pollFirst()`
+- `E pollLast()`
+
+### Summary
+
+1. **if you want to use a Queue**
+   `Queue<X> queue = new ArrayDeque<>();`
+2. **if you want to use a Stack**
+   `Deque<X> stack = new ArrayDeque<>();`
+3. **if you want to use a two-end Queue**
+   `Deque<X> dq = new ArrayDeque<>();`
+4. **if you want to use a size-adjustable array**
+   `List<X> list = new ArrayList<>();`
+5. **if you want to use a priority queue**
+   `PriorityQueue<X> pq = new PriorityQueue<>();`
+
+---
+
+## HashMap
+
+### Common API
+
+- `V put(K key, V value)`
+- `V get(Object key)`
+- `V remove(Object key)`
+- `boolean containsKey(Object key)`
+- `boolean containsValue(Object value)`
+- `void clear()`
+- `int size()`
+- `boolean isEmpty()`
+
 ## Inheritance, Polymorphism, Access Modifier, Exceptions
 
 ### Inheritance
