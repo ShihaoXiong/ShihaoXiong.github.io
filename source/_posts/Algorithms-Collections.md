@@ -13,6 +13,100 @@ This is a Collections for Algorithms in Java.
 
 ## Recursion
 
+### <font color=#3273DC>Maximum Path Sum Binary Tree I (leaf node to leaf node)</font>
+
+<span class="tag is-medium">Medium</span>
+
+Given a binary tree in which each node contains an integer number. Find the maximum possible sum from one leaf node to another leaf node. If there is no such path available, return Integer.MIN_VALUE(Java)/INT_MIN (C++).
+
+**Examples**
+
+<img src="/assets/algorithms-collections/recursion-02.png" style="height: 250px"/>
+
+The maximum path sum is 6 + 11 + 14 = 31.
+
+```java
+class Solution {
+  public int maxPathSum(TreeNode root) {
+    int[] res = new int[]{Integer.MIN_VALUE};
+
+    return res[0];
+  }
+
+  private int maxPathSum(TreeNode root, int[] max) {
+    if (root == null) {
+      return 0;
+    }
+
+    // root is leaf node, we just need to return the value of itself
+    if (root.left == null && root.left == null) {
+      return root.key;
+    }
+
+    int left = maxPathSum(root.left, max);
+    int right = maxPathSum(root.right, max);
+
+    // when root.left != null && root.right != null
+    // it can be a node which on the path, then we can set the value of max[0]
+    // at the meantime, we also return the maximum path to the node's parent node
+    if (root.left != null && root.right != null) {
+      max[0] = Math.max(max[0], left + right + root.key);
+      return Math.max(left, right) + root.key;
+    }
+
+    // root.left == null || root.right == null
+    // In this case, the node is of leaf node, and it cannot be the root node in the path
+    // So we have to pass the value to it's parent
+    return root.left == null ? right + root.key : left + root.key;
+  }
+}
+```
+
+### <font color=#3273DC>Maximum Path Sum Binary Tree II (node to node)</font>
+
+<span class="tag is-hard">Hard</span>
+
+Given a binary tree in which each node contains an integer number. Find the maximum possible sum from any node to any node (the start node and the end node can be the same).
+
+**Assumptions**
+
+- The root of the given binary tree is not null
+
+**Examples**
+
+<img src="/assets/algorithms-collections/recursion-03.png" style="height: 250px"/>
+
+one example of paths could be -14 -> 11 -> -1 -> 2
+another example could be the node 11 itself
+The maximum path sum in the above binary tree is 6 + 11 + (-1) + 2 = 18
+
+```java
+class Solution {
+  public int maxPathSum(TreeNode root) {
+    int[] res = new int[]{Integer.MIN_VALUE};
+    maxPathSum(root, res);
+    return res[0];
+  }
+
+  private int maxPathSum(TreeNode root, int[] max) {
+    if (root == null) {
+      return 0;
+    }
+
+    int left = maxPathSum(root.left, max);
+    int right = maxPathSum(root.right, max);
+
+    // if left or right < 0, we'd like abandon it by setting the value to 0
+    left = left < 0 ? 0 : left;
+    right = right < 0 ? 0 : right;
+
+    max[0] = Math.max(max[0], left + right + root.key);
+
+    return root.key + Math.max(left, right);
+  }
+}
+```
+
 ### <font color=#3273DC>N Queens</font>
 
 Get all valid ways of putting N Queens on an N \* N chessboard so that no two Queens threaten each other.
@@ -79,6 +173,110 @@ class Solution {
 
 ---
 
+## DFS
+
+### <font color=#3273DC>All Subsets I</font>
+
+<span class="tag is-medium">Medium</span>
+
+Given a set of characters represented by a String, return a list containing all subsets of the characters.
+
+**Assumptions**
+
+- There are no duplicate characters in the original set.
+
+**Examples**
+
+- Set = "abc", all the subsets are [“”, “a”, “ab”, “abc”, “ac”, “b”, “bc”, “c”]
+- Set = "", all the subsets are [""]
+- Set = null, all the subsets are []
+
+```java
+class Solution {
+  public List<String> subSets(String set) {
+    List<String> res = new ArrayList<String>();
+    if (set == null) {
+      return res;
+    }
+
+    char[] arr = set.toCharArray();
+    subSets(arr, res, 0, new StringBuilder());
+
+    return res;
+  }
+
+  private void subSets(char[] arr, List<String> res, int index, StringBuilder sb) {
+    // base case
+    if (index == arr.length) {
+      res.add(sb.toString());
+      return;
+    }
+
+    // case 1: add arr[index] to the string
+    sb.append(arr[index]);
+    subSets(arr, res, index + 1, sb);
+    sb.deleteCharAt(sb.length() - 1);
+
+    // case 2: not add arr[index] to the string
+    subSets(arr, res, index + 1, sb);
+  }
+}
+```
+
+### <font color=#3273DC>All Valid Permutations Of Parentheses I</font>
+
+<span class="tag is-medium">Medium</span>
+
+Given N pairs of parentheses “()”, return a list with all the valid permutations.
+
+**Assumptions**
+
+- N > 0
+
+**Examples**
+
+- N = 1, all valid permutations are ["()"]
+- N = 3, all valid permutations are ["((()))", "(()())", "(())()", "()(())", "()()()"]
+
+```java
+class Solution {
+  public List<String> validParentheses(int n) {
+    if (n <= 0) {
+      return null;
+    }
+
+    List<String> res = new ArrayList<String>();
+    validParentheses(n, res, new StringBuilder(), 0, 0);
+
+    return res;
+  }
+
+  private void validParentheses(int n, List<String> res, StringBuilder sb, int left, int right) {
+    // base case
+    if (left == n && right == n) {
+      res.add(sb.toString());
+      return;
+    }
+
+    // case 1: add '(' in this level
+    if (left < n) {
+      sb.append('(');
+      validParentheses(n, res, sb, left + 1, right);
+      sb.deleteCharAt(sb.length() - 1);
+    }
+
+    // case 2: add ')' in this level
+    if (right < left) {
+      sb.append(')');
+      validParentheses(n, res, sb, left, right + 1);
+      sb.deleteCharAt(sb.length() - 1);
+    }
+  }
+}
+```
+
+---
+
 ## Dynamical Programming
 
 ### <font color=3273DC>Max Product Of Cutting Rope</font>
@@ -108,7 +306,7 @@ class Solution {
 
     // i means the length of the rope
     for (int i = 2; i <= length; i++) {
-      // j means the demarcation of lefr and right
+      // j means the demarcation of left and right
       for (int j = 0; j < i; j++) {
         // Math.max(M[i],  Math.max(j, M[j]) * (i - j))
         // the M[i] means no cut

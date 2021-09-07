@@ -402,8 +402,8 @@ Deque<Integer> stack = new ArrayDeque<Integer>();
 <table>
    <tr>
       <th rowspan="2">Type of operation</th>
-      <th colspan="2">First Element</th>
-      <th colspan="2">Last Element</th>
+      <th colspan="2" align="center">First Element</th>
+      <th colspan="2" align="center">Last Element</th>
    </tr>
    <tr>
       <th>throw exception</th>
@@ -981,7 +981,7 @@ class TreeNode {
 }
 ```
 
-**LeafNode:** both rigth and left are nul
+**LeafNode:** both rigth and left are null
 
 **Tree Traverse:**
 
@@ -1814,6 +1814,8 @@ void findCombination(int[] coin, int moneyLeft, int index, int[] sol) {
 2. **How many different states should we try to put on this level?**
    Rmaining unused letter
 
+![](/assets/algorithm/20.png)
+
 ```java
 void permutation(char[] input, int index) {
    if (index == input.length) {
@@ -2358,7 +2360,7 @@ boolean hasUnique(String str) {
 
 **<font color=#3273DC>Example.5 How to reverse all bits of a numver?</font>**
 
-TODO:
+<!-- TODO: -->
 
 ```java
 void reverseBits(int num) {
@@ -2395,7 +2397,7 @@ String toHex(int num) {
 
 ```java
 String toHex(int num) {
-   char[] base = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E','F'};
+   char[] base = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
    StringBuilder sb = new StringBuilder();
    for (int maskEnd = 28; maskEnd >= 0; maskEnd -= 4) {
