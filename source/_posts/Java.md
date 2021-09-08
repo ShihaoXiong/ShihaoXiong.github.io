@@ -386,7 +386,7 @@ A collection that maps keys to values. A `Map` cannot contain duplicate keys; ea
 - `TreeMap`
 - `LinkedHashMap`
 
-### HashTable (HashMap)
+### HashMap
 
 #### Common API
 
@@ -401,11 +401,39 @@ A collection that maps keys to values. A `Map` cannot contain duplicate keys; ea
 
 **Time Complexity**
 
-| Operation                                                                 | Average | Worst (<= JDK 7) |
-| ------------------------------------------------------------------------- | ------- | ---------------- |
-| search: <br/> `boolean containsKey(Object key)` <br/> `V get(Object key)` | O(1)    | O(n)             |
-| insert / update: <br/> `V put(K key, V value)`                            | O(1)    | O(n)             |
-| delete: <br/> `V remove(Object key)` <br/> `V get(Object key)`            | O(1)    | O(n)             |
+| Operation                                                                 | Average | Worst <font color=red>(<= JDK 7)</font> |
+| ------------------------------------------------------------------------- | ------- | --------------------------------------- |
+| search: <br/> `boolean containsKey(Object key)` <br/> `V get(Object key)` | O(1)    | O(n)                                    |
+| insert / update: <br/> `V put(K key, V value)`                            | O(1)    | O(n)                                    |
+| delete: <br/> `V remove(Object key)` <br/> `V get(Object key)`            | O(1)    | O(n)                                    |
+
+#### A HashMap Implementation
+
+- A table of **buckets** (an array of buckets), using the array index to denote each bucket
+- For each <key, value>, it goes to one of the buckets, the bucket index is determined by a **hash function** applied on **key** and the size of array
+
+![](/assets/java/4.png)
+
+**Collision Control**
+
+- Collision - two keys mapped to the same bucket
+- **Separate Chaining** (Close Addressing) - the element of each of the buckets is actually a single linked list
+- **Open addressing** - put the key-value pair into the "next" available bucket
+  - How to define next? linear / quadratic / exponential probing, hash again
+  - Challenge: handing removed keys in the map
+  - Not used by Java, but by some real life systems
+- If differenr keys are determined to use the same bucket, they will be chained in the list
+
+#### `==`, `equals()` & `hashCode()`
+
+- `==`
+  - determine if two primitive types have the same value
+  - determine of two references are pointed to the same object
+- `equals()`, `hashCode()`
+  - defined in `Object` calss, `Object` is the root class from any Java class
+  - any Java class **implicity extends** Object class, so if in the subclass these two methods are not overridden, it inherits what it defines in Object class
+  - the defalut implementation of `equals()` is check if the two references are pointed to the same object `==`
+  - the defalut implementation of `hashCode()` returns a "unique hash value" for the object based on its memory address
 
 ---
 

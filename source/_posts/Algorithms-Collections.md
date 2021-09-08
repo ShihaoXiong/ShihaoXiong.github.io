@@ -17,7 +17,7 @@ This is a Collections for Algorithms in Java.
 
 <span class="tag is-medium">Medium</span>
 
-Given a binary tree in which each node contains an integer number. Find the maximum possible sum from one leaf node to another leaf node. If there is no such path available, return Integer.MIN_VALUE(Java)/INT_MIN (C++).
+Given a binary tree in which each node contains an integer number. Find the maximum possible sum **from one leaf node to another leaf node**. If there is no such path available, return Integer.MIN_VALUE(Java)/INT_MIN (C++).
 
 **Examples**
 
