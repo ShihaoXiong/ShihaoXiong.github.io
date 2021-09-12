@@ -304,9 +304,9 @@ class Solution {
     M[0] = 0;
     M[1] = 0;
 
-    // i means the length of the rope
+    // i means the length of rope
     for (int i = 2; i <= length; i++) {
-      // j means the demarcation of left and right
+      // j means the Left Big Section, Left Small Section = i - j
       for (int j = 0; j < i; j++) {
         // Math.max(M[i],  Math.max(j, M[j]) * (i - j))
         // the M[i] means no cut
@@ -383,10 +383,9 @@ class Solution {
     boolean[] M = new boolean[input.length() + 1];
     M[0] = true;
 
-    // [0, i] means the substring of input
+    // [i: 1 letter to 9 letters
     for (int i = 0; i <= input.length(); i++) {
-      // [0, j] means the left
-      // (j, i] means the right
+      // j: Left Big Section
       for (int j = 0; j < i; j++) {
         if (M[j] && set.contains(input.substring(j, i))) {
           M[i] = true;

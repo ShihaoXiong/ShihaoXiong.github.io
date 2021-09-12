@@ -609,3 +609,49 @@ class ExceptionTest {
 4. It should be traceable to requirements.
 5. It should be independent.
 6. It should be simple and clear, any tester should be able to understand it by reading once.
+
+---
+
+## Nested Class, Iterators, Generics & Enum
+
+### Nested Class (嵌套类)
+
+**Definition**
+A nested class is any class whose declaration occurs within the body of another class or interface. A top level class is a class that is not a nested class.
+
+```java
+class Demo {
+   class InnerClass {
+      // ...
+   }
+   static class NestedStaticClass {
+      // ...
+   }
+}
+```
+
+- It is a way of logically classes that are only used in one place
+- It increases encapsulation
+- It can lead to more readable and maintainable code
+
+> Prefer nested static class to inner class (use inner class only when you need to access non-static member)
+
+### Iterators
+
+Iterate through a Collection object (List, etc.)
+
+- `next()` returns the next element in the iteration
+- `hasNext()` returns true if the iteration has more elements
+- `remove()` removes from the underlying collection the last element returned by this iterator (optional operation)
+
+### Generics (泛型)
+
+**Definition**
+Types are parameters
+A type or method to operate on objects of various types while providing compile-time type safety
+
+### Enum
+
+- `values()` can be used to return all values present inside Enum
+- Order is important in enums. By using `ordinal()`, each enum constant index can be found, just like array index.
+- `valueOf()` returns the enum constant of the specified string value, if exists.

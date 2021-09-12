@@ -1449,24 +1449,16 @@ PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(Collections.reverseO
 
 #### Most frequently used constructors of PriorityQueue
 
-1. ```java
-   PriorityQueue<Cell> heap = new PriorityQueue<Cell>();
-   ```
+1. `PriorityQueue<Cell> heap = new PriorityQueue<Cell>();`
    - initialize the internal array with default capacity(11)
    - **class `Cell` must implements `Comparable<Cell>`**
-2. ```java
-   PriorityQueue<Cell> heap = new PriorityQueue<Cell>(16);
-   ```
+2. `PriorityQueue<Cell> heap = new PriorityQueue<Cell>(16);`
    - initialize the internal array with specified capacity(16)
    - **class `Cell` must implements `Comparable<Cell>`**
-3. ```java
-   PriorityQueue<Cell> heap = new PriorityQueue<Cell>(16, new MyComparator());
-   ```
+3. `PriorityQueue<Cell> heap = new PriorityQueue<Cell>(16, new MyComparator());`
    - initialize the internal array with specified capacity(16)
    - **class `MyComparator` must implements `Comparator<Cell>`**
-4. ```java
-   PriorityQueue<Cell> heap = new PriorityQueue<Cell>(new MyComparator());
-   ```
+4. `PriorityQueue<Cell> heap = new PriorityQueue<Cell>(new MyComparator());`
    - **class `MyComparator` must implements `Comparator<Cell>`**
    - **Java 8+**
 
@@ -2498,7 +2490,7 @@ String toHex(int num) {
 | 反码(one's complement) | 1000 (-7) | 0111 (7) |  15   |
 | 补码(two's complement) | 1000 (-8) | 0111 (7) |  16   |
 
-ont's complement can only represent **-(2<sup>N-1</sup> - 1)** to **(2<sup>N-1</sup> - 1)** unding N bits
+one's complement can only represent **-(2<sup>N-1</sup> - 1)** to **(2<sup>N-1</sup> - 1)** unding N bits
 two's complement can represent **-2<sup>N-1</sup>** to **2<sup>N-1</sup>** using N bits
 
 ### ">>>" vs. ">>"
@@ -2527,3 +2519,25 @@ two's complement can represent **-2<sup>N-1</sup>** to **2<sup>N-1</sup>** using
    - DP 从小到大来解决问题，记录 sub-solution
      - base case
      - 由 size (< n) 的 sub-solution(s) -> size (n)的 solution
+
+**When to use DP vs. DFS?**
+
+1. You are required to print out ALL possible permutations -> DFS
+2. You are required to **ONLY** return the final 1 number (min / max cut numbers)
+
+### Linear scan and look back (80% questions)
+
+**<font color=#3273DC>Example.1 Largest sum of subarray</font>**
+Given an array, find the **subarray** that has the greatest sum. Return the sum.
+
+1. base case: M[0] = input[0]
+2. induction rule:
+   - M[i] represents [from 0-th index to i-th index] the largest sum of subarray, **must include the i-th index**
+   - M[i] = M[i - 1] + input[i] (if M[i - 1] >= 0)
+     input[i] (else)
+
+```java
+public int largestSum() {
+
+}
+```
