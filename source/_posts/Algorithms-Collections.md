@@ -346,13 +346,35 @@ class Solution {
       sum = Math.max(sum, M[i]);
     }
 
-    return M[arr.length - 1];
+    return sum;
   }
 }
 ```
 
 - TC: O(n)
 - SC: O(n)
+
+```java
+class Solution {
+  public int largestSum(int[] arr) {
+    if (arr == null || arr.length == 0) {
+      return -1;
+    }
+
+    int sum = arr[0];
+    int cur = arr[0];
+    for (int i = 1; i < arr.length; i++) {
+      cur = Math.max(cur + arr[i], arr[i]);
+      sum = Math.max(sum, cur);
+    }
+
+    return sum;
+  }
+}
+```
+
+- TC: O(n)
+- SC: O(1)
 
 ### <font color=#3273DC>Dictionary Word I</font>
 
@@ -383,8 +405,8 @@ class Solution {
     boolean[] M = new boolean[input.length() + 1];
     M[0] = true;
 
-    // [i: 1 letter to 9 letters
-    for (int i = 0; i <= input.length(); i++) {
+    // i: 1 letter to i letters
+    for (int i = 1; i <= input.length(); i++) {
       // j: Left Big Section
       for (int j = 0; j < i; j++) {
         if (M[j] && set.contains(input.substring(j, i))) {
