@@ -60,3 +60,86 @@ Design a product, or a feature of a product (mostly web applications)
 ---
 
 ## Web Application
+
+### 典型架构
+
+![](/assets/system-design/01.png)
+
+**Client**
+
+- 与用户的交互
+  - 内容呈现
+  - 功能的体现
+  - 用户输入 (文字、图形、其他...)
+- 与后端的信息交流, HTML, XML, JSON
+- 数据的本地缓存
+- 与其他终端应用的交互，如 Map, Phone call
+
+**HTTP (Hypertext Transfer Protocol) Server**
+
+- HTTP Server 是用于处理和响应终端的 HTTP 请求的，然后根据不同请求的需求，分发到相应的应用服务器 (Application Server)
+
+**Application Server**
+
+- An application server is a software framework that provides both facilities to create web applications and a server environment to run them.
+
+**Storage**
+
+- 存储数据
+- 文件系统：网络文件系统 GFS
+- 数据库：关系数据库 (MySQL, MSSQL, Oracle)，非关系数据库，SQL
+
+### 系统间的通信
+
+- 域名解析, <u>DNS</u>
+- 应用层协议, <u>HTTP</u>, Client 与 HTTP Server 的信息交互
+  - HTTP Request 操作类型. GET, POST, PUT, DELETE
+  - HTTP Response Code. 200, 300, 4xx, 5xx ...
+- 应用层协议是建立在网络通信协议之上的
+  - TCP (Transmission Control Protocol) 传输控制协议
+    - 可靠的端到端协议通信协议
+    - 三次握手, SYN, SYN ACK, ACK
+    - 四次挥手
+  - UDP
+  - IP Internet Protocol
+    - 寻址
+    - 完成数据包点对点的寻址和传输
+    - 不保证数据包已被接受
+
+### 主要的涉及到性能改进的技术和部分
+
+#### Load Balancer
+
+- 分流，分配工作
+- 保证服务器不过载
+- 当新服务加入，可自动分配，同理，当服务器被移除，或者 fail，取消分配请求
+
+![](/assets/system-design/02.png)
+![](/assets/system-design/03.png)
+
+#### Caches
+
+- 提高数据获取速度
+- 降低数据服务器的负载
+- 增加了写的开销
+
+#### Indexing
+
+- 用于更快的访问数据
+- 更多的时候用于数据库
+- 牺牲存储空间和写的速度换取更快的读的速度
+
+\*\*Bandwidth throttling (rate limiter)
+
+- 限制服务器最大的响应 QPS = 1000
+- 典型的面试题之一
+  - 单位：分/秒/小时
+  - 怎么支持 spike 的情况
+  - Fix window
+  - Sliding window
+  - Token bucket
+    - 记录上一个 request 的 Timestamp 和当前可以接受的 request 数量
+    - 收到新的 request 的时候，取新的 request 的 Timestamp
+    - 比较当前 request 的 timestamp 和之前记录的那个的差，相应的给予补给
+    - 只要 request credit 数为正，否则丢弃
+    - 设置 request credit 的上限

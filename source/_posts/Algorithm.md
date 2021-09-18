@@ -307,11 +307,11 @@ Given a binary tree in which each node contains an integer number. Find the maxi
    (2) right: 直上直下的 path
 2. **What do you want to do in the current layer?**
    sum of 人字形 path = left 的一撇 + right 的一捺 + root.value
-3. What do you want to report to your parent?
+3. **What do you want to report to your parent?**
    root.value + Math.max(left, right)
 
 ```java
-private int helper(TreeNode root, int[max]) {
+private int helper(TreeNode root, int[] max) {
    if (root == null) {
       return 0;
    }
@@ -327,6 +327,19 @@ private int helper(TreeNode root, int[max]) {
    return root.key + Math.max(left, right);
 }
 ```
+
+#### Recursion + Tree 第二类问题：Path Problem in Binary Tree
+
+#### Recursion + Tree 第三类问题：Tree Serialization Problem
+
+**Serialization**
+
+- pre
+- in
+- post
+- level
+
+#### Recursion + Tree 第四类问题：Tree De-serialization Problem
 
 ### Queue
 

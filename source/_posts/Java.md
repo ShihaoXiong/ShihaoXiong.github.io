@@ -650,8 +650,51 @@ Iterate through a Collection object (List, etc.)
 Types are parameters
 A type or method to operate on objects of various types while providing compile-time type safety
 
+Java **Generic methods** and **Generic classes** enable programmers to specify
+
+- with a single method declaration, **a set of related methods**
+- with a single class declaration, **a set of related types**
+
+#### Generic Method
+
+> Object only
+
+**Syntax**
+
+- `public static <E, ...> void demoMethod(E[] input, ...)`
+
+- `public static <E extends Integer & Comparable<E> & Iterable<E>> void demoMethod(E[] input)`
+
+#### Generic Class
+
+```java
+class Demo<T> {
+   private T value;
+   public Demo(T v) {
+      value = v;
+   }
+   // ...
+}
+```
+
+#### 通配符 (Wildcard)
+
+- `? extends` (Upper Bounded Wildcard)
+- `? super` (Lower Bounded Wildcard)
+
 ### Enum
 
 - `values()` can be used to return all values present inside Enum
 - Order is important in enums. By using `ordinal()`, each enum constant index can be found, just like array index.
 - `valueOf()` returns the enum constant of the specified string value, if exists.
+
+---
+
+## Basic Java File Read / Write
+
+### Stream
+
+A stream can be defined as **a sequence of data**.
+
+- inputStream: The InputStream is used to read data from a source
+- outputStream: The OutputStream is used from writing data to a destination
