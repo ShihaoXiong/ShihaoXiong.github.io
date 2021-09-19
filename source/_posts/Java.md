@@ -422,7 +422,7 @@ A collection that maps keys to values. A `Map` cannot contain duplicate keys; ea
   - How to define next? linear / quadratic / exponential probing, hash again
   - Challenge: handing removed keys in the map
   - Not used by Java, but by some real life systems
-- If differenr keys are determined to use the same bucket, they will be chained in the list
+- If different keys are determined to use the same bucket, they will be chained in the list
 
 #### `==`, `equals()` & `hashCode()`
 
@@ -698,3 +698,79 @@ A stream can be defined as **a sequence of data**.
 
 - inputStream: The InputStream is used to read data from a source
 - outputStream: The OutputStream is used from writing data to a destination
+
+---
+
+## C++ vs. Java (vs. Python), Grabage collection
+
+### Different between Java & C++
+
+1. **Platform compatible, write once, compile once, run everywhere on <font color=red>JVM</font>**
+
+   - C++: write once, **compile** everywhere
+   - JVM: Java Virtual Machine
+   - JRE vs. JDK
+     - JRE (Java Runtime Environement) is the JVM program, Java application need to run on JRE
+     - JDK contains the tools for development Java programs rnuning on JRE, for example, it provides the conpile "javac"
+
+   **Compiler -- 编译器**
+
+   **Interpreter -- 解释器**
+
+2. Compiles to Java **byte code** can be recongnized by JVM, independent to underline OS.
+   - **JVM (虚拟机)** -- The Java Virtual Machine (JVM) is an **abstract computing machine** The JVM is a program that looks a machine to the programs written to execute in it.
+   - **JRE (java 运行时环境)**
+   - **JDK (java 开发工具包)**
+
+![](/assets/java/5.png)
+
+3. Interpreter to routines on systems with different machine codes.
+
+   - Compile / Interpret Language
+     **Platform compatibility:** language virtual machine <- Java, Python, JavaScript ...
+     **Better performance:** compile to native language (machine language) <- C, C++, GO ...
+     **C++:** The source code need to be compiled to directly the machine instruction on which machine the program is rnuning on. The compiled byte code is different on different machines (machine need to recongnize the compiled code).
+     **Java:** The source code just need to be compiled once and it can run on any machine with JRE installed.
+     **Python:** 1. Interpreter: Python 2. Compiler: pyc
+
+4. Strongly encouraged **Object-Oriented Programming Paradigm**, everything in Java is class / object.
+
+5. All types (reference types, primitive types) are always **passed by value**
+
+6. Java does not support unsigned numbers
+
+7. **Pointers vs. References**
+
+   - no pointer arithmetics
+     Difference between pointers in C++ and reference in Java:
+     - references in Java are **strongly typed**
+     - There is no pointer arithmetic on references
+
+8. No operator overloading
+
+9. Classes / Objects are always allocated on the Heap, there is no way to allocate objects on Stack.
+
+10. **Grabage Collection**
+
+11. **Single inheritance, multiple inheritance only be done by implementing multiple interfaces.**
+
+### Grabage Collection
+
+![](/assets/java/6.png)
+The **_heap_** is where your object data is stored. <font color=red>This area is then managed by the grabage collertor selected at startup.</font>
+
+**Step 1: Marking**
+The first step in the process is called marking. This is where the garbage collector identifies which pieces of memory are in use and which are not. Referenced objects are shown in blue. Unreferenced objects are shown in gold. All objects are scanned in the marking phase to make this determination. This can be a very time consuming process if all objects in a system must be scanned.
+
+**Step 2: Normal Deletion**
+Normal deletion removes unreferenced objects leaving referenced objects and pointers to free space. The memory allocator holds references to blocks of free space where new object can be allocated.
+
+**Step 2a: Deletion with Compacting**
+To further improve performance, in addition to deleting unreferenced objects, you can also compact the remaining referenced objects. By moving referenced object together, this makes new memory allocation much easier and faster. (fragment)
+
+**There are four kinds of GC roots in Java**
+
+1. **Local variable** are kept alive by the stack of a thread.
+2. **Active Java threads**
+3. **Static Variables**
+4. **JNI (Java Native Interface) References**
