@@ -129,7 +129,7 @@ Design a product, or a feature of a product (mostly web applications)
 - 更多的时候用于数据库
 - 牺牲存储空间和写的速度换取更快的读的速度
 
-\*\*Bandwidth throttling (rate limiter)
+**Bandwidth throttling (rate limiter)**
 
 - 限制服务器最大的响应 QPS = 1000
 - 典型的面试题之一
@@ -143,3 +143,22 @@ Design a product, or a feature of a product (mostly web applications)
     - 比较当前 request 的 timestamp 和之前记录的那个的差，相应的给予补给
     - 只要 request credit 数为正，否则丢弃
     - 设置 request credit 的上限
+
+### Web Crawler and Story Feed
+
+**Policies**
+The behavior of a Web crawler is the outcome of a combination of policies:
+
+- a selection policy which states the pages to download,
+- a re-visit policy which states when to check for changes to the pages,
+- a politeness policy that states how to avoid overloading Web sites.
+- a parallelization policy that states how to coordinate distributed web crawlers.
+
+**算法和数据结构**
+算法: BFS, 数据结构: Queue
+
+1. Get web page content by URL (seed, e.g., sina.com.cn)
+2. Parse the page and get hyperlinks
+3. Deduplicate the links (do not download the same URL twice)
+4. Append new target links to a Queue
+5. Get head from the Queue. Go back to 1.

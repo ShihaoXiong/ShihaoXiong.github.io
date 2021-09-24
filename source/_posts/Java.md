@@ -774,3 +774,59 @@ To further improve performance, in addition to deleting unreferenced objects, yo
 2. **Active Java threads**
 3. **Static Variables**
 4. **JNI (Java Native Interface) References**
+
+---
+
+## Concurrency
+
+### Concurrency vs. Parallel
+
+- **Concurrency:** multiple tasks run _simultaneously_
+
+- **Parallel:** multiple tasks _physically_ run simultaneously
+
+### Multiprocess vs. Multi-thread
+
+**Process:** An independent execution of instructions with independent memory space, stack, heap, and 0S respurce .
+Each process sees a complete memory space (pretend to be the only task of a system. )
+Different processes communicates through interprocess communication (explicit IPC).
+
+**Thread:** An independent execution of instruction with shared memory space.
+Each thread has its private: stack, program counter and register states.
+Thread in the same process has shared: heap, static memory segment, os resource.
+
+Semantically, the fundamental difference between a "process" and a "thread" is **if they have independent memory space.** lmplementation-wise, there are corner cases. Be careful about your wording here.
+
+### Java Thread
+
+```java
+Thread t = new Thread();
+
+// Schedule the created thread and make ready to go
+t.start();
+
+// Make sure the thread finished after this line. (Waits for thsi thread to die.)
+t.join();
+```
+
+> When the JVM will exit? -> no alive non-daemon threads
+
+A thread's life cycle:
+`start()` -> mark it as "read to run" stat -> put into the ready to run queue and wait for the scheduler to assign its time frame (quota) for running -> end of quota or stat change by different event:
+`sleep()` -> remove from the ready to run queue, and move to sleeping thread pool
+`wait()` -> removed from the ready to run queue, and moce to the conditions' queue for singal to put back to the ready queue
+`yield()` -> did not change the ready to run stat, but preempt itself the current quota, put back to the ready-to-run queue again for the next quota
+
+### Synchronization & Race
+
+- **Synchronization:** the coordination of events to operate a system in unison
+
+If two“conflicting operations" are in different threads and are not properly synchronized (concurrent), they will introduce data races. In general, two operations conflict with each other if they operate on the same memory location, and at least one of them is a write. Races are mostly treated as bugs in Java programs.
+
+So to form a data race there should be 3 factors.
+
+1. More than one operations work on the same memory location
+2. At least one operation is a write
+3. At least two of those operations are concurrent
+
+### Mutual exclusion (mutex), critical section, and locks
