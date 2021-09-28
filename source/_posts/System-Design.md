@@ -162,3 +162,13 @@ The behavior of a Web crawler is the outcome of a combination of policies:
 3. Deduplicate the links (do not download the same URL twice)
 4. Append new target links to a Queue
 5. Get head from the Queue. Go back to 1.
+
+---
+
+## Data Processing
+
+- Data collection
+- Storage of data
+- Processing of data
+- Data analysis
+- Data presentation and conclusions

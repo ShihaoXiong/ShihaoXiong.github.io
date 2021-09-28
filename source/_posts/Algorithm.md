@@ -1329,7 +1329,7 @@ We use the `List<GraphNode>` to represent the general tree.
 
 **堆**，亦被称为**优先队列**
 
-**用途：** 维护一个变化的数据集的最优值
+**用途：** 维护一个**变化**的数据集的**最优值**
 
 **性质：** 堆的数显通过构造二叉堆 (binary heap)， 这种数据结构具有以下性质
 
@@ -1343,6 +1343,14 @@ We use the `List<GraphNode>` to represent the general tree.
 - left child of index `i = 2 * i + 1`
 - right child of index `i = 2 * i + 2`
 - parent of index `i = (i - 1) / 2`
+
+**Operations:**
+
+1. **insert:** 向堆中插入一个新元素；TC: O(logn)
+2. **update:** 将新元素提升使其符合堆的性质；TS: O(logn)
+3. **get / top:** 获取当前堆顶元素的值；TC: O(1)
+4. **pop:** 删除堆顶元素；TC: O(logn)
+5. **heapify:** 使得一个 unsorted array 变成一个堆；TC:O(n)
 
 **<font color=#3273DC>Example. Find smallest k elements from an unsorted array of size n.</font>**
 
@@ -1367,6 +1375,28 @@ We use the `List<GraphNode>` to represent the general tree.
    O((n - k)logk)
 
 - TC: O(k + (n - k)logk)
+
+### Breadth-First Search (BFS-1)
+
+**BFS 的操作过程 & How to describe a BFS's action during an interview?**
+
+- **<font color=red>Data Structure:</font>** Maintain a **FIFO queue**, put all traversed nodes that haven't been expanded.
+- **Initial state**
+- **Expand** a node
+- **Generate** s's neighbor nodes: reach out to its neighboring nodes
+- **termination condition:** do a loop until the queue is empty
+- Optionally **deduplicate** visited nodes (typically for graph not for tree)
+
+### Best First Search (BFS-2)
+
+1. **Usages:** Find the **shortest path cost** from a single node (source node) to <font color=red>any other nodes in that graph</font> (点道面(==所有点)的最短距离算法)
+2. **Data Structure:** `PriorityQueue` (minHeap)
+
+**解题思路**
+
+1. Initial state: (start node)
+2. Node expansion / Generation rule
+3. Termination condition: 所有点都计算完毕才停止 -> PriorityQueue 为空
 
 ### Heap in Java (PriorityQueue)
 
