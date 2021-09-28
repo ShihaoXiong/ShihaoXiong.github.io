@@ -1371,8 +1371,10 @@ We use the `List<GraphNode>` to represent the general tree.
    Alternatively, call `insert()` k times instead of heapify -> O(klogk)
 2. Iterate over the reaining (n - k) elements one by one.
    When we tracerse a new element:
-   compare with the **largest** element of the previous smallest k candidates 1. case 1: new element >= top: **ignore** 2. case 2: new element < top: **update (top -> new element)**
-   O((n - k)logk)
+   compare with the **largest** element of the previous smallest k candidates
+   1. case 1: new element >= top: **ignore**
+   2. case 2: new element < top: **update (top -> new element)**
+      O((n - k)logk)
 
 - TC: O(k + (n - k)logk)
 
