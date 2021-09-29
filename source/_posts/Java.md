@@ -830,3 +830,10 @@ So to form a data race there should be 3 factors.
 3. At least two of those operations are concurrent
 
 ### Mutual exclusion (mutex), critical section, and locks
+
+Conditions to form a deadlock:
+
+1. Mutual Exclusion: At least one resource must be held in a non-shareable mode. Only one process can use the resource at any given instant of time.
+2. Hold and Wait or Resource Holding: A process is currently holding at least one resource and requesting additional resources which are being held by other processes.←Avoid nesting critical sections!
+3. NoPreemptin: a resoure can be rleased ony vluntarly by the poces hlding it
+4. Circular Wait
