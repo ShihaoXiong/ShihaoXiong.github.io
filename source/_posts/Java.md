@@ -835,5 +835,34 @@ Conditions to form a deadlock:
 
 1. Mutual Exclusion: At least one resource must be held in a non-shareable mode. Only one process can use the resource at any given instant of time.
 2. Hold and Wait or Resource Holding: A process is currently holding at least one resource and requesting additional resources which are being held by other processes.←Avoid nesting critical sections!
-3. NoPreemptin: a resoure can be rleased ony vluntarly by the poces hlding it
+3. No Preemptin: a resoure can be rleased ony vluntarly by the poces hlding it
 4. Circular Wait
+
+---
+
+## Trie
+
+A data structure. More precisely, a search tree.
+
+```java
+class TrieNode {
+   // Maps a character to its corresponding child
+   Map<Character, TrieNode> children;
+   boolean isWord;
+   int value;
+}
+```
+
+or
+
+```java
+// Assumption: a key contains lower-case letters only
+class TrieNode {
+   // An array of size 26, each index -> character
+   // 0 -> 'a', 1 -> 'b', ...
+   // 'c' -> 'c' - 'a' = 2
+   TrieNode[] children;
+   boolean isWord;
+   int value;
+}
+```
