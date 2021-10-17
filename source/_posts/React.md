@@ -491,9 +491,9 @@ class Component extends React.Component {
 ReactDOM.render(<Component />, document.getElementById('test'));
 ```
 
-## ::通过箭头函数实现事件绑定见[state 的简写方式](bear://x-callback-url/open-note?id=85377815-8E25-4AB9-9EED-FDC5163E6BA3-1187-00000293D95B492C&header=state%20%E7%9A%84%E7%AE%80%E5%86%99%E6%96%B9%E5%BC%8F)::
+### <a href="#state-的简写方式">通过箭头函数实现事件绑定</a>
 
-## 事件处理
+### 事件处理
 
 1. 通过 `onXxx` 属性指定事件处理函数（注意大小写）
    1. React 使用的是自定义（合成）事件，而不是使用原生的 DOM 事件——为了更好的兼容
