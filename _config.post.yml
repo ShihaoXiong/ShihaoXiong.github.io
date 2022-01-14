@@ -9,7 +9,7 @@ widgets:
     # Author's current location
     location: Chengdu, Sichuan
     # URL or path to the avatar image
-    avatar: /img/avatar.PNG
+    avatar: /img/avatar.png
     # Whether show the rounded avatar image
     avatar_rounded: false
     # Email address for the Gravatar

@@ -222,7 +222,7 @@ widgets:
     # Author's current location
     location: New York City, US
     # URL or path to the avatar image
-    avatar: /img/avatar.PNG
+    avatar: /img/avatar.png
     # Whether show the rounded avatar image
     avatar_rounded: true
     # Email address for the Gravatar
