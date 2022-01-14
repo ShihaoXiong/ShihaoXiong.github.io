@@ -138,6 +138,7 @@ article:
     clipboard: true
     # Default folding status of the code blocks. Can be "", "folded", "unfolded"
     fold: unfolded
+    tab_replace: '  '
   # Whether to show estimated article reading time
   readtime: true
   # Article licensing block

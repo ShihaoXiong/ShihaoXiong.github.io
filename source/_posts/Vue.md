@@ -123,10 +123,10 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 <script>
 	//创建实例
 	const = app new vue({
-		el: '#app',
-		data: {
-			message: 'Hello Vue!'
-		}
+	  el: '#app',
+	  data: {
+	    message: 'Hello Vue!'
+	  }
 	})
 </script>
 ```
@@ -144,10 +144,10 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 <script>
 	//创建实例
 	const = app new vue({
-		el: '#app',
-		data: {
-			message: '<h1>Hello Vue!</h1>'
-		}
+	  el: '#app',
+	  data: {
+	    message: '<h1>Hello Vue!</h1>'
+	  }
 	})
 </script>
 ```
@@ -231,43 +231,43 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 
 ```html
 <style>
-	.active {
-		color: red;
-	}
+  .active {
+    color: red;
+  }
 </style>
 
 <div id="app">
-	<div :class="{active:" isActive}">Hello Vue!</div>
+  <div :class="{active:" isActive}">Hello Vue!</div>
 </div>
 
 <script>
-	//创建实例
-	const = app new vue({
-	  el: '#app',
-	  data: {
-	    isActive: true
-	  }
-	})
+  //创建实例
+  const = app new vue({
+    el: '#app',
+    data: {
+      isActive: true
+    }
+  })
 </script>
 
 <!-- 通过methods绑定 -->
 <div id="app">
-	<div :class="getClass()">Hello Vue!</div>
+  <div :class="getClass()">Hello Vue!</div>
 </div>
 
 <script>
-	//创建实例
-	const = app new vue({
-	  el: '#app',
-	  data: {
-	    isActive: true
-	  },
-	  methods: {
-	    getClass: function() {
-	      return {active: this.isActive};
-	    }
-	}
-	})
+  //创建实例
+  const = app new vue({
+    el: '#app',
+    data: {
+      isActive: true
+    },
+    methods: {
+      getClass: function() {
+        return {active: this.isActive};
+      }
+  }
+  })
 </script>
 ```
 
@@ -382,23 +382,23 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 
 ```html
 <div id="app">
-	<ul>
-		<li v-for="item" in arr">{{item}}</li>
-	</ul>
+  <ul>
+    <li v-for="item" in arr">{{item}}</li>
+  </ul>
 
-	<!-- 同时获取下标 -->
-	<ul>
-		<li v-for="(item,index)" in arr">{{index}}. {{item}}</li>
-	</ul>
+  <!-- 同时获取下标 -->
+  <ul>
+    <li v-for="(item,index)" in arr">{{index}}. {{item}}</li>
+  </ul>
 </div>
 
 <script>
-	const app = new vue({
-	  el: '#app',
-	  data: {
-	    arr: ['a1','a2','a3']
-	  }
-	})
+  const app = new vue({
+    el: '#app',
+    data: {
+      arr: ['a1','a2','a3']
+    }
+  })
 </script>
 ```
 
@@ -406,33 +406,33 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 
 ```html
 <div>
-	<!-- 获取的是value -->
-	<ul>
-		<li v-for="item" in info">{{item}}</li>
-	</ul>
+  <!-- 获取的是value -->
+  <ul>
+    <li v-for="item" in info">{{item}}</li>
+  </ul>
 
-	<!-- 获取的是key和value -->
-	<ul>
-		<li v-for="(value,key)" in info">{{key}}: {{value}}</li>
-	</ul>
+  <!-- 获取的是key和value -->
+  <ul>
+    <li v-for="(value,key)" in info">{{key}}: {{value}}</li>
+  </ul>
 
-	<!-- 获取的是key、value、index -->
-	<ul>
-		<li v-for="(value,key,index)" in info">{{index}}. {{key}}: {{value}}</li>
-	</ul>
+  <!-- 获取的是key、value、index -->
+  <ul>
+    <li v-for="(value,key,index)" in info">{{index}}. {{key}}: {{value}}</li>
+  </ul>
 </div>
 
 <script>
-	const app = new vue({
-	  el: '#app',
-	  data: {
-	    info: {
-	      name: 'Shihao',
-	      age: 21,
-	      height: 1.70
-	    }
-	  }
-	})
+  const app = new vue({
+    el: '#app',
+    data: {
+      info: {
+        name: 'Shihao',
+        age: 21,
+        height: 1.70
+      }
+    }
+  })
 </script>
 ```
 
@@ -441,7 +441,7 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 ```html
 <!-- 绑定的key需要和item对应且唯一 -->
 <ul>
-	<li v-for="item" in arr" :key="item">{{item}}</li>
+  <li v-for="item" in arr" :key="item">{{item}}</li>
 </ul>
 ```
 
@@ -462,7 +462,7 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 - .reverse() - 数组反转
 - .$set() - vue 内部提供
   - .$set(要修改的对象,index,修改后的值)
-    ::通过索引直接改变元素不是响应式::
+    **通过索引直接改变元素不是响应式**
 
 ### 表单绑定 (v-model)
 
@@ -514,7 +514,6 @@ v-model 实质上包含两个操作： 1. v-bind 绑定一个 value 属性； 2.
 - 单选框
 
 ```html
-html
 <div id="app">
 	<label for="agree"> <input type="checkbox" id="agree" v-model="isAgree" />同意 </label>
 	<button :disable="!isAgree">下一步</button>
@@ -531,7 +530,6 @@ html
 - 多选框
 
 ```html
-html
 <div id="app">
 	<input type="checkbox" value="篮球" v-model="hobbies" />篮球
 	<input type="checkbox" value="足球" v-model="hobbies" />足球
@@ -551,7 +549,6 @@ html
 - 单选
 
 ```html
-html
 <div id="app">
 	<select name="sel" v-model="fruits">
 		<option value="苹果">苹果</option>
@@ -571,7 +568,6 @@ html
 - 多选
 
 ```html
-html
 <div id="app">
 	<select name="sel" v-model="fruits" multiple>
 		<option value="苹果">苹果</option>
@@ -622,7 +618,7 @@ html
 <!-- 转换为number类型 -->
 <input type="number" v-model.number="age" />
 
-<!-- 	去掉字符串左右两边的空格 -->
+<!--   去掉字符串左右两边的空格 -->
 <input type="text" v-model.trim="message" />
 ```
 
@@ -701,24 +697,24 @@ html
 
 ```html
 <div id="app">
-	<ul>
-		<li v-for="item" in price">{{item | showPrice}}</li>
-	</ul>
+  <ul>
+    <li v-for="item" in price">{{item | showPrice}}</li>
+  </ul>
 </div>
 
 <script>
-	const app = new Vue({
-	  el: '#app',
-	  data: {
-	    price: [85, 123, 48, 34]
-	  }
-	  filters: {
-	    showPrice(price) {
-	      //.toFixed(x) - 保留x位小数
-	      return '¥' + price.toFixed(2);
-	    }
-	  }
-	})
+  const app = new Vue({
+    el: '#app',
+    data: {
+      price: [85, 123, 48, 34]
+    }
+    filters: {
+      showPrice(price) {
+        //.toFixed(x) - 保留x位小数
+        return '¥' + price.toFixed(2);
+      }
+    }
+  })
 </script>
 ```
 
@@ -924,35 +920,35 @@ const app = new Vue({
 
 	  //2. 传入对象
 	  props: {
-		//1. 类型限制
-		cmovies: Array,
-		cmessage: String,
+	  //1. 类型限制
+	  cmovies: Array,
+	  cmessage: String,
 
-		//2. 提供一些默认值
-		cmessage: {
-		  type: String,
-		  default: '...',
-		  //设置必传属性，表示cmessage不可缺失
-		  required: true
-		}
-		cmovies: {
-		  type: Array,
-		  //类型是对象或者数组时，默认值必须是一个函数
-		  default() {
-			return []
-		  }
-		}
+	  //2. 提供一些默认值
+	  cmessage: {
+	    type: String,
+	    default: '...',
+	    //设置必传属性，表示cmessage不可缺失
+	    required: true
+	  }
+	  cmovies: {
+	    type: Array,
+	    //类型是对象或者数组时，默认值必须是一个函数
+	    default() {
+	    return []
+	    }
+	  }
 	  }
 	  data() {
-		return {}
+	  return {}
 	  }
 	}
 
 	const app = new Vue({
 	   el: '#app',
 	  data: {
-		movies: ['m1','m2','m3'],
-		message: 'Hello Vue!'
+	  movies: ['m1','m2','m3'],
+	  message: 'Hello Vue!'
 	  },
 	   components: {
 	     cpn
@@ -1021,52 +1017,52 @@ Vue.component('my-cpn', {
 
 ```html
 <div id="app">
-	<cpn @itemclick="cpnClick"></cpn>
+  <cpn @itemclick="cpnClick"></cpn>
 </div>
 
 <template id="cpn">
-	<div>
-		<button v-for:"item in categories" @click="btnClick(item)">{{item.name}}</button>
-	</div>
+  <div>
+    <button v-for:"item in categories" @click="btnClick(item)">{{item.name}}</button>
+  </div>
 </template>
 
 <script>
-	//子组件
-	const cpn = {
-	  template: '#cpn',
-	  data() {
-		return {
-		  categories: [
-			{ id: 'aaa', name: '推荐' },
-			{ id: 'bbb', name: '手机' },
-			{ id: 'ccc', name: '电器' },
-		  ]
-		}
-	  },
-	  methods: {
-		btnClick(item) {
-		  //发射事件，自定义事件
-		  this.$emit('itemclick', item);
-		}
-	  }
-	}
+  //子组件
+  const cpn = {
+    template: '#cpn',
+    data() {
+    return {
+      categories: [
+      { id: 'aaa', name: '推荐' },
+      { id: 'bbb', name: '手机' },
+      { id: 'ccc', name: '电器' },
+      ]
+    }
+    },
+    methods: {
+    btnClick(item) {
+      //发射事件，自定义事件
+      this.$emit('itemclick', item);
+    }
+    }
+  }
 
-	//父组件
-	const app = new Vue({
-	   el: '#app',
-	  data: {
-		movies: ['m1','m2','m3'],
-		message: 'Hello Vue!'
-	  },
-	   components: {
-	     cpn
-	   },
-	  methods: {
-		cpnClick(item) {
-		  //console.log(item);
-		}
-	  }
-	})
+  //父组件
+  const app = new Vue({
+     el: '#app',
+    data: {
+    movies: ['m1','m2','m3'],
+    message: 'Hello Vue!'
+    },
+     components: {
+       cpn
+     },
+    methods: {
+    cpnClick(item) {
+      //console.log(item);
+    }
+    }
+  })
 </script>
 ```
 
@@ -1141,20 +1137,20 @@ Vue.component('my-cpn', {
 	const ccpn = {
 	  template: '#ccpn',
 	  methods: {
-		btnClick() {
-		  //$parent访问父组件
-		  this.$parent.data
+	  btnClick() {
+	    //$parent访问父组件
+	    this.$parent.data
 
-		  //$root访问跟组件
-		  this.$root
-		}
+	    //$root访问跟组件
+	    this.$root
+	  }
 	  }
 	}
 	const cpn = {
 	  template: '#cpn',
 	  data: { return { ... } },
 	  components: {
-		ccpn
+	  ccpn
 	  }
 	}
 
@@ -1162,7 +1158,7 @@ Vue.component('my-cpn', {
 	const app = new Vue({
 	   el: '#app',
 	  data: {
-		message: 'Hello Vue!'
+	  message: 'Hello Vue!'
 	  },
 	   components: {
 	     cpn
@@ -1212,7 +1208,7 @@ Vue.component('my-cpn', {
 	   el: '#app',
 	  data: { ... },
 	  components: {
-		cpn
+	  cpn
 	  }
 	})
 </script>
@@ -1248,7 +1244,7 @@ Vue.component('my-cpn', {
 	   el: '#app',
 	  data: { ... },
 	  components: {
-		cpn
+	  cpn
 	  }
 	})
 </script>
@@ -1264,43 +1260,43 @@ Vue.component('my-cpn', {
 
 ```html
 <div id="app">
-	<cpn></cpn>
+  <cpn></cpn>
 
-	<!-- 获取子组件中的pLanguages -->
-	<cpn>
-		<template v-slot:default="{pLanguages}">
-			<span v-for="item" in slotProps.data"></span>
-		</template>
-	</cpn>
+  <!-- 获取子组件中的pLanguages -->
+  <cpn>
+    <template v-slot:default="{pLanguages}">
+      <span v-for="item" in slotProps.data"></span>
+    </template>
+  </cpn>
 </div>
 
 <template id="cpn">
-	<div>
-		<slot :pLanguages="pLanguages">
-			<ul>
-				<li v-for="item" in pLanguages">{{item}}</li>
-			</ul>
-		</slot>
-	</div>
+  <div>
+    <slot :pLanguages="pLanguages">
+      <ul>
+        <li v-for="item" in pLanguages">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
 </template>
 
 <script>
-	const cpn = {
-	  template: '#cpn',
-	  data() {
-		return {
-		  pLanguages: ['javascript','C++','Swift']
-		}
-	  }
-	}
+  const cpn = {
+    template: '#cpn',
+    data() {
+    return {
+      pLanguages: ['javascript','C++','Swift']
+    }
+    }
+  }
 
-	const app = new Vue({
-	   el: '#app',
-	  data: { ... },
-	  components: {
-		cpn
-	  }
-	})
+  const app = new Vue({
+     el: '#app',
+    data: { ... },
+    components: {
+    cpn
+    }
+  })
 </script>
 ```
 
@@ -1367,7 +1363,7 @@ export default name
 
 //导出函数
 export default function() {
-	//函数体
+  //函数体
 }
 ```
 
@@ -1403,8 +1399,8 @@ import myParam from './info.js';
 new Vue({
 	el: '#app',
 	template: `
-	  <div id="app">{{message}}</div>
-	`,
+    <div id="app">{{message}}</div>
+  `,
 	data: { message: '...' }
 });
 ```
@@ -1419,16 +1415,16 @@ new Vue({
 <!-- Vue文件，用于定义组件 -->
 
 <template>
-	<div id="app">{{message}}</div>
+  <div id="app">{{message}}</div>
 <template>
 
 <script>
-	export default {
-	  name: "App",
-	  data() {
-		return {  message: '...' }
-	  }
-	}
+  export default {
+    name: "App",
+    data() {
+    return {  message: '...' }
+    }
+  }
 </script>
 
 <!-- 设置css样式 -->
@@ -1456,8 +1452,8 @@ new Vue({
 
 ```
 {
-	tese:: /\.vue$/,
-	use: ['vue-loader']
+  tese:: /\.vue$/,
+  use: ['vue-loader']
 }
 ```
 
@@ -1491,21 +1487,21 @@ Vue CLI 2 初始化项目
 
 ```javascript
 const cpn = {
-	template: '<div>{{message}}</div>',
-	data() {
-	  return { message: 'hello vue' }
-	}
+  template: '<div>{{message}}</div>',
+  data() {
+    return { message: 'hello vue' }
+  }
 }
 
 new Vue({
-	el: '#app',
-	render: function(createElement) {
-	  //1. 普通用法：createElement('标签', {标签的属性}, [''])
-	  return createElement('h2', {class: 'box'}, ['hello world'], createElement('button', ['按钮'])]);
+  el: '#app',
+  render: function(createElement) {
+    //1. 普通用法：createElement('标签', {标签的属性}, [''])
+    return createElement('h2', {class: 'box'}, ['hello world'], createElement('button', ['按钮'])]);
 
-	  //2. 传入组件对象
-	  return createElement(cpn);
-	}
+    //2. 传入组件对象
+    return createElement(cpn);
+  }
 })
 ```
 
@@ -1655,12 +1651,12 @@ export default new Router({
 	export default {
 	  name: 'App',
 	  methods: {
-		homeClick() {
-		  this.$router.push('/home')
-		}
-		aboutClick() {
-		  this.$router.push('/about')
-		}
+	  homeClick() {
+	    this.$router.push('/home')
+	  }
+	  aboutClick() {
+	    this.$router.push('/about')
+	  }
 	  }
 	}
 </script>
@@ -1857,18 +1853,18 @@ routes: [
 	export default {
 	  name: 'App',
 	  methods: {
-		homeClick() {
-		  this.$router.push('/user/' + this.userID)
-		}
-		profileClick() {
-		  this.$router.push({
-			path: '/profile',
-			query: {
-				name: 'xsh',
-				age: 21
-			  }
-		  })
-		}
+	  homeClick() {
+	    this.$router.push('/user/' + this.userID)
+	  }
+	  profileClick() {
+	    this.$router.push({
+	    path: '/profile',
+	    query: {
+	      name: 'xsh',
+	      age: 21
+	      }
+	    })
+	  }
 	  }
 	}
 </script>
@@ -2229,11 +2225,11 @@ export const FUNC = 'func';
 import * from './store/mutations-types'
 
 const store = new Vuex.Store({
-	mutations: {
-	  [FUNC](state, payload) {
-		//...
-	  }
-	}
+  mutations: {
+    [FUNC](state, payload) {
+    //...
+    }
+  }
 });
 ```
 
@@ -2265,20 +2261,20 @@ Actions 类似于 Mutations，但是是用来替代 Mutations 执行异步操作
 import * from './store/mutations-types';
 
 const store = new Vuex.Store({
-	mutations: {
-	  funcM(state) {
-		//更改state中的属性
-	  }
-	},
-	actions: {
-	  //context可理解为store对象
-	  funcA(context, payload) {
-		//仿异步操作更改state中的属性
-		setTimeout({
-		  context.commit('funcM');
-		}, 1000)
-	  }
-	}
+  mutations: {
+    funcM(state) {
+    //更改state中的属性
+    }
+  },
+  actions: {
+    //context可理解为store对象
+    funcA(context, payload) {
+    //仿异步操作更改state中的属性
+    setTimeout({
+      context.commit('funcM');
+    }, 1000)
+    }
+  }
 });
 ```
 
@@ -2302,17 +2298,17 @@ const store = new Vuex.Store({
 import * from './store/mutations-types'
 
 const store = new Vuex.Store({
-	actions: {
-	  //context可理解为store对象
-	  funcA(context, payload) {
-		return new Promise((resolve) => {
-		  setTimeout({
-			//...
-			resolve()
-		    }, 1000)
-		  })
-	  }
-	}
+  actions: {
+    //context可理解为store对象
+    funcA(context, payload) {
+    return new Promise((resolve) => {
+      setTimeout({
+      //...
+      resolve()
+        }, 1000)
+      })
+    }
+  }
 });
 ```
 
@@ -2459,27 +2455,27 @@ BaseURL
 
 ```javascript
 const instance1 = axios.create({
-	baseURL: 'http://ip1'
-	timeout: 1000
+  baseURL: 'http://ip1'
+  timeout: 1000
 })
 
 instance1({
-	url: '...',
-	//...
+  url: '...',
+  //...
 }).then(res => {
-	//...
+  //...
 })
 
 const instance2 = axios.create({
-	baseURL: 'http://ip2'
-	timeout: 1000
+  baseURL: 'http://ip2'
+  timeout: 1000
 })
 
 instance2({
-	url: '...',
-	//...
+  url: '...',
+  //...
 }).then(res => {
-	//...
+  //...
 })
 ```
 
@@ -2553,7 +2549,7 @@ export function request(config) {
 import {request} from './network/request.js';
 
 request({
-	url: '...'
+  url: '...'
 }).then(res => {...}).catch(err => {...})
 ```
 
@@ -2579,7 +2575,7 @@ export function request(config) {
 import {request} from './network/request.js';
 
 request({
-	url: '...'
+  url: '...'
 }).then(res => {...}).catch(err => {...})
 ```
 
@@ -2594,21 +2590,21 @@ axios.interceptors()
 //实例拦截
 //请求拦截
 instance.interceptors.request.use(config => {
-	//请求拦截的作用
-	//比如config中的一些信息不符合服务器的要求
+  //请求拦截的作用
+  //比如config中的一些信息不符合服务器的要求
 
-	//比如每次发送网络请求时，都希望在界面中显示一个请求图标
+  //比如每次发送网络请求时，都希望在界面中显示一个请求图标
 
-	//某些网络请求(比如登陆token)必须携带某些信息
-	return config;
+  //某些网络请求(比如登陆token)必须携带某些信息
+  return config;
 }, err => {...})
 
 //响应拦截
 instance.interceptor.response.use(res => {
-	//拦截后操作...
-	//res.data为需要的数据
-	return res.data;
+  //拦截后操作...
+  //res.data为需要的数据
+  return res.data;
 }, err => {
-	console.log(err);
+  console.log(err);
 })
 ```
