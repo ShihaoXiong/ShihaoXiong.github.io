@@ -8,12 +8,12 @@ subtitle: ''
 description: ''
 keywords:
 author: Shihao Xiong
-language: zh-CN
+language: en
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://xiongshihao.ltd
+url: https://xiongshihao.xyz
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -47,7 +47,7 @@ highlight:
   enable: true
   auto_detect: false
   line_number: true
-  tab_replace: '  '
+  tab_replace: ''
 prismjs:
   enable: false
   preprocess: true
@@ -101,5 +101,5 @@ theme: icarus
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/ShihaoXiong/ShihaoXiong.github.io.git
+  repo: https://github.com/sxiong5/sxiong5.github.io.git
   branch: master

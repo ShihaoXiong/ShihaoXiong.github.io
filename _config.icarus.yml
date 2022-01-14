@@ -108,12 +108,12 @@ navbar:
     Archives: /archives
     Categories: /categories
     Tags: /tags
-    About: /about
+    About Me: /about
   # Links to be shown on the right of the navigation bar
-  links:
-    Download on GitHub:
-      icon: fab fa-github
-      url: 'https://github.com/ppoffice/hexo-theme-icarus'
+  # links:
+  #   Download on GitHub:
+  #     icon: fab fa-github
+  #     url: 'https://github.com/ppoffice/hexo-theme-icarus'
 # Page footer configurations
 footer:
   # Links to be shown on the right of the footer section
@@ -218,34 +218,40 @@ widgets:
     # Author name
     author: Shihao Xiong
     # Author title
-    author_title: Web Developer
+    author_title: Candiate of MSCS
     # Author's current location
-    location: Chengdu, Sichuan
+    location: New York City, US
     # URL or path to the avatar image
-    avatar: /img/logo.png
+    avatar: /img/avatar.PNG
     # Whether show the rounded avatar image
-    avatar_rounded: false
+    avatar_rounded: true
     # Email address for the Gravatar
     gravatar:
     # URL or path for the follow button
-    follow_link: 'https://github.com/ppoffice'
+    follow_link: 'https://github.com/sxiong5'
     # Links to be shown on the bottom of the profile widget
     social_links:
       Github:
         icon: fab fa-github
-        url: 'https://github.com/ppoffice'
+        url: 'https://github.com/sxiong5'
+      Linkedin:
+        icon: fab fa-linkedin
+        url: 'https://www.linkedin.com/in/sxiong5/'
+      Instagram:
+        icon: fab fa-instagram-square
+        url: 'https://www.instagram.com/tsxfp/'
       Facebook:
         icon: fab fa-facebook
         url: 'https://facebook.com'
       Twitter:
         icon: fab fa-twitter
         url: 'https://twitter.com'
-      Dribbble:
-        icon: fab fa-dribbble
-        url: 'https://dribbble.com'
-      RSS:
-        icon: fas fa-rss
-        url: /
+      # Dribbble:
+      #   icon: fab fa-dribbble
+      #   url: 'https://dribbble.com'
+      # RSS:
+      #   icon: fas fa-rss
+      #   url: /
   # Table of contents widget configurations
   # Recommendation links widget configurations
   - # Where should the widget be placed, left sidebar or right sidebar
@@ -253,8 +259,9 @@ widgets:
     type: links
     # Names and URLs of the sites
     links:
-      Hexo: 'https://hexo.io'
-      xFrame: 'https://github.com/ShihaoXiong/xFrameUI'
+      Hexo: 'https://xiongshihao.xyz/'
+      xFrame: 'https://github.com/sxiong5/xFrameUI'
+      Gallery: 'https://xiongshihao.xyz/Gallery/'
       # Bulma: 'https://bulma.io'
   # Categories widget configurations
   - # Where should the widget be placed, left sidebar or right sidebar

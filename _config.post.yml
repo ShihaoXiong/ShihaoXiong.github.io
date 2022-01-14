@@ -9,13 +9,13 @@ widgets:
     # Author's current location
     location: Chengdu, Sichuan
     # URL or path to the avatar image
-    avatar: /img/logo.png
+    avatar: /img/avatar.PNG
     # Whether show the rounded avatar image
     avatar_rounded: false
     # Email address for the Gravatar
     gravatar:
     # URL or path for the follow button
-    follow_link: 'https://github.com/ppoffice'
+    follow_link: 'https://github.com/sxiong5'
   - # Where should the widget be placed, left sidebar or right sidebar
     position: left
     type: categories
