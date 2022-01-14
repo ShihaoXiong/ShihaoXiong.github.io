@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>System Design - xBlog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="xBlog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="xBlog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="IntroductionSystem Design is the process of defining the architecture, modules, interfaces, and data for a system to satisfy specified requirements.  requirements functional non-functional   architect"><meta property="og:type" content="blog"><meta property="og:title" content="System Design"><meta property="og:url" content="https://xiongshihao.ltd/2021/09/11/System-Design/"><meta property="og:site_name" content="xBlog"><meta property="og:description" content="IntroductionSystem Design is the process of defining the architecture, modules, interfaces, and data for a system to satisfy specified requirements.  requirements functional non-functional   architect"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://xiongshihao.ltd/assets/system-design/01.png"><meta property="og:image" content="https://xiongshihao.ltd/assets/system-design/02.png"><meta property="og:image" content="https://xiongshihao.ltd/assets/system-design/03.png"><meta property="article:published_time" content="2021-09-12T01:00:46.000Z"><meta property="article:modified_time" content="2021-12-13T17:31:06.770Z"><meta property="article:author" content="Shihao Xiong"><meta property="article:tag" content="Java"><meta property="article:tag" content="Design"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/assets/system-design/01.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://xiongshihao.ltd/2021/09/11/System-Design/"},"headline":"System Design","image":["https://xiongshihao.ltd/assets/system-design/01.png","https://xiongshihao.ltd/assets/system-design/02.png","https://xiongshihao.ltd/assets/system-design/03.png"],"datePublished":"2021-09-12T01:00:46.000Z","dateModified":"2021-12-13T17:31:06.770Z","author":{"@type":"Person","name":"Shihao Xiong"},"publisher":{"@type":"Organization","name":"xBlog","logo":{"@type":"ImageObject","url":"https://xiongshihao.ltd/img/logo.png"}},"description":"IntroductionSystem Design is the process of defining the architecture, modules, interfaces, and data for a system to satisfy specified requirements.  requirements functional non-functional   architect"}</script><link rel="canonical" href="https://xiongshihao.ltd/2021/09/11/System-Design/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/color-brewer.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.png" alt="xBlog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-09-12T01:00:46.000Z" title="9/11/2021, 9:00:46 PM">2021-09-11</time>发表</span><span class="level-item"><time dateTime="2021-12-13T17:31:06.770Z" title="12/13/2021, 12:31:06 PM">2021-12-13</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Design/">Design</a></span><span class="level-item">6 分钟读完 (大约872个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">System Design</h1><div class="content"><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p><strong>System Design</strong> is the process of defining the architecture, modules, interfaces, and data for a system to satisfy specified <strong>requirements</strong>.</p>
+<ul>
+<li>requirements<ul>
+<li>functional</li>
+<li>non-functional</li>
+</ul>
+</li>
+<li>architecture</li>
+<li>modules</li>
+<li>interfaces</li>
+<li>data</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="System-Design-Interview"><a href="#System-Design-Interview" class="headerlink" title="System Design Interview"></a>System Design Interview</h3><p>Design a product, or a feature of a product (mostly web applications)</p>
+<ul>
+<li>availability</li>
+<li>scalability vs. extendsibility</li>
+<li>performance</li>
+<li>reliability CAP (consistency, availability, partition tolerance)</li>
+<li>robustness</li>
+<li>cost</li>
+<li>…</li>
+</ul>
+<h3 id="How-can-I-do-well-in-a-system-design-Interview"><a href="#How-can-I-do-well-in-a-system-design-Interview" class="headerlink" title="How can I do well in a system design Interview?"></a>How can I do well in a system design Interview?</h3><ul>
+<li>Understand the goal<ul>
+<li><strong>Scenarious</strong> and <strong>Use-cases</strong></li>
+<li><strong>Ask</strong> the right questions</li>
+<li><strong>Clarify</strong> the problem you need to solve</li>
+<li>Functional vs. Non-Functional</li>
+</ul>
+</li>
+<li>Understand the <strong>scope</strong><ul>
+<li>How many DAU(daily active users)</li>
+<li>What is the QPS level?</li>
+</ul>
+</li>
+<li>Start with the <strong>Big-picture</strong>, then <strong>Drill-down</strong><ul>
+<li>Done is better than perfect</li>
+</ul>
+</li>
+<li>Provide a <strong>functional</strong> solution<ul>
+<li>Simplify the priblem and provide a straw-man design</li>
+<li>Web application and data storage</li>
+</ul>
+</li>
+<li>Reiterate and <strong>optimize</strong><ul>
+<li>Availability</li>
+<li>Scalability</li>
+<li>Bottlenecks</li>
+<li>Single point failures</li>
+<li>…</li>
+</ul>
+</li>
+<li>Trade-offs</li>
+<li>Make it easy for the Interviewr to put down your positive points</li>
+<li>Keep system scaling, performance, and availability in mind</li>
+</ul>
+<hr>
+<h2 id="Web-Application"><a href="#Web-Application" class="headerlink" title="Web Application"></a>Web Application</h2><h3 id="典型架构"><a href="#典型架构" class="headerlink" title="典型架构"></a>典型架构</h3><p><img src="/assets/system-design/01.png"></p>
+<p><strong>Client</strong></p>
+<ul>
+<li>与用户的交互<ul>
+<li>内容呈现</li>
+<li>功能的体现</li>
+<li>用户输入 (文字、图形、其他…)</li>
+</ul>
+</li>
+<li>与后端的信息交流, HTML, XML, JSON</li>
+<li>数据的本地缓存</li>
+<li>与其他终端应用的交互，如 Map, Phone call</li>
+</ul>
+<p><strong>HTTP (Hypertext Transfer Protocol) Server</strong></p>
+<ul>
+<li>HTTP Server 是用于处理和响应终端的 HTTP 请求的，然后根据不同请求的需求，分发到相应的应用服务器 (Application Server)</li>
+</ul>
+<p><strong>Application Server</strong></p>
+<ul>
+<li>An application server is a software framework that provides both facilities to create web applications and a server environment to run them.</li>
+</ul>
+<p><strong>Storage</strong></p>
+<ul>
+<li>存储数据</li>
+<li>文件系统：网络文件系统 GFS</li>
+<li>数据库：关系数据库 (MySQL, MSSQL, Oracle)，非关系数据库，SQL</li>
+</ul>
+<h3 id="系统间的通信"><a href="#系统间的通信" class="headerlink" title="系统间的通信"></a>系统间的通信</h3><ul>
+<li>域名解析, <u>DNS</u></li>
+<li>应用层协议, <u>HTTP</u>, Client 与 HTTP Server 的信息交互<ul>
+<li>HTTP Request 操作类型. GET, POST, PUT, DELETE</li>
+<li>HTTP Response Code. 200, 300, 4xx, 5xx …</li>
+</ul>
+</li>
+<li>应用层协议是建立在网络通信协议之上的<ul>
+<li>TCP (Transmission Control Protocol) 传输控制协议<ul>
+<li>可靠的端到端协议通信协议</li>
+<li>三次握手, SYN, SYN ACK, ACK</li>
+<li>四次挥手</li>
+</ul>
+</li>
+<li>UDP</li>
+<li>IP Internet Protocol<ul>
+<li>寻址</li>
+<li>完成数据包点对点的寻址和传输</li>
+<li>不保证数据包已被接受</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="主要的涉及到性能改进的技术和部分"><a href="#主要的涉及到性能改进的技术和部分" class="headerlink" title="主要的涉及到性能改进的技术和部分"></a>主要的涉及到性能改进的技术和部分</h3><h4 id="Load-Balancer"><a href="#Load-Balancer" class="headerlink" title="Load Balancer"></a>Load Balancer</h4><ul>
+<li>分流，分配工作</li>
+<li>保证服务器不过载</li>
+<li>当新服务加入，可自动分配，同理，当服务器被移除，或者 fail，取消分配请求</li>
+</ul>
+<p><img src="/assets/system-design/02.png"><br><img src="/assets/system-design/03.png"></p>
+<h4 id="Caches"><a href="#Caches" class="headerlink" title="Caches"></a>Caches</h4><ul>
+<li>提高数据获取速度</li>
+<li>降低数据服务器的负载</li>
+<li>增加了写的开销</li>
+</ul>
+<h4 id="Indexing"><a href="#Indexing" class="headerlink" title="Indexing"></a>Indexing</h4><ul>
+<li>用于更快的访问数据</li>
+<li>更多的时候用于数据库</li>
+<li>牺牲存储空间和写的速度换取更快的读的速度</li>
+</ul>
+<p><strong>Bandwidth throttling (rate limiter)</strong></p>
+<ul>
+<li>限制服务器最大的响应 QPS = 1000</li>
+<li>典型的面试题之一<ul>
+<li>单位：分/秒/小时</li>
+<li>怎么支持 spike 的情况</li>
+<li>Fix window</li>
+<li>Sliding window</li>
+<li>Token bucket<ul>
+<li>记录上一个 request 的 Timestamp 和当前可以接受的 request 数量</li>
+<li>收到新的 request 的时候，取新的 request 的 Timestamp</li>
+<li>比较当前 request 的 timestamp 和之前记录的那个的差，相应的给予补给</li>
+<li>只要 request credit 数为正，否则丢弃</li>
+<li>设置 request credit 的上限</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Web-Crawler-and-Story-Feed"><a href="#Web-Crawler-and-Story-Feed" class="headerlink" title="Web Crawler and Story Feed"></a>Web Crawler and Story Feed</h3><p><strong>Policies</strong><br>The behavior of a Web crawler is the outcome of a combination of policies:</p>
+<ul>
+<li>a selection policy which states the pages to download,</li>
+<li>a re-visit policy which states when to check for changes to the pages,</li>
+<li>a politeness policy that states how to avoid overloading Web sites.</li>
+<li>a parallelization policy that states how to coordinate distributed web crawlers.</li>
+</ul>
+<p><strong>算法和数据结构</strong><br>算法: BFS, 数据结构: Queue</p>
+<ol>
+<li>Get web page content by URL (seed, e.g., sina.com.cn)</li>
+<li>Parse the page and get hyperlinks</li>
+<li>Deduplicate the links (do not download the same URL twice)</li>
+<li>Append new target links to a Queue</li>
+<li>Get head from the Queue. Go back to 1.</li>
+</ol>
+<hr>
+<h2 id="Data-Processing"><a href="#Data-Processing" class="headerlink" title="Data Processing"></a>Data Processing</h2><ul>
+<li>Data collection</li>
+<li>Storage of data</li>
+<li>Processing of data</li>
+<li>Data analysis</li>
+<li>Data presentation and conclusions</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>System Design</p><p><a href="https://xiongshihao.ltd/2021/09/11/System-Design/">https://xiongshihao.ltd/2021/09/11/System-Design/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Shihao Xiong</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-09-11</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-12-13</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a><a class="link-muted mr-2" rel="tag" href="/tags/Design/">Design</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/08/15/Design/"><span class="level-item">Design</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/logo.png" alt="Xiong Shihao"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Xiong Shihao</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Chengdu, Sichuan</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">9</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">关注我</a></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Design/"><span class="level-start"><span class="level-item">Design</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Notes/"><span class="level-start"><span class="level-item">Notes</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Ajax/"><span class="tag">Ajax</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Algorithm/"><span class="tag">Algorithm</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Css/"><span class="tag">Css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Design/"><span class="tag">Design</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vue/"><span class="tag">Vue</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">6</span></a></div></div></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-12T01:00:46.000Z">2021-09-11</time></p><p class="title"><a href="/2021/09/11/System-Design/">System Design</a></p><p class="categories"><a href="/categories/Design/">Design</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-15T13:01:06.000Z">2021-08-15</time></p><p class="title"><a href="/2021/08/15/Design/">Design</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/07/29/React/"><img src="/assets/react/cover.png" alt="React"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-07-29T21:34:14.000Z">2021-07-29</time></p><p class="title"><a href="/2021/07/29/React/">React</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/07/29/Vue/"><img src="/assets/vue/cover.png" alt="Vue"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-07-29T21:32:59.000Z">2021-07-29</time></p><p class="title"><a href="/2021/07/29/Vue/">Vue</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-07-28T13:52:40.000Z">2021-07-28</time></p><p class="title"><a href="/2021/07/28/Webpack/">Webpack</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Introduction"><span class="level-left"><span class="level-item">1</span><span class="level-item">Introduction</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#System-Design-Interview"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">System Design Interview</span></span></a></li><li><a class="level is-mobile" href="#How-can-I-do-well-in-a-system-design-Interview"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">How can I do well in a system design Interview?</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Web-Application"><span class="level-left"><span class="level-item">2</span><span class="level-item">Web Application</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#典型架构"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">典型架构</span></span></a></li><li><a class="level is-mobile" href="#系统间的通信"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">系统间的通信</span></span></a></li><li><a class="level is-mobile" href="#主要的涉及到性能改进的技术和部分"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">主要的涉及到性能改进的技术和部分</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Load-Balancer"><span class="level-left"><span class="level-item">2.3.1</span><span class="level-item">Load Balancer</span></span></a></li><li><a class="level is-mobile" href="#Caches"><span class="level-left"><span class="level-item">2.3.2</span><span class="level-item">Caches</span></span></a></li><li><a class="level is-mobile" href="#Indexing"><span class="level-left"><span class="level-item">2.3.3</span><span class="level-item">Indexing</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Web-Crawler-and-Story-Feed"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">Web Crawler and Story Feed</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Data-Processing"><span class="level-left"><span class="level-item">3</span><span class="level-item">Data Processing</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.png" alt="xBlog" height="28"></a><p class="is-size-7"><span>&copy; 2022 Shihao Xiong</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

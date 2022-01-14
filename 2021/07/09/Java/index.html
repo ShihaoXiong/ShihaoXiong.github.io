@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Java - xBlog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="xBlog"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="xBlog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="Primitive Types &amp;amp; Basic Operationsbyte: 计算机最小存储单元"><meta property="og:type" content="blog"><meta property="og:title" content="Java"><meta property="og:url" content="https://xiongshihao.ltd/2021/07/09/Java/"><meta property="og:site_name" content="xBlog"><meta property="og:description" content="Primitive Types &amp;amp; Basic Operationsbyte: 计算机最小存储单元"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://xiongshihao.ltd/assets/java/3.png"><meta property="og:image" content="https://xiongshihao.ltd/assets/java/4.png"><meta property="og:image" content="https://xiongshihao.ltd/assets/java/1.png"><meta property="og:image" content="https://xiongshihao.ltd/assets/java/2.png"><meta property="og:image" content="https://xiongshihao.ltd/assets/java/5.png"><meta property="og:image" content="https://xiongshihao.ltd/assets/java/6.png"><meta property="article:published_time" content="2021-07-09T20:01:50.000Z"><meta property="article:modified_time" content="2021-12-13T17:31:06.770Z"><meta property="article:author" content="Shihao Xiong"><meta property="article:tag" content="Java"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/assets/java/3.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://xiongshihao.ltd/2021/07/09/Java/"},"headline":"Java","image":["https://xiongshihao.ltd/assets/java/3.png","https://xiongshihao.ltd/assets/java/4.png","https://xiongshihao.ltd/assets/java/1.png","https://xiongshihao.ltd/assets/java/2.png","https://xiongshihao.ltd/assets/java/5.png","https://xiongshihao.ltd/assets/java/6.png"],"datePublished":"2021-07-09T20:01:50.000Z","dateModified":"2021-12-13T17:31:06.770Z","author":{"@type":"Person","name":"Shihao Xiong"},"publisher":{"@type":"Organization","name":"xBlog","logo":{"@type":"ImageObject","url":"https://xiongshihao.ltd/img/logo.png"}},"description":"Primitive Types &amp; Basic Operationsbyte: 计算机最小存储单元"}</script><link rel="canonical" href="https://xiongshihao.ltd/2021/07/09/Java/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/color-brewer.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.png" alt="xBlog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-07-09T20:01:50.000Z" title="7/9/2021, 4:01:50 PM">2021-07-09</time>发表</span><span class="level-item"><time dateTime="2021-12-13T17:31:06.770Z" title="12/13/2021, 12:31:06 PM">2021-12-13</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Notes/">Notes</a></span><span class="level-item">27 分钟读完 (大约3985个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Java</h1><div class="content"><h2 id="Primitive-Types-amp-Basic-Operations"><a href="#Primitive-Types-amp-Basic-Operations" class="headerlink" title="Primitive Types &amp; Basic Operations"></a>Primitive Types &amp; Basic Operations</h2><p><strong>byte</strong>: 计算机最小存储单元</p>
+<span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2&#x27;s complement: 按位取反再加1</span><br><span class="line"></span><br><span class="line">0000 = 0</span><br><span class="line">0001 = 1</span><br><span class="line">0010 = 2</span><br><span class="line">...</span><br><span class="line">0111 = 7     -&gt; overflow</span><br><span class="line">1111 = -1</span><br><span class="line">1110 = -2</span><br><span class="line">...</span><br><span class="line">1001 = -7</span><br><span class="line">1000 = -8    -&gt; underflow</span><br></pre></td></tr></table></figure>
+
+<p><strong>Conclusions (n bits):</strong></p>
+<ul>
+<li>total number of represented integers: <strong>2<sup>n</sup></strong></li>
+<li>number of positives: <strong>2<sup>(n-1)</sup> - 1</strong> , number of negatives: <strong>2<sup>(n-1)</sup></strong></li>
+<li>range: [-8, 7]</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Primitive Type</th>
+<th>Sotres</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>8-bit integer</td>
+<td>-128 to 127</td>
+</tr>
+<tr>
+<td>short</td>
+<td>16-bit integer</td>
+<td>-32,768 to 32,767</td>
+</tr>
+<tr>
+<td>int</td>
+<td>32-bit integer</td>
+<td>-2,147,483,648 to 2,147,483,647</td>
+</tr>
+<tr>
+<td>long</td>
+<td>64-bit integer</td>
+<td>-2<sup>63</sup> to 2<sup>63</sup> - 1</td>
+</tr>
+<tr>
+<td>float</td>
+<td>32-bit floating-point</td>
+<td>6 significant digits (10<sup>-46</sup>, 10<sup>38</sup>)</td>
+</tr>
+<tr>
+<td>double</td>
+<td>64-bit floating-point</td>
+<td>15 significant digits (10<sup>-324</sup>, 10<sup>308</sup>)</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Unicode character</td>
+<td></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean variable</td>
+<td>false and true</td>
+</tr>
+</tbody></table>
+<h3 id="取整"><a href="#取整" class="headerlink" title="取整"></a>取整</h3><p><strong>遵循向零取整</strong></p>
+<h3 id="Operators-amp-Precedence"><a href="#Operators-amp-Precedence" class="headerlink" title="Operators &amp; Precedence"></a>Operators &amp; Precedence</h3><table>
+<thead>
+<tr>
+<th>Operators</th>
+<th>Precedence</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>postfix</td>
+<td>expr++, expr–</td>
+</tr>
+<tr>
+<td>unary</td>
+<td>++expr, –expr, +expr, -expr, ~, !</td>
+</tr>
+<tr>
+<td>multiplicative</td>
+<td>*, /, %</td>
+</tr>
+<tr>
+<td>additive</td>
+<td>+, -</td>
+</tr>
+<tr>
+<td>shift</td>
+<td>&lt;&lt;, &gt;&gt;, &gt;&gt;&gt;</td>
+</tr>
+<tr>
+<td>relational</td>
+<td>&lt;, &gt;, &lt;=, &gt;=, instanceof</td>
+</tr>
+<tr>
+<td>equality</td>
+<td>==, !=</td>
+</tr>
+<tr>
+<td>bitwise AND</td>
+<td>&amp;</td>
+</tr>
+<tr>
+<td>bitwise exclusive OR</td>
+<td>^</td>
+</tr>
+<tr>
+<td>bitwise inclusive OR</td>
+<td>|</td>
+</tr>
+<tr>
+<td>logical AND</td>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>logical OR</td>
+<td>||</td>
+</tr>
+<tr>
+<td>ternary</td>
+<td>? :</td>
+</tr>
+<tr>
+<td>assignment</td>
+<td>=, +=, -=, _=, /=, %=, &amp;=, _=, |=, &lt;&lt;=, &gt;&gt;+, &gt;&gt;&gt;=</td>
+</tr>
+</tbody></table>
+<p><strong>widening (精度)</strong> <br>byte -&gt; short -&gt; int -&gt; long -&gt; float -&gt; double</p>
+<p>高精度 -&gt; 低精度需要进行显示转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> x = <span class="number">1.9</span></span><br><span class="line"><span class="keyword">int</span> y = (<span class="keyword">int</span>)x</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Control-Flow-amp-Methods"><a href="#Control-Flow-amp-Methods" class="headerlink" title="Control Flow &amp; Methods"></a>Control Flow &amp; Methods</h2><h3 id="Control-Flow"><a href="#Control-Flow" class="headerlink" title="Control Flow"></a>Control Flow</h3><ul>
+<li><code>if...else if...else</code><br> <em>In Java, the expression in “()” must bt a bollean expression</em></li>
+<li><code>for</code></li>
+<li><code>while</code><br><code>break</code> &amp; <code>continute</code><ul>
+<li>break: jumps out of the entire loop</li>
+<li>comtiunte: skip the current iteration</li>
+</ul>
+</li>
+</ul>
+<h3 id="Methods-Functions"><a href="#Methods-Functions" class="headerlink" title="Methods / Functions"></a>Methods / Functions</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[modifier] [<span class="keyword">return</span> type] [name of the method](arguments) &#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Signature"><a href="#Signature" class="headerlink" title="Signature"></a>Signature</h4><ul>
+<li><strong>Name of the method</strong></li>
+<li><strong>The list of the parameter <u>types</u></strong></li>
+</ul>
+<p>**<em>Q: What uniquely identifies a function?</em>**<br><em>A: function name + the list of parameter <u>types</u></em></p>
+<h4 id="Method-Overloading-重载"><a href="#Method-Overloading-重载" class="headerlink" title="Method Overloading(重载)"></a>Method Overloading(重载)</h4><p>函数名相同，但是 parameter type list 不同的 functions</p>
+<ol>
+<li>different types</li>
+<li>different num of parameters</li>
+<li>different order</li>
+</ol>
+<h4 id="Return-Type"><a href="#Return-Type" class="headerlink" title="Return Type"></a>Return Type</h4><p>It can be</p>
+<ul>
+<li>a primitive type: int, double, char, boolean</li>
+<li>a class: TreeNode, ListNode, …</li>
+<li>void: no return value</li>
+</ul>
+<hr>
+<h2 id="Array-Class-amp-Objects"><a href="#Array-Class-amp-Objects" class="headerlink" title="Array, Class &amp; Objects"></a>Array, Class &amp; Objects</h2><h3 id="1D-2D-Array"><a href="#1D-2D-Array" class="headerlink" title="1D/2D Array"></a>1D/2D Array</h3><h4 id="1D-Array"><a href="#1D-Array" class="headerlink" title="1D Array"></a>1D Array</h4><ul>
+<li>Array is a form of <strong>data collection</strong>. It can be a collection of <strong>anything</strong>.</li>
+<li>Array elements occupy consecutive memory space.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] empty = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br><span class="line"><span class="keyword">int</span>[] numbers = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">4</span>, <span class="number">20</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">10</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> num = numbers[<span class="number">2</span>];</span><br><span class="line">numbers[<span class="number">4</span>] = <span class="number">15</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// traverse an array</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numbers.legnth; i++) &#123;...&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> num: numbers) &#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2D-Array"><a href="#2D-Array" class="headerlink" title="2D Array"></a>2D Array</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] matrix = <span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#123;<span class="number">2</span>, <span class="number">1</span>&#125;, &#123;<span class="number">3</span>, <span class="number">4</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Main-Function"><a href="#Main-Function" class="headerlink" title="Main Function"></a>Main Function</h3><p>Main function is the entry point the Java program; all other functions are directly or indirectly invoked by the main function.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="The-Object-Oriented-Paradigm-in-Java"><a href="#The-Object-Oriented-Paradigm-in-Java" class="headerlink" title="The Object-Oriented Paradigm in Java"></a>The Object-Oriented Paradigm in Java</h3><ul>
+<li><strong>存储</strong>：和 primitive types 的对比</li>
+<li><strong>构造函数</strong></li>
+<li><strong>更多关键词</strong>：static, final, public/private, this</li>
+<li>null basics -&gt; NullPointerException (NPE)</li>
+</ul>
+<h3 id="Basic-concept"><a href="#Basic-concept" class="headerlink" title="Basic concept"></a>Basic concept</h3><ul>
+<li><strong>class</strong></li>
+<li><strong>object</strong></li>
+<li><strong>reference</strong>: the business card of object, find the object by ref.</li>
+</ul>
+<h3 id="Working-with-Objects"><a href="#Working-with-Objects" class="headerlink" title="Working with Objects"></a>Working with Objects</h3><p>The <code>new</code> keyword: create an object</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student firstStudent = <span class="keyword">new</span> Student(<span class="string">&quot;Tom&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>There are actually three important operations that happened in this statement.</p>
+<ol>
+<li><p><strong>Declaration:</strong> associate a variable name with an object type</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student firstStudent</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Instantiation:</strong> the <code>new</code> keyword is a Java operator that creates the object</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstStudent = <span class="keyword">new</span> Student();</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Initialization:</strong> the new operator is followed by a call to a <code>constructor</code>, which initializes the new object</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student firstStudent = <span class="keyword">new</span> Student(<span class="string">&quot;Tom&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="Object-Memory-Layout"><a href="#Object-Memory-Layout" class="headerlink" title="Object Memory Layout"></a>Object Memory Layout</h3><p>Memery spaces in a Kava program: <code>Stack</code> and <code>Heap</code></p>
+<ul>
+<li><strong>Stack</strong>: In computer science, a call stack is a stack data structure that stores information about the active subroutines of a computer program (stack frame). This kind of stack is also known as an execution stack, program stack, control stack, run-time stack, or machine stack, and is often shortened to just “the stack”. <strong>(LIFO)</strong></li>
+<li><strong>Heap</strong>: Java objects reside in an area called te heap. The heap is created when the JVM starts up and may increase or decrease in size while the application runs. <strong>(FIFO)</strong></li>
+</ul>
+<h3 id="Call-Stack"><a href="#Call-Stack" class="headerlink" title="Call Stack"></a>Call Stack</h3><blockquote>
+<p><em>no function call, no call stack</em></p>
+</blockquote>
+<h3 id="Stack-Heap"><a href="#Stack-Heap" class="headerlink" title="Stack + Heap"></a>Stack + Heap</h3><ol>
+<li>Stack + Heap are memory (RAM) segments</li>
+<li>RAM: Random Access Memory</li>
+<li>Difference<ul>
+<li>space: stack ~MB, heap ~GB</li>
+<li>read/write speed: srack (1 CPU instruction) &gt;&gt;&gt; heap(“bookkeeping”)</li>
+</ul>
+</li>
+<li>Stack frame<ul>
+<li>1 function invocation -&gt; 1stack frame “pushed” onto <u>the call stack (a pile of books)</u></li>
+<li><u>if a function is never called, its stack frame is never created</u></li>
+</ul>
+</li>
+</ol>
+<h3 id="Variable-Scope"><a href="#Variable-Scope" class="headerlink" title="Variable Scope"></a>Variable Scope</h3><ol>
+<li>Scope: <strong>lifetime and accessibility/visibility</strong> of a variable. How large the scope depends on where a variable is <u>declared</u>.</li>
+<li>Simply, the scope is the <strong>innermost</strong> {} warpping up the <strong>decalration</strong>.</li>
+<li><u>Local (local to function) variables</u>: the variables whose lifetime is strictly tied with a function.</li>
+</ol>
+<h3 id="Default-Values"><a href="#Default-Values" class="headerlink" title="Default Values"></a>Default Values</h3><ul>
+<li><p>It’s not always necessary to assign a value when a field is declared. Fields that are declared but not initailized will be set to a reasonable defalut by the compiler.</p>
+</li>
+<li><p>The following chart summarizes the default values for the above data types.</p>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Default Value (for fields)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>0L</td>
+</tr>
+<tr>
+<td>float</td>
+<td>0.0f</td>
+</tr>
+<tr>
+<td>double</td>
+<td>0.0d</td>
+</tr>
+<tr>
+<td>char</td>
+<td>‘\u0000’</td>
+</tr>
+<tr>
+<td>any object</td>
+<td>null</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="Java-Parameter-Passing"><a href="#Java-Parameter-Passing" class="headerlink" title="Java Parameter Passing"></a>Java Parameter Passing</h3><p><strong>Java function call is always pass by value (copy)</strong></p>
+<ul>
+<li>primitive type: copy of the <u>value itself</u></li>
+<li>reference: copy of the <u>reference</u></li>
+</ul>
+<h3 id="Variables-and-their-scope"><a href="#Variables-and-their-scope" class="headerlink" title="Variables and their scope"></a>Variables and their scope</h3><p><strong>Local variables must be initialized before use.</strong><br><em>One local variable has the <strong>lifetime</strong> of their own scope.</em></p>
+<p>In general, each pair of <strong>curly brackets</strong> defines a scope. Each variable is associated with the scope it defined in.</p>
+<h4 id="Instance-Variable-filed"><a href="#Instance-Variable-filed" class="headerlink" title="Instance Variable (filed)"></a>Instance Variable (filed)</h4><ul>
+<li>instance filed == instance variable == member variable</li>
+<li><strong>non-static</strong> variables defined <strong>within a class</strong>, but not within any methods</li>
+<li>instance variables have the same life cycle as the instance</li>
+<li>instance variables’ visibility is defined by their access modifiers</li>
+<li>instance variables hasve default values f they’re not initaialized by a constructor</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Local Variable</th>
+<th>Insrance Variable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Location</td>
+<td>Stack</td>
+<td>Heap</td>
+</tr>
+<tr>
+<td>Lifetime</td>
+<td>Method call</td>
+<td>Instance lifetime</td>
+</tr>
+<tr>
+<td>Visibility</td>
+<td>Scope</td>
+<td>Modifier</td>
+</tr>
+<tr>
+<td>Default value</td>
+<td>N / A</td>
+<td>0, false, null</td>
+</tr>
+<tr>
+<td>Initialzation</td>
+<td>Must set before read</td>
+<td>In declaration or constructor</td>
+</tr>
+</tbody></table>
+<h3 id="Objects-References-amp-Null"><a href="#Objects-References-amp-Null" class="headerlink" title="Objects, References &amp; Null"></a>Objects, References &amp; Null</h3><h3 id="Static"><a href="#Static" class="headerlink" title="Static"></a>Static</h3><p>Members (filed, methods) belong to class, not object (instance).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> isTrue = <span class="keyword">false</span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> viod <span class="title">change</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">// cannot use `this`</span></span><br><span class="line">      isTrue = <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Demo.change();</span><br><span class="line">System.out.println(Demo.isTrue); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>cannot use <code>this</code> to access isTrue in here</li>
+<li><code>this</code> usually been used as a <strong>Object</strong></li>
+<li>variable with static means variables belong to class not object<br/></li>
+<li><strong>Static methods can (directly) access only static variables / methods</strong></li>
+<li><strong>Non-static method can access both static and non-static variables / methods</strong></li>
+</ul>
+<h3 id="Final"><a href="#Final" class="headerlink" title="Final"></a>Final</h3><p>constans, once assigned, cannot be changed.</p>
+<ul>
+<li><strong>final class:</strong> A class that cannot be derived</li>
+<li><strong>final method:</strong> A method that cannot be overridden</li>
+<li><strong>final variable:</strong> Avariable that once assigned, cannot be assigned again</li>
+</ul>
+<h3 id="Array-amp-Object"><a href="#Array-amp-Object" class="headerlink" title="Array &amp; Object"></a>Array &amp; Object</h3><h4 id="arrays-are-objects"><a href="#arrays-are-objects" class="headerlink" title="arrays are objects"></a>arrays are objects</h4><ul>
+<li>the elements in the array still occupy consecutive memory space on the heap</li>
+<li><strong>“length” is a filed of the array object</strong></li>
+<li><strong>array length can <em>not</em> be changed after the array object is created. (final)</strong></li>
+</ul>
+<p><strong>Occupies consecutive memory and the elements in the array can be referenced via the index in O(1) time</strong></p>
+<h4 id="Exceptions-Error"><a href="#Exceptions-Error" class="headerlink" title="Exceptions / Error"></a>Exceptions / Error</h4><ul>
+<li>ArrayIndexOutOfBoundExpecption</li>
+<li>NullPointerException</li>
+</ul>
+<hr>
+<h2 id="List-Queue-Deque"><a href="#List-Queue-Deque" class="headerlink" title="List, Queue, Deque"></a>List, Queue, Deque</h2><p><img src="/assets/java/3.png"></p>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><ul>
+<li><code>add(E e)</code></li>
+<li><code>add(int index, E e)</code></li>
+<li><code>remove(int index)</code></li>
+<li><code>remove(E e)</code></li>
+<li><code>set(int index, E e)</code></li>
+<li><code>E get(int index)</code></li>
+<li><code>int size()</code></li>
+</ul>
+<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><ul>
+<li><code>offer(E e)</code></li>
+<li><code>E peek()</code></li>
+<li><code>E poll()</code></li>
+</ul>
+<h3 id="Deque"><a href="#Deque" class="headerlink" title="Deque"></a>Deque</h3><ul>
+<li><code>offerFirst(E e)</code></li>
+<li><code>offerLast(E e)</code></li>
+<li><code>E peekFirst()</code></li>
+<li><code>E peekLast()</code></li>
+<li><code>E pollFirst()</code></li>
+<li><code>E pollLast()</code></li>
+</ul>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ol>
+<li><strong>if you want to use a Queue</strong><br><code>Queue&lt;X&gt; queue = new ArrayDeque&lt;&gt;();</code></li>
+<li><strong>if you want to use a Stack</strong><br><code>Deque&lt;X&gt; stack = new ArrayDeque&lt;&gt;();</code></li>
+<li><strong>if you want to use a two-end Queue</strong><br><code>Deque&lt;X&gt; dq = new ArrayDeque&lt;&gt;();</code></li>
+<li><strong>if you want to use a size-adjustable array</strong><br><code>List&lt;X&gt; list = new ArrayList&lt;&gt;();</code></li>
+<li><strong>if you want to use a priority queue</strong><br><code>PriorityQueue&lt;X&gt; pq = new PriorityQueue&lt;&gt;();</code></li>
+</ol>
+<hr>
+<h2 id="Set-amp-Map"><a href="#Set-amp-Map" class="headerlink" title="Set &amp; Map"></a>Set &amp; Map</h2><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>A collection that <strong>can not contain duplicate elements</strong>.</p>
+<ul>
+<li><code>HashSet</code>: Which stores its elements in a <strong>hashtable</strong>, is the best-performing implementation, however it makes <strong>no guarantees concerning the order of iteration</strong>.</li>
+<li><code>TreeSet</code>: Which stores it elements in a red-black tree (balanced binary search tree), orders its elements based on their value</li>
+<li><code>LinkedHashSet</code>: It is a HashSet and also it is a LinkedList, it maintains the order when each of the elements is inserted into the HashSet</li>
+</ul>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>A collection that maps keys to values. A <code>Map</code> cannot contain duplicate keys; each key can map to one value.</p>
+<ul>
+<li><code>HashMap</code></li>
+<li><code>TreeMap</code></li>
+<li><code>LinkedHashMap</code></li>
+</ul>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><h4 id="Common-API"><a href="#Common-API" class="headerlink" title="Common API"></a>Common API</h4><ul>
+<li><code>V put(K key, V value)</code></li>
+<li><code>V get(Object key)</code></li>
+<li><code>V remove(Object key)</code></li>
+<li><code>boolean containsKey(Object key)</code> -&gt; O(n)</li>
+<li><code>boolean containsValue(Object value)</code></li>
+<li><code>void clear()</code></li>
+<li><code>int size()</code></li>
+<li><code>boolean isEmpty()</code></li>
+</ul>
+<p><strong>Time Complexity</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Average</th>
+<th>Worst <font color=red>(&lt;= JDK 7)</font></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>search: <br/> <code>boolean containsKey(Object key)</code> <br/> <code>V get(Object key)</code></td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>insert / update: <br/> <code>V put(K key, V value)</code></td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>delete: <br/> <code>V remove(Object key)</code> <br/> <code>V get(Object key)</code></td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+</tbody></table>
+<h4 id="A-HashMap-Implementation"><a href="#A-HashMap-Implementation" class="headerlink" title="A HashMap Implementation"></a>A HashMap Implementation</h4><ul>
+<li>A table of <strong>buckets</strong> (an array of buckets), using the array index to denote each bucket</li>
+<li>For each &lt;key, value&gt;, it goes to one of the buckets, the bucket index is determined by a <strong>hash function</strong> applied on <strong>key</strong> and the size of array</li>
+</ul>
+<p><img src="/assets/java/4.png"></p>
+<p><strong>Collision Control</strong></p>
+<ul>
+<li>Collision - two keys mapped to the same bucket</li>
+<li><strong>Separate Chaining</strong> (Close Addressing) - the element of each of the buckets is actually a single linked list</li>
+<li><strong>Open addressing</strong> - put the key-value pair into the “next” available bucket<ul>
+<li>How to define next? linear / quadratic / exponential probing, hash again</li>
+<li>Challenge: handing removed keys in the map</li>
+<li>Not used by Java, but by some real life systems</li>
+</ul>
+</li>
+<li>If different keys are determined to use the same bucket, they will be chained in the list</li>
+</ul>
+<h4 id="equals-amp-hashCode"><a href="#equals-amp-hashCode" class="headerlink" title="==, equals() &amp; hashCode()"></a><code>==</code>, <code>equals()</code> &amp; <code>hashCode()</code></h4><ul>
+<li><code>==</code><ul>
+<li>determine if two primitive types have the same value</li>
+<li>determine of two references are pointed to the same object</li>
+</ul>
+</li>
+<li><code>equals()</code>, <code>hashCode()</code><ul>
+<li>defined in <code>Object</code> calss, <code>Object</code> is the root class from any Java class</li>
+<li>any Java class <strong>implicity extends</strong> Object class, so if in the subclass these two methods are not overridden, it inherits what it defines in Object class</li>
+<li>the defalut implementation of <code>equals()</code> is check if the two references are pointed to the same object <code>==</code></li>
+<li>the defalut implementation of <code>hashCode()</code> returns a “unique hash value” for the object based on its memory address</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="Inheritance-Polymorphism-Access-Modifier-Exceptions"><a href="#Inheritance-Polymorphism-Access-Modifier-Exceptions" class="headerlink" title="Inheritance, Polymorphism, Access Modifier, Exceptions"></a>Inheritance, Polymorphism, Access Modifier, Exceptions</h2><h3 id="Inheritance"><a href="#Inheritance" class="headerlink" title="Inheritance"></a>Inheritance</h3><p>A class that is derived from another class is called a <strong>sbuclass</strong> (also a <strong>derived</strong> class, <strong>extended</strong> class, or <strong>child</strong> class). The class from which the sbuclass is derived is called s <strong>superclass</strong> (also a <strong>base</strong> class or a <strong>parent</strong> class).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">final</span> String name;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> age;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> String company;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCompany</span><span class="params">(String company)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.company = company;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getCompany</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> company;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(name);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Polymorphism"><a href="#Polymorphism" class="headerlink" title="Polymorphism"></a>Polymorphism</h3><p>使用父类的 reference 来指向子类的实现，并且调用<strong>子类里面 override 了父类的 method</strong></p>
+<ol>
+<li>哪些函数能够调用取决于 reference（声明）的类型 –compile time</li>
+<li>对于被 override 的函数，调用哪个版本，取决于实现的类型 – runtime</li>
+</ol>
+<h4 id="Override"><a href="#Override" class="headerlink" title="Override"></a>Override</h4><p><strong>Override</strong> is when you redefine a method that has been defined in a parent class (using the same signature). Resolved at runtime.</p>
+<h4 id="Overload"><a href="#Overload" class="headerlink" title="Overload"></a>Overload</h4><p><strong>Overload</strong> is when you define two methods with the same name, in the same class, <strong>distinguished by their signatures (different)</strong>. Resolved at compile time.</p>
+<h4 id="abstract-vs-interface"><a href="#abstract-vs-interface" class="headerlink" title="abstract vs. interface"></a>abstract vs. interface</h4><p>A class must be declared abstract when it has one or more abstract methods. A method is declared abstract when it has a method heading, but no boay - which means that an abstract method has no implementation code inside like normal methods do.</p>
+<p><strong>Difference:</strong></p>
+<ol>
+<li>An abstract class <strong>has one or more abstract methods</strong>, can have some <strong>non-abstract methods, constructors</strong> and <strong>instance variables</strong> as well, can have <strong>non-public members</strong>. An interface <strong>has only abstract methods</strong>. All methods must be <strong>public</strong>. Any class that implements the interface is responsible for providing the method definition / implementation.</li>
+<li>Java does not allow multiple inheritance. In Java, a class can only derive from one class, whether it’s abstract or not. However, a class can implement multiple interfaces. Java does not allow multiple <strong>extends</strong>, but a class can <strong>implements</strong> multiple interfaces.</li>
+</ol>
+<p><strong>When use abstract class vs. interface?</strong></p>
+<ol>
+<li>An abstract class is good if you think you will plan on using inheritance since it provides <strong>a common base class</strong> implementation to derived classes.</li>
+<li>An abstract class is also good if you want to be able to declare non-public members. In an interface, all methods must be public.</li>
+<li>If you think you will need to <strong>add non-abstract methods in the future</strong>, then an abstract class is a better choice. Because if you add new method headings to an interface, then all of the classes that already implement that interface will hace to be changed to implement the new methods.</li>
+<li>Interface are a good choice when you think that the <strong>API will not change for a while</strong>. Interface are also good when you want to hace something similar to multiple inheritance, since you can implement multiple interfaces.</li>
+</ol>
+<h3 id="Access-Modifier"><a href="#Access-Modifier" class="headerlink" title="Access Modifier"></a>Access Modifier</h3><ul>
+<li><code>public</code>: everyone can access</li>
+<li><code>private</code>: only myself can access (but only at class level, other objects of the same calss can access as well)</li>
+<li><code>protected</code>: only my children and same package can access</li>
+<li><code>default</code>: only the same package can access</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th align="center">Class</th>
+<th align="center">Package</th>
+<th align="center">Subclass</th>
+<th align="center">World</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+</tr>
+<tr>
+<td>protected</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+</tr>
+<tr>
+<td>no modifier</td>
+<td align="center">Y</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+<td align="center">N</td>
+</tr>
+<tr>
+<td>private</td>
+<td align="center">Y</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="center">N</td>
+</tr>
+</tbody></table>
+<h3 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h3><p><img src="/assets/java/1.png"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExceptionTest</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getException</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">         exception();</span><br><span class="line">      &#125; <span class="keyword">catch</span> (Exception err) &#123;</span><br><span class="line">         System.out.println(err);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">throwException</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">      exception();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> exception <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> Exception();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="throw-vs-throws"><a href="#throw-vs-throws" class="headerlink" title="throw vs. throws"></a>throw vs. throws</h4><ul>
+<li><code>throw</code>: The <strong>throw</strong> keyword in Java is used to explicitly throw an exception from a methods or any block of code.</li>
+<li><code>throws</code>: Throws is a keyword in Java which is used <strong>in the head of method</strong> to indicate that this method might throw one of the listed type exceptions. The caller to these methods <strong>has to</strong> handle the exception if it they are <strong>checked exceptions</strong>.</li>
+</ul>
+<p><img src="/assets/java/2.png"></p>
+<hr>
+<h2 id="How-to-test-code"><a href="#How-to-test-code" class="headerlink" title="How to test code?"></a>How to test code?</h2><ul>
+<li>smoke test</li>
+<li>unit test</li>
+<li>functional test</li>
+<li>integration test</li>
+<li>regression test</li>
+<li>performance / load / stress test</li>
+<li>end-to-end test</li>
+<li>balckbox / whitebox test</li>
+</ul>
+<h3 id="JUnit-Test"><a href="#JUnit-Test" class="headerlink" title="JUnit Test"></a>JUnit Test</h3><h4 id="Annotations"><a href="#Annotations" class="headerlink" title="Annotations"></a>Annotations</h4><ul>
+<li><code>@Test</code>: The Test annotation tells JUnit that the public void method to which it is attached can be run as a test case.</li>
+<li><code>@Before</code>: Several tests need similar objects created before they can run. Annotating a public void method with <code>@Before</code> causes that method to be run <strong>before each</strong> Test method.</li>
+<li><code>@After</code>: If you allocate external resources in a Before method, you need to release them after the test runs. Annotating a public void method with <code>@After</code> causes that method to be run after the Test method.</li>
+<li><code>@BeforeClass</code>: Annotating a public <strong>static</strong> void method with <code>@BeforeClass</code> causes it to be run once before any of the test methods in the class.</li>
+<li><code>@AfterClass</code>: This will perform the method after all tests hace finished. This can be used to perform clean-up activites.</li>
+</ul>
+<p><strong>Note</strong></p>
+<ol>
+<li><code>@BeforeClass</code> runs once, at the very beginning</li>
+<li><code>AfterClass</code> runs once, at the very end</li>
+<li><code>@Before</code> runs before <strong>each</strong> test</li>
+<li><code>@After</code> runs after <strong>each</strong> test</li>
+<li>Methods with <code>@BeforeClass</code> and <code>@AfterClass</code> must be <strong>static</strong></li>
+</ol>
+<h4 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h4><ul>
+<li><code>void assertEquals(int expected, int actual)</code><br>Checks that two primitives / objects are <strong>equal</strong><br><code>void assertEquals(double expected, double actual, double delta)</code></li>
+<li><code>void assertTrue(boolean condition)</code><br>Checks that a condition is true</li>
+<li><code>void assertFalse(boolean condition)</code><br>Checks that a condition is false</li>
+<li><code>void assertNotNull(Object object)</code><br>Checks that an object isn’t null</li>
+<li><code>void assertNull(Object object)</code><br>Checks that an object is null</li>
+<li><code>void assertSame(Object a, Object b)</code><br>The <code>assertSame()</code> method tests if two object <strong>references</strong> point ti the same object</li>
+<li><code>void assertArrayEquals(expectedArray, resultArray)</code><br>The <code>assertArrayEquals()</code> method will test whether two arrays are equal to each other</li>
+</ul>
+<h3 id="What-is-a-good-test-case"><a href="#What-is-a-good-test-case" class="headerlink" title="What is a good test case?"></a>What is a good test case?</h3><ol>
+<li>Should be accurate and tests what it is intended to test.</li>
+<li>No unnecessary steps should be included in it.</li>
+<li>It should be resuable.</li>
+<li>It should be traceable to requirements.</li>
+<li>It should be independent.</li>
+<li>It should be simple and clear, any tester should be able to understand it by reading once.</li>
+</ol>
+<hr>
+<h2 id="Nested-Class-Iterators-Generics-amp-Enum"><a href="#Nested-Class-Iterators-Generics-amp-Enum" class="headerlink" title="Nested Class, Iterators, Generics &amp; Enum"></a>Nested Class, Iterators, Generics &amp; Enum</h2><h3 id="Nested-Class-嵌套类"><a href="#Nested-Class-嵌套类" class="headerlink" title="Nested Class (嵌套类)"></a>Nested Class (嵌套类)</h3><p><strong>Definition</strong><br>A nested class is any class whose declaration occurs within the body of another class or interface. A top level class is a class that is not a nested class.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> </span>&#123;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">NestedStaticClass</span> </span>&#123;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>It is a way of logically classes that are only used in one place</li>
+<li>It increases encapsulation</li>
+<li>It can lead to more readable and maintainable code</li>
+</ul>
+<blockquote>
+<p>Prefer nested static class to inner class (use inner class only when you need to access non-static member)</p>
+</blockquote>
+<h3 id="Iterators"><a href="#Iterators" class="headerlink" title="Iterators"></a>Iterators</h3><p>Iterate through a Collection object (List, etc.)</p>
+<ul>
+<li><code>next()</code> returns the next element in the iteration</li>
+<li><code>hasNext()</code> returns true if the iteration has more elements</li>
+<li><code>remove()</code> removes from the underlying collection the last element returned by this iterator (optional operation)</li>
+</ul>
+<h3 id="Generics-泛型"><a href="#Generics-泛型" class="headerlink" title="Generics (泛型)"></a>Generics (泛型)</h3><p><strong>Definition</strong><br>Types are parameters<br>A type or method to operate on objects of various types while providing compile-time type safety</p>
+<p>Java <strong>Generic methods</strong> and <strong>Generic classes</strong> enable programmers to specify</p>
+<ul>
+<li>with a single method declaration, <strong>a set of related methods</strong></li>
+<li>with a single class declaration, <strong>a set of related types</strong></li>
+</ul>
+<h4 id="Generic-Method"><a href="#Generic-Method" class="headerlink" title="Generic Method"></a>Generic Method</h4><blockquote>
+<p>Object only</p>
+</blockquote>
+<p><strong>Syntax</strong></p>
+<ul>
+<li><p><code>public static &lt;E, ...&gt; void demoMethod(E[] input, ...)</code></p>
+</li>
+<li><p><code>public static &lt;E extends Integer &amp; Comparable&lt;E&gt; &amp; Iterable&lt;E&gt;&gt; void demoMethod(E[] input)</code></p>
+</li>
+</ul>
+<h4 id="Generic-Class"><a href="#Generic-Class" class="headerlink" title="Generic Class"></a>Generic Class</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> T value;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Demo</span><span class="params">(T v)</span> </span>&#123;</span><br><span class="line">      value = v;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通配符-Wildcard"><a href="#通配符-Wildcard" class="headerlink" title="通配符 (Wildcard)"></a>通配符 (Wildcard)</h4><ul>
+<li><code>? extends</code> (Upper Bounded Wildcard)</li>
+<li><code>? super</code> (Lower Bounded Wildcard)</li>
+</ul>
+<h3 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h3><ul>
+<li><code>values()</code> can be used to return all values present inside Enum</li>
+<li>Order is important in enums. By using <code>ordinal()</code>, each enum constant index can be found, just like array index.</li>
+<li><code>valueOf()</code> returns the enum constant of the specified string value, if exists.</li>
+</ul>
+<hr>
+<h2 id="Basic-Java-File-Read-Write"><a href="#Basic-Java-File-Read-Write" class="headerlink" title="Basic Java File Read / Write"></a>Basic Java File Read / Write</h2><h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><p>A stream can be defined as <strong>a sequence of data</strong>.</p>
+<ul>
+<li>inputStream: The InputStream is used to read data from a source</li>
+<li>outputStream: The OutputStream is used from writing data to a destination</li>
+</ul>
+<hr>
+<h2 id="C-vs-Java-vs-Python-Grabage-collection"><a href="#C-vs-Java-vs-Python-Grabage-collection" class="headerlink" title="C++ vs. Java (vs. Python), Grabage collection"></a>C++ vs. Java (vs. Python), Grabage collection</h2><h3 id="Different-between-Java-amp-C"><a href="#Different-between-Java-amp-C" class="headerlink" title="Different between Java &amp; C++"></a>Different between Java &amp; C++</h3><ol>
+<li><p><strong>Platform compatible, write once, compile once, run everywhere on <font color=red>JVM</font></strong></p>
+<ul>
+<li>C++: write once, <strong>compile</strong> everywhere</li>
+<li>JVM: Java Virtual Machine</li>
+<li>JRE vs. JDK<ul>
+<li>JRE (Java Runtime Environement) is the JVM program, Java application need to run on JRE</li>
+<li>JDK contains the tools for development Java programs rnuning on JRE, for example, it provides the conpile “javac”</li>
+</ul>
+</li>
+</ul>
+<p><strong>Compiler – 编译器</strong></p>
+<p><strong>Interpreter – 解释器</strong></p>
+</li>
+<li><p>Compiles to Java <strong>byte code</strong> can be recongnized by JVM, independent to underline OS.</p>
+<ul>
+<li><strong>JVM (虚拟机)</strong> – The Java Virtual Machine (JVM) is an <strong>abstract computing machine</strong> The JVM is a program that looks a machine to the programs written to execute in it.</li>
+<li><strong>JRE (java 运行时环境)</strong></li>
+<li><strong>JDK (java 开发工具包)</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="/assets/java/5.png"></p>
+<ol start="3">
+<li><p>Interpreter to routines on systems with different machine codes.</p>
+<ul>
+<li>Compile / Interpret Language<br><strong>Platform compatibility:</strong> language virtual machine &lt;- Java, Python, JavaScript …<br><strong>Better performance:</strong> compile to native language (machine language) &lt;- C, C++, GO …<br><strong>C++:</strong> The source code need to be compiled to directly the machine instruction on which machine the program is rnuning on. The compiled byte code is different on different machines (machine need to recongnize the compiled code).<br><strong>Java:</strong> The source code just need to be compiled once and it can run on any machine with JRE installed.<br><strong>Python:</strong> 1. Interpreter: Python 2. Compiler: pyc</li>
+</ul>
+</li>
+<li><p>Strongly encouraged <strong>Object-Oriented Programming Paradigm</strong>, everything in Java is class / object.</p>
+</li>
+<li><p>All types (reference types, primitive types) are always <strong>passed by value</strong></p>
+</li>
+<li><p>Java does not support unsigned numbers</p>
+</li>
+<li><p><strong>Pointers vs. References</strong></p>
+<ul>
+<li>no pointer arithmetics<br>Difference between pointers in C++ and reference in Java:<ul>
+<li>references in Java are <strong>strongly typed</strong></li>
+<li>There is no pointer arithmetic on references</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>No operator overloading</p>
+</li>
+<li><p>Classes / Objects are always allocated on the Heap, there is no way to allocate objects on Stack.</p>
+</li>
+<li><p><strong>Grabage Collection</strong></p>
+</li>
+<li><p><strong>Single inheritance, multiple inheritance only be done by implementing multiple interfaces.</strong></p>
+</li>
+</ol>
+<h3 id="Grabage-Collection"><a href="#Grabage-Collection" class="headerlink" title="Grabage Collection"></a>Grabage Collection</h3><p><img src="/assets/java/6.png"><br>The <strong><em>heap</em></strong> is where your object data is stored. <font color=red>This area is then managed by the grabage collertor selected at startup.</font></p>
+<p><strong>Step 1: Marking</strong><br>The first step in the process is called marking. This is where the garbage collector identifies which pieces of memory are in use and which are not. Referenced objects are shown in blue. Unreferenced objects are shown in gold. All objects are scanned in the marking phase to make this determination. This can be a very time consuming process if all objects in a system must be scanned.</p>
+<p><strong>Step 2: Normal Deletion</strong><br>Normal deletion removes unreferenced objects leaving referenced objects and pointers to free space. The memory allocator holds references to blocks of free space where new object can be allocated.</p>
+<p><strong>Step 2a: Deletion with Compacting</strong><br>To further improve performance, in addition to deleting unreferenced objects, you can also compact the remaining referenced objects. By moving referenced object together, this makes new memory allocation much easier and faster. (fragment)</p>
+<p><strong>There are four kinds of GC roots in Java</strong></p>
+<ol>
+<li><strong>Local variable</strong> are kept alive by the stack of a thread.</li>
+<li><strong>Active Java threads</strong></li>
+<li><strong>Static Variables</strong></li>
+<li><strong>JNI (Java Native Interface) References</strong></li>
+</ol>
+<hr>
+<h2 id="Concurrency"><a href="#Concurrency" class="headerlink" title="Concurrency"></a>Concurrency</h2><h3 id="Concurrency-vs-Parallel"><a href="#Concurrency-vs-Parallel" class="headerlink" title="Concurrency vs. Parallel"></a>Concurrency vs. Parallel</h3><ul>
+<li><p><strong>Concurrency:</strong> multiple tasks run <em>simultaneously</em></p>
+</li>
+<li><p><strong>Parallel:</strong> multiple tasks <em>physically</em> run simultaneously</p>
+</li>
+</ul>
+<h3 id="Multiprocess-vs-Multi-thread"><a href="#Multiprocess-vs-Multi-thread" class="headerlink" title="Multiprocess vs. Multi-thread"></a>Multiprocess vs. Multi-thread</h3><p><strong>Process:</strong> An independent execution of instructions with independent memory space, stack, heap, and 0S respurce .<br>Each process sees a complete memory space (pretend to be the only task of a system. )<br>Different processes communicates through interprocess communication (explicit IPC).</p>
+<p><strong>Thread:</strong> An independent execution of instruction with shared memory space.<br>Each thread has its private: stack, program counter and register states.<br>Thread in the same process has shared: heap, static memory segment, os resource.</p>
+<p>Semantically, the fundamental difference between a “process” and a “thread” is <strong>if they have independent memory space.</strong> lmplementation-wise, there are corner cases. Be careful about your wording here.</p>
+<h3 id="Java-Thread"><a href="#Java-Thread" class="headerlink" title="Java Thread"></a>Java Thread</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Thread t = <span class="keyword">new</span> Thread();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Schedule the created thread and make ready to go</span></span><br><span class="line">t.start();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Make sure the thread finished after this line. (Waits for thsi thread to die.)</span></span><br><span class="line">t.join();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>When the JVM will exit? -&gt; no alive non-daemon threads</p>
+</blockquote>
+<p>A thread’s life cycle:<br><code>start()</code> -&gt; mark it as “read to run” stat -&gt; put into the ready to run queue and wait for the scheduler to assign its time frame (quota) for running -&gt; end of quota or stat change by different event:<br><code>sleep()</code> -&gt; remove from the ready to run queue, and move to sleeping thread pool<br><code>wait()</code> -&gt; removed from the ready to run queue, and moce to the conditions’ queue for singal to put back to the ready queue<br><code>yield()</code> -&gt; did not change the ready to run stat, but preempt itself the current quota, put back to the ready-to-run queue again for the next quota</p>
+<h3 id="Synchronization-amp-Race"><a href="#Synchronization-amp-Race" class="headerlink" title="Synchronization &amp; Race"></a>Synchronization &amp; Race</h3><ul>
+<li><strong>Synchronization:</strong> the coordination of events to operate a system in unison</li>
+</ul>
+<p>If two“conflicting operations” are in different threads and are not properly synchronized (concurrent), they will introduce data races. In general, two operations conflict with each other if they operate on the same memory location, and at least one of them is a write. Races are mostly treated as bugs in Java programs.</p>
+<p>So to form a data race there should be 3 factors.</p>
+<ol>
+<li>More than one operations work on the same memory location</li>
+<li>At least one operation is a write</li>
+<li>At least two of those operations are concurrent</li>
+</ol>
+<h3 id="Mutual-exclusion-mutex-critical-section-and-locks"><a href="#Mutual-exclusion-mutex-critical-section-and-locks" class="headerlink" title="Mutual exclusion (mutex), critical section, and locks"></a>Mutual exclusion (mutex), critical section, and locks</h3><p>Conditions to form a deadlock:</p>
+<ol>
+<li>Mutual Exclusion: At least one resource must be held in a non-shareable mode. Only one process can use the resource at any given instant of time.</li>
+<li>Hold and Wait or Resource Holding: A process is currently holding at least one resource and requesting additional resources which are being held by other processes.←Avoid nesting critical sections!</li>
+<li>No Preemptin: a resoure can be rleased ony vluntarly by the poces hlding it</li>
+<li>Circular Wait</li>
+</ol>
+<hr>
+<h2 id="Trie"><a href="#Trie" class="headerlink" title="Trie"></a>Trie</h2><p>A data structure. More precisely, a search tree.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">   <span class="comment">// Maps a character to its corresponding child</span></span><br><span class="line">   Map&lt;Character, TrieNode&gt; children;</span><br><span class="line">   <span class="keyword">boolean</span> isWord;</span><br><span class="line">   <span class="keyword">int</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>or</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Assumption: a key contains lower-case letters only</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line">   <span class="comment">// An array of size 26, each index -&gt; character</span></span><br><span class="line">   <span class="comment">// 0 -&gt; &#x27;a&#x27;, 1 -&gt; &#x27;b&#x27;, ...</span></span><br><span class="line">   <span class="comment">// &#x27;c&#x27; -&gt; &#x27;c&#x27; - &#x27;a&#x27; = 2</span></span><br><span class="line">   TrieNode[] children;</span><br><span class="line">   <span class="keyword">boolean</span> isWord;</span><br><span class="line">   <span class="keyword">int</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Java</p><p><a href="https://xiongshihao.ltd/2021/07/09/Java/">https://xiongshihao.ltd/2021/07/09/Java/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Shihao Xiong</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-07-09</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-12-13</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2021/07/09/Algorithm/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Data Structure &amp; Algorithm</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/07/09/Ajax/"><span class="level-item">Ajax</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/logo.png" alt="Xiong Shihao"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Xiong Shihao</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Chengdu, Sichuan</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">9</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">关注我</a></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Design/"><span class="level-start"><span class="level-item">Design</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Notes/"><span class="level-start"><span class="level-item">Notes</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Ajax/"><span class="tag">Ajax</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Algorithm/"><span class="tag">Algorithm</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Css/"><span class="tag">Css</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Design/"><span class="tag">Design</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java/"><span class="tag">Java</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vue/"><span class="tag">Vue</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">6</span></a></div></div></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-09-12T01:00:46.000Z">2021-09-11</time></p><p class="title"><a href="/2021/09/11/System-Design/">System Design</a></p><p class="categories"><a href="/categories/Design/">Design</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-08-15T13:01:06.000Z">2021-08-15</time></p><p class="title"><a href="/2021/08/15/Design/">Design</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/07/29/React/"><img src="/assets/react/cover.png" alt="React"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-07-29T21:34:14.000Z">2021-07-29</time></p><p class="title"><a href="/2021/07/29/React/">React</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/07/29/Vue/"><img src="/assets/vue/cover.png" alt="Vue"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-07-29T21:32:59.000Z">2021-07-29</time></p><p class="title"><a href="/2021/07/29/Vue/">Vue</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-07-28T13:52:40.000Z">2021-07-28</time></p><p class="title"><a href="/2021/07/28/Webpack/">Webpack</a></p><p class="categories"><a href="/categories/Notes/">Notes</a></p></div></article></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Primitive-Types-amp-Basic-Operations"><span class="level-left"><span class="level-item">1</span><span class="level-item">Primitive Types &amp; Basic Operations</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#取整"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">取整</span></span></a></li><li><a class="level is-mobile" href="#Operators-amp-Precedence"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">Operators &amp; Precedence</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Control-Flow-amp-Methods"><span class="level-left"><span class="level-item">2</span><span class="level-item">Control Flow &amp; Methods</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Control-Flow"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">Control Flow</span></span></a></li><li><a class="level is-mobile" href="#Methods-Functions"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">Methods / Functions</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Signature"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">Signature</span></span></a></li><li><a class="level is-mobile" href="#Method-Overloading-重载"><span class="level-left"><span class="level-item">2.2.2</span><span class="level-item">Method Overloading(重载)</span></span></a></li><li><a class="level is-mobile" href="#Return-Type"><span class="level-left"><span class="level-item">2.2.3</span><span class="level-item">Return Type</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#Array-Class-amp-Objects"><span class="level-left"><span class="level-item">3</span><span class="level-item">Array, Class &amp; Objects</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1D-2D-Array"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">1D/2D Array</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1D-Array"><span class="level-left"><span class="level-item">3.1.1</span><span class="level-item">1D Array</span></span></a></li><li><a class="level is-mobile" href="#2D-Array"><span class="level-left"><span class="level-item">3.1.2</span><span class="level-item">2D Array</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Main-Function"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">Main Function</span></span></a></li><li><a class="level is-mobile" href="#The-Object-Oriented-Paradigm-in-Java"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">The Object-Oriented Paradigm in Java</span></span></a></li><li><a class="level is-mobile" href="#Basic-concept"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">Basic concept</span></span></a></li><li><a class="level is-mobile" href="#Working-with-Objects"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">Working with Objects</span></span></a></li><li><a class="level is-mobile" href="#Object-Memory-Layout"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">Object Memory Layout</span></span></a></li><li><a class="level is-mobile" href="#Call-Stack"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">Call Stack</span></span></a></li><li><a class="level is-mobile" href="#Stack-Heap"><span class="level-left"><span class="level-item">3.8</span><span class="level-item">Stack + Heap</span></span></a></li><li><a class="level is-mobile" href="#Variable-Scope"><span class="level-left"><span class="level-item">3.9</span><span class="level-item">Variable Scope</span></span></a></li><li><a class="level is-mobile" href="#Default-Values"><span class="level-left"><span class="level-item">3.10</span><span class="level-item">Default Values</span></span></a></li><li><a class="level is-mobile" href="#Java-Parameter-Passing"><span class="level-left"><span class="level-item">3.11</span><span class="level-item">Java Parameter Passing</span></span></a></li><li><a class="level is-mobile" href="#Variables-and-their-scope"><span class="level-left"><span class="level-item">3.12</span><span class="level-item">Variables and their scope</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Instance-Variable-filed"><span class="level-left"><span class="level-item">3.12.1</span><span class="level-item">Instance Variable (filed)</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Objects-References-amp-Null"><span class="level-left"><span class="level-item">3.13</span><span class="level-item">Objects, References &amp; Null</span></span></a></li><li><a class="level is-mobile" href="#Static"><span class="level-left"><span class="level-item">3.14</span><span class="level-item">Static</span></span></a></li><li><a class="level is-mobile" href="#Final"><span class="level-left"><span class="level-item">3.15</span><span class="level-item">Final</span></span></a></li><li><a class="level is-mobile" href="#Array-amp-Object"><span class="level-left"><span class="level-item">3.16</span><span class="level-item">Array &amp; Object</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#arrays-are-objects"><span class="level-left"><span class="level-item">3.16.1</span><span class="level-item">arrays are objects</span></span></a></li><li><a class="level is-mobile" href="#Exceptions-Error"><span class="level-left"><span class="level-item">3.16.2</span><span class="level-item">Exceptions / Error</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#List-Queue-Deque"><span class="level-left"><span class="level-item">4</span><span class="level-item">List, Queue, Deque</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#List"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">List</span></span></a></li><li><a class="level is-mobile" href="#Queue"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">Queue</span></span></a></li><li><a class="level is-mobile" href="#Deque"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">Deque</span></span></a></li><li><a class="level is-mobile" href="#Summary"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">Summary</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Set-amp-Map"><span class="level-left"><span class="level-item">5</span><span class="level-item">Set &amp; Map</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Set"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">Set</span></span></a></li><li><a class="level is-mobile" href="#Map"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">Map</span></span></a></li><li><a class="level is-mobile" href="#HashMap"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">HashMap</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Common-API"><span class="level-left"><span class="level-item">5.3.1</span><span class="level-item">Common API</span></span></a></li><li><a class="level is-mobile" href="#A-HashMap-Implementation"><span class="level-left"><span class="level-item">5.3.2</span><span class="level-item">A HashMap Implementation</span></span></a></li><li><a class="level is-mobile" href="#equals-amp-hashCode"><span class="level-left"><span class="level-item">5.3.3</span><span class="level-item">==, equals() &amp; hashCode()</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#Inheritance-Polymorphism-Access-Modifier-Exceptions"><span class="level-left"><span class="level-item">6</span><span class="level-item">Inheritance, Polymorphism, Access Modifier, Exceptions</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Inheritance"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">Inheritance</span></span></a></li><li><a class="level is-mobile" href="#Polymorphism"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">Polymorphism</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Override"><span class="level-left"><span class="level-item">6.2.1</span><span class="level-item">Override</span></span></a></li><li><a class="level is-mobile" href="#Overload"><span class="level-left"><span class="level-item">6.2.2</span><span class="level-item">Overload</span></span></a></li><li><a class="level is-mobile" href="#abstract-vs-interface"><span class="level-left"><span class="level-item">6.2.3</span><span class="level-item">abstract vs. interface</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Access-Modifier"><span class="level-left"><span class="level-item">6.3</span><span class="level-item">Access Modifier</span></span></a></li><li><a class="level is-mobile" href="#Exceptions"><span class="level-left"><span class="level-item">6.4</span><span class="level-item">Exceptions</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#throw-vs-throws"><span class="level-left"><span class="level-item">6.4.1</span><span class="level-item">throw vs. throws</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#How-to-test-code"><span class="level-left"><span class="level-item">7</span><span class="level-item">How to test code?</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#JUnit-Test"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">JUnit Test</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Annotations"><span class="level-left"><span class="level-item">7.1.1</span><span class="level-item">Annotations</span></span></a></li><li><a class="level is-mobile" href="#Assertions"><span class="level-left"><span class="level-item">7.1.2</span><span class="level-item">Assertions</span></span></a></li></ul></li><li><a class="level is-mobile" href="#What-is-a-good-test-case"><span class="level-left"><span class="level-item">7.2</span><span class="level-item">What is a good test case?</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Nested-Class-Iterators-Generics-amp-Enum"><span class="level-left"><span class="level-item">8</span><span class="level-item">Nested Class, Iterators, Generics &amp; Enum</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Nested-Class-嵌套类"><span class="level-left"><span class="level-item">8.1</span><span class="level-item">Nested Class (嵌套类)</span></span></a></li><li><a class="level is-mobile" href="#Iterators"><span class="level-left"><span class="level-item">8.2</span><span class="level-item">Iterators</span></span></a></li><li><a class="level is-mobile" href="#Generics-泛型"><span class="level-left"><span class="level-item">8.3</span><span class="level-item">Generics (泛型)</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Generic-Method"><span class="level-left"><span class="level-item">8.3.1</span><span class="level-item">Generic Method</span></span></a></li><li><a class="level is-mobile" href="#Generic-Class"><span class="level-left"><span class="level-item">8.3.2</span><span class="level-item">Generic Class</span></span></a></li><li><a class="level is-mobile" href="#通配符-Wildcard"><span class="level-left"><span class="level-item">8.3.3</span><span class="level-item">通配符 (Wildcard)</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Enum"><span class="level-left"><span class="level-item">8.4</span><span class="level-item">Enum</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Basic-Java-File-Read-Write"><span class="level-left"><span class="level-item">9</span><span class="level-item">Basic Java File Read / Write</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Stream"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">Stream</span></span></a></li></ul></li><li><a class="level is-mobile" href="#C-vs-Java-vs-Python-Grabage-collection"><span class="level-left"><span class="level-item">10</span><span class="level-item">C++ vs. Java (vs. Python), Grabage collection</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Different-between-Java-amp-C"><span class="level-left"><span class="level-item">10.1</span><span class="level-item">Different between Java &amp; C++</span></span></a></li><li><a class="level is-mobile" href="#Grabage-Collection"><span class="level-left"><span class="level-item">10.2</span><span class="level-item">Grabage Collection</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Concurrency"><span class="level-left"><span class="level-item">11</span><span class="level-item">Concurrency</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Concurrency-vs-Parallel"><span class="level-left"><span class="level-item">11.1</span><span class="level-item">Concurrency vs. Parallel</span></span></a></li><li><a class="level is-mobile" href="#Multiprocess-vs-Multi-thread"><span class="level-left"><span class="level-item">11.2</span><span class="level-item">Multiprocess vs. Multi-thread</span></span></a></li><li><a class="level is-mobile" href="#Java-Thread"><span class="level-left"><span class="level-item">11.3</span><span class="level-item">Java Thread</span></span></a></li><li><a class="level is-mobile" href="#Synchronization-amp-Race"><span class="level-left"><span class="level-item">11.4</span><span class="level-item">Synchronization &amp; Race</span></span></a></li><li><a class="level is-mobile" href="#Mutual-exclusion-mutex-critical-section-and-locks"><span class="level-left"><span class="level-item">11.5</span><span class="level-item">Mutual exclusion (mutex), critical section, and locks</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Trie"><span class="level-left"><span class="level-item">12</span><span class="level-item">Trie</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.png" alt="xBlog" height="28"></a><p class="is-size-7"><span>&copy; 2022 Shihao Xiong</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
