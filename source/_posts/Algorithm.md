@@ -563,13 +563,46 @@ class Queue {
 
 ### Queue by Array
 
-<!-- TODO: -->
-
-**Circle Array (ring buffer):**　 we can connect the start and end of the array, so that it is a cycle.
+**Circle Array (ring buffer):** we can connect the start and end of the array, so that it is a cycle.
 
 ```java
 class Queue {
+   private int[] arr;
+   private int head;
+   private int tail;
 
+   public Queue(int length) {
+      arr = new int[length + 1];
+      tail = 1;
+   }
+
+   public boolean offer(int element) {
+      if (isFull()) return false;
+      arr[tail] = element;
+      tail = (tail + 1) % arr.length;
+      return true;
+   }
+
+   public Integer peek() {
+      return isEmpty() ? null : arr[(head + 1) % arr.length];
+   }
+
+   public Integer poll() {
+      return isEmpty() ? null : arr[head = (head + 1) % arr.length];
+   }
+
+   public int size() {
+      int size = tail - head - 1;
+      return size < 0 ? size + arr.length : size;
+   }
+
+   public boolean isEmpty() {
+      return (head + 1) % arr.length == tail;
+   }
+
+   public boolean isFull() {
+      return head == tail;
+   }
 }
 ```
 
