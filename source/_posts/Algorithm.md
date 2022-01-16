@@ -1038,7 +1038,7 @@ class TreeNode {
 **Base Concept:**
 
 1. **Height of binary tree:** The distance between the root with the deepest leaf node.
-2. **Balanced binary tree:** is commonly defined as a bnary tree in which the depth (alse known as height) of the left and right subtrees of **every node** differ by 1 or less.
+2. **Balanced binary tree:** is commonly defined as a binary tree in which the depth (alse known as height) of the left and right subtrees of **every node** differ by 1 or less.
    1. for each of the nodes in this binary tree
    2. satisfyL the height of lesf subtree, right subtree at most diff by 1.
       > **If a tree has n number of nodes and it is balanced, the the heght (level of the tree = O(logn)).**
@@ -1145,8 +1145,6 @@ class Solution {
    }
 }
 ```
-
-### Binary Tree Iteration (Traversal)
 
 ---
 
