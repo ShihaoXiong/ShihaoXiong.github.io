@@ -1166,7 +1166,7 @@ TreeNode search(TreeNode root, int target) {
    while (cur != null && cur.value != targer) {
       if (target < cur.value) {
          cur = root.left;
-      } else if (target > cur.value) {
+      } else {
          cur = root.right;
       }
    }
@@ -1265,7 +1265,7 @@ class Solution {
       if (root.value > target) {
          root.left = delete(root.left, target);
          return root;
-      } else {
+      } else if (root.value < target) {
          root.right = delete(root.right, target);
          return root;
       }
@@ -1422,7 +1422,7 @@ We use the `List<GraphNode>` to represent the general tree.
 
 ### Best First Search (BFS-2)
 
-1. **Usages:** Find the **shortest path cost** from a single node (source node) to <font color=red>any other nodes in that graph</font> (点道面(==所有点)的最短距离算法)
+1. **Usages:** Find the **shortest path cost** from a single node (source node) to <font color=red>any other nodes in that graph</font> (点到面(==所有点)的最短距离算法)
 2. **Data Structure:** `PriorityQueue` (minHeap)
 
 **解题思路**
