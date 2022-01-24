@@ -1703,7 +1703,7 @@ The range of indices nees to perform `percolateDown` is: **[0, n / 2 - 1]**
 public class MinHeap {
    private int[] array;
    private int size;
-   public MinHap(int[] array) {
+   public MinHeap(int[] array) {
       if (array == null || array.length == 0) {
          throw new IllegalArgumentException("input array can not be null or empty");
       }
@@ -1804,7 +1804,11 @@ public class MinHeap {
       }
       int oldVal = array[index];
       array[index] = ele;
-      ele < oldVal ? percolateUp(index) : percolateDown(index);
+      if (ele < oldVal) {
+         percolateUp(index);
+      } else {
+         percolateDown(index);
+      }
       return oldVal;
    }
 
