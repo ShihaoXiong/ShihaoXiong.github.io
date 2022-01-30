@@ -1999,6 +1999,19 @@ A collection that maps keys to values. A `Map` cannot contain duplicate keys; ea
 
 #### HashMap Implementation
 
+![](/assets/algorithm/21.png)
+
+**Collision Control**
+* Collision - two keys mapped to the same bucket
+* **Separate Chaining** (Close Addressing) - the element of each of the buckets is actually a single linked list.
+* **Open addressing** - put the key-value pair into the "next" available bucket.
+   * How to define next? Linear/quadratic/exponential probing, hash again
+   * Challenge: handling removed keys in the map (mark deleted)
+   * Not used by Java; but by some real life systems.
+* If different Keys are determined to use the same bucket, they will be chained in the list.
+
+![](/assets/algorithm/22.png)
+
 1. define the class for each entry
 
    ```java
