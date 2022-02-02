@@ -2048,6 +2048,7 @@ A collection that maps keys to values. A `Map` cannot contain duplicate keys; ea
          return 0;
       }
       int hashNumber = key.hashCode();
+      // postprocessing to make the hashNumber non-negative
       return hashNumber & 0x7FFFFFFF;
    }
    ```
@@ -2074,19 +2075,215 @@ A collection that maps keys to values. A `Map` cannot contain duplicate keys; ea
 **Implementation:**
 
 - APIs: `put`, `get`, `remove`, `size`, `isEmpty`
-- Fields: array[], size
+- Fields: `Node[]`, `size`
 - Constructor: capacity, load factor (threshold), no parameter
-
-TODO:
 
 ```java
 class HashMap<K, V> {
+   public static class Node<K, V> {
+      private final K key;
+      private V value;
+      Node<K, V> next;
+      Node(K key, V value) {
+         this.key = key;
+         this.value = value;
+      }
+
+      public K getKey() {
+         return key;
+      }
+
+      public V getValue() {
+         return value;
+      }
+
+      public void setValue(V value) {
+         this.value = value;
+      }
+   }
+
+   private static final int DEFAULT_CAPACITY = 16;
+   private static final float DEFAULT_LOAD_FACTORY = 0.75f;
+
    private int size;
-   private Node[] buckets;
-   private double loadFactor;
+   private Node<K, V>[] array;
+   private float loadFactor;
+
+   HashMap(int capacity, int loadFactor) {
+      if (capacity <= 0) {
+         throw IllegalArgumentException("capacity can not be <= 0");
+      }
+      array = (Node<K, V>[]) (new Node[capacity]);
+      this.loadFactor = loadFactor;
+      size = 0;
+   }
 
    HashMap() {
+      this(DEFAULT_CAPACITY, DEFAULT_LOAD_FACTORY);
+   }
 
+   public int size() {
+      return size;
+   }
+
+   public boolean isEmpty() {
+      return size == 0;
+   }
+
+   public void clear() {
+      Arrays.fill(array, null);
+      size = 0;
+   }
+
+   private int hash(K key) {
+      // return the hash# of the key
+      if (key == null) {
+         return 0;
+      }
+      int hashNumber = key.hashCode();
+      // postprocessing to make the hashNumber non-negative
+      return hashNumber & 0x7FFFFFFF;
+   }
+
+   private int getIndex(int hashNumber) {
+      // reutrn the corresponding index of array
+      return hashNumber % array.length;
+   }
+
+   private boolean equalsValue(V v1, V v2) {
+      return v1 == v2 || v1 != null && v1.equals(v2);
+   }
+
+   private boolean equalsKey(K k1, K k2) {
+      return k1 == k2 || k1 != null && k1.equals(k2);
+   }
+
+   public boolean containsKey(K key) {
+      int index = getIndex(key);
+      Node<K, V> head = array[index];
+      while (head != null) {
+         if (equalsKey(head.getKey(), key)) {
+            return true;
+         }
+         head = head.next;
+      }
+
+      return false;
+   }
+
+   public boolean containsValue(V val) {
+      if (isEmpty()) {
+         return false;
+      }
+
+      for (Node<K, V> node: array) {
+         while (node != null) {
+            if (equalsValue(node.getValue(), val)) {
+               return true;
+            }
+            node = node.next;
+         }
+      }
+
+      return false;
+   }
+
+   private boolean needRehashing() {
+      // fload loadFactor
+      float ratio = (size + 0.0f) / array.length;
+      return ratio >= loadFactor;
+   }
+
+   private void rehashing() {
+      Node<K, V>[] oldArray = array;
+      array = (Node<K, V>[]) (new Node[array.length * SCALE_FACTOR]);
+      for (Node<K, V> node: oldArray) {
+         while (node != null) {
+            Node<K, V> next = node.next;
+            int index = getIndex(node.getKey());
+            node.next = array[index];
+            array[index] = node;
+            node = next;
+         }
+      }
+   }
+
+   public V get(K key) {
+      int index = getIndex(key);
+      Node<K, V> head = array[index];
+      while (head != null) {
+         if (equalsKey(head.getKey(), key)) {
+            return head.getValue();
+         }
+         head = head.next;
+      }
+
+      return null;
+   }
+
+   public V remove(K key) {
+      int index = getIndex(key);
+      Node<K, V> pre = null;
+      Node<K, V> head = bucket[index];
+      while (head != null) {
+         if (equalsKey(head.getKey(), key)) {
+            if (pre != null) {
+               pre.next = head.nextl
+            } else {
+               buckets[index] == head.next;
+            }
+            size--;
+            return head.getValue();
+         }
+         pre = head;
+         head = head.next;
+      }
+
+      return null;
+   }
+
+   public V put(K key, V val) {
+      int index = getIndex(key);
+      Node<K, V> head = array[index];
+      while (head != null) {
+         if (equalsValue(head.getValue(), val)) {
+            V res = head.getValue();
+            head.setValue(val);
+            return res;
+         }
+         head = head.next;
+      }
+
+      Node<K, V> newNode = new Node<>(key, val);
+      newNode.next = array[index];
+      array[index] = newNode;
+      size++;
+
+      if (needRehashing()) {
+         rehashing();
+      }
+
+      return null;
+   }
+}
+```
+
+#### Iterators
+
+**The methods an iterator may have**
+- `public boolean hasNext()`
+- `public E next()`
+- `public void remove()`
+
+**Remove when tracerse a HashMap**
+
+```java
+Iterator<Map.Entry<String, Integer>> iter = map.entrySet().iterator();
+while (iter.hasNext()) {
+   Map.Entry<String, Integer> cur = iter.next();
+   // remove condition
+   if (cur.getValue() == 0) {
+      iter.remove();
    }
 }
 ```
@@ -2111,7 +2308,7 @@ void removeChar(StringBuilder input) {
 }
 ```
 
-**<font color=#3273DC>Example.2 Remove all leading/trailing and duplicate empty spaces (only leave onw empty space if duplicated spaces happen) from the input string. (must in place)</font>**
+**<font color=#3273DC>Example.2 Remove all leading/trailing and duplicate empty spaces (only leave one empty space if duplicated spaces happen) from the input string. (must in place)</font>**
 E.g. input = "\_\_\_abc_de\_\_\_" -> output = "abc_de"
 
 ```java
